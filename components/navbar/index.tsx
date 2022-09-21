@@ -34,25 +34,27 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
     /* this makes the header sticky! */
     <header className="sticky top-0 z-10">
       <nav className="flex justify-between items-center bg-white dark:bg-slate-900 max-w-5xl mx-auto px-2 md:px-0">
-        <button
-          onClick={() => {
-            if (!showMobileNav) {
-              setShowMobileSearch(false);
-            }
-            setShowMobileNav(!showMobileNav);
-          }}
-          type="button"
-          className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        >
-          {showMobileNav ? (
-            <XIcon className="w-5 h-5" />
-          ) : (
-            <MenuIcon className="w-5 h-5" />
-          )}
-        </button>
+        <div className="md:hidden">
+          <Button
+            onClick={() => {
+              if (!showMobileNav) {
+                setShowMobileSearch(false);
+              }
+              setShowMobileNav(!showMobileNav);
+            }}
+          >
+            {showMobileNav ? (
+              <XIcon className="w-5 h-5" />
+            ) : (
+              <MenuIcon className="w-5 h-5" />
+            )}
+          </Button>
+        </div>
 
         <div className="md:hidden">
-          <NavItem brand={true} href="/" title="NextTube" />
+          <div className="ml-[3.75rem]">
+            <NavItem brand={true} href="/" title="NextTube" />
+          </div>
         </div>
 
         <div
