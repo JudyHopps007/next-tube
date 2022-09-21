@@ -35,7 +35,7 @@ const TagItem: FC<Props> = ({
     <div
       className={`text-xs md:text-sm leading-5 ${
         useSize ? getFont(size) : 'font-medium'
-      } text-indigo-600 dark:text-indigo-400 bg-indigo-400/10 rounded-full py-1 px-3 hover:bg-indigo-400/20 mb-2`}
+      } text-indigo-600 dark:text-indigo-400 bg-indigo-400/10 rounded-full py-1 px-3 hover:bg-indigo-400/20 mb-2 hover:scale-[1.1] duration-300 relative drop-shadow-md`}
     >
       <Link href="/">
         <a>{tag}</a>
