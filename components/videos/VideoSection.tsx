@@ -1,5 +1,5 @@
 import Headline from 'components/ui/Headline';
-import { HeadlineVariants, Video } from 'models/types';
+import { HeadlineVariant, Video } from 'models/types';
 import React, { FC } from 'react';
 import VideoItem from './VideoItem';
 
