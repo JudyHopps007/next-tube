@@ -51,7 +51,7 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
 
   return (
     <header className={`sticky z-10 ${visible ? 'top-0' : ''}`}>
-      <nav className="flex justify-between items-center bg-white dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0">
+      <nav className="flex flex-row justify-between items-center bg-white dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0 border-b border-slate-900/10 dark:border-slate-300/10">
         <div className="md:hidden">
           <Button
             onClick={() => {
@@ -78,9 +78,9 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
         <div
           className={`${
             showMobileNav ? '' : 'hidden'
-          } fixed md:relative md:flex md:top-0 top-14 w-full dark:bg-slate-900 bg-white pb-2`}
+          } fixed md:relative md:flex md:flex-row md:items-center md:justify-start md:top-0 top-14 w-full dark:bg-slate-900 bg-white pb-2 py-2`}
         >
-          <ul className="flex flex-col md:flex-row mr-4 md:mr-0 md:py-2 bg-gray-100 md:space-x-2 items-center justify-items-start md:bg-white dark:bg-slate-800 md:dark:bg-slate-900 text-center rounded-md border border-transparent">
+          <ul className="flex flex-col md:flex-row mr-4 md:mr-0  bg-gray-100 md:space-x-2 items-center justify-items-center md:bg-white dark:bg-slate-800 md:dark:bg-slate-900 text-center rounded-md border border-transparent">
             <li className="hidden md:flex">
               <NavItem brand={true} href="/" title="NextTube" />
             </li>
@@ -92,7 +92,7 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
           </ul>
         </div>
 
-        <div className="flex flex-row items-center justify-center space-x-2">
+        <div className="flex flex-row items-center justify-center space-x-2 py-2">
           <div
             className={`${
               showMobileSearch ? 'fixed top-14 right-2 left-2' : 'hidden'
