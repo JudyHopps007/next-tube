@@ -4,3 +4,5 @@ export type Video = {
   image: string;
   views: number;
 };
+
+export type HeadlineVariant = 'h1' | 'h2' | 'h3';
