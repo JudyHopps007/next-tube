@@ -51,7 +51,7 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
 
   return (
     <header className={`sticky z-10 ${visible ? 'top-0' : ''}`}>
-      <nav className="flex flex-row justify-between items-center bg-white dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0 border-b border-slate-900/10 dark:border-slate-300/10">
+      <nav className="flex flex-row justify-between items-center bg-gray-100 dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0 border-b border-slate-900/10 dark:border-slate-300/10">
         <div className="md:hidden">
           <Button
             onClick={() => {
@@ -78,9 +78,9 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
         <div
           className={`${
             showMobileNav ? '' : 'hidden'
-          } fixed md:relative md:flex md:flex-row md:items-center md:justify-start md:top-0 top-14 w-full dark:bg-slate-900 bg-white pb-2 py-2`}
+          } fixed md:relative md:flex md:flex-row md:items-center md:justify-start md:top-0 top-14 w-full dark:bg-slate-900 pb-2 py-2`}
         >
-          <ul className="flex flex-col md:flex-row mr-4 md:mr-0  bg-gray-100 md:space-x-2 items-center justify-items-center md:bg-white dark:bg-slate-800 md:dark:bg-slate-900 text-center rounded-md border border-transparent">
+          <ul className="flex flex-col md:flex-row mr-4 md:mr-0 bg-white md:bg-gray-100 md:space-x-2 items-center justify-items-center dark:bg-slate-800 md:dark:bg-slate-900 text-center rounded-md border border-transparent">
             <li className="hidden md:flex">
               <NavItem brand={true} href="/" title="NextTube" />
             </li>
@@ -95,20 +95,20 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
         <div className="flex flex-row items-center justify-center space-x-2 py-2">
           <div
             className={`${
-              showMobileSearch ? 'fixed top-14 right-2 left-2' : 'hidden'
+              showMobileSearch ? 'fixed top-16 right-2 left-2' : 'hidden'
             } md:relative md:top-0 md:left-0 md:flex bg-indigo-600 rounded-md mx-auto`}
           >
             <div
               className={`${
-                showMobileSearch ? 'dark:bg-slate-900 bg-white pb-2' : ''
+                showMobileSearch ? 'dark:bg-slate-900 bg-gray-100 pb-2' : ''
               } flex flex-row`}
             >
               <input
-                className="p-2 rounded-l-md w-full md:w-64 dark:bg-slate-800 dark:text-gray-300 bg-gray-100 focus:outline-none"
+                className="p-2 rounded-l-md w-full md:w-64 dark:bg-slate-800 dark:text-gray-300 bg-white focus:outline-none"
                 type="text"
                 placeholder="What are you searching..."
               />
-              <button className="px-3 py-2 bg-indigo-600 rounded-r-md">
+              <button className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-r-md">
                 <SearchIcon className="h-5 w-5 text-white" />
               </button>
             </div>

@@ -1,4 +1,5 @@
 import BaseLayout from 'components/layout/BaseLayout';
+import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideoSection';
 import type { NextPage } from 'next';
 
@@ -69,10 +70,23 @@ const DUMMY_DATA = [
   },
 ];
 
+const DUMMY_TAGS = [
+  'lol dasd ',
+  'lol2 dasd',
+  'lol3 das d',
+  'lol das',
+  'lol2 dasdas',
+  'lol3dasdas',
+  'lol fasdf sddas',
+  'lol2asda ',
+  'lol3dasd asda sdasddas',
+];
+
 const HomePage: NextPage = () => {
   return (
     <BaseLayout>
       <VideosSection headline="Latest Videos" videos={DUMMY_DATA} />
+      <TagsSection headline="Categories" tags={DUMMY_TAGS} />
     </BaseLayout>
   );
 };

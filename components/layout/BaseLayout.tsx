@@ -30,7 +30,7 @@ const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 text-black dark:text-gray-100">
+    <div className="bg-gray-100 dark:bg-slate-900 text-black dark:text-gray-100">
       <Navbar darkTheme={darkTheme!} toogleTheme={changeThemeHandler} />
       <main className="container max-w-5xl mx-auto min-h-screen px-2">
         {children}
