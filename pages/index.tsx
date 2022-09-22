@@ -7,8 +7,7 @@ const DUMMY_DATA = [
   {
     id: 1,
     views: 1231231231,
-    title:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
+    title: 'Lorem lol',
     image:
       'https://i.ytimg.com/vi/-_xkTE8EeLA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCQy3qgnE4lujj7ZOhpdmGNGZOkJA',
   },

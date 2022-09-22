@@ -50,8 +50,12 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
   const fullClass = showMobileNav ? 'w-full' : '';
 
   return (
-    <header className={`sticky z-10 ${visible ? 'top-0' : ''}`}>
-      <nav className="flex flex-row justify-between items-center bg-gray-100 dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0 border-b border-slate-900/10 dark:border-slate-300/10">
+    <header
+      className={`sticky z-10 border-b bg-gray-100 dark:bg-slate-900 border-slate-900/10 dark:border-slate-300/10 ${
+        visible ? 'top-0' : ''
+      }`}
+    >
+      <nav className="flex flex-row justify-between items-center bg-gray-100 dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0">
         <div className="md:hidden">
           <Button
             onClick={() => {
@@ -142,7 +146,7 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
           </div>
         </div>
       </nav>
-      {showMobileSearch && <div className="mb-20" />}
+      {showMobileSearch && <div className="mb-12" />}
       {showMobileNav && <div className="mb-24" />}
     </header>
   );

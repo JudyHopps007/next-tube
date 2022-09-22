@@ -15,7 +15,14 @@ const VideosSection: FC<Props> = ({ headline, videos, variant = 'h1' }) => {
       <Headline variant={variant} text={headline} />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-6">
         {videos.map((video) => (
-          <VideoItem key={video.id} video={video} showHd showViews />
+          <VideoItem
+            key={video.id}
+            video={video}
+            showHd
+            showViews
+            showDuration
+            showTags
+          />
         ))}
       </div>
     </section>
