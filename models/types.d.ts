@@ -6,3 +6,5 @@ export type Video = {
 };
 
 export type HeadlineVariant = 'h1' | 'h2' | 'h3';
+
+export type TagDesign = 'category' | 'tags';

@@ -1,12 +1,12 @@
 import Headline from 'components/ui/Headline';
-import { HeadlineVariant } from 'models/types';
+import { HeadlineVariant, TagDesign } from 'models/types';
 import { FC } from 'react';
 import { classNames } from 'utils/helpers';
 import TagItem from './TagItem';
 
 type Props = {
   headline: string;
-  design?: 'category' | 'tags';
+  design?: TagDesign;
   tags: string[];
   variant?: HeadlineVariant;
 };

@@ -1,3 +1,4 @@
+import { TagDesign } from 'models/types';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { classNames } from 'utils/helpers';
@@ -7,7 +8,7 @@ type Props = {
   size?: number;
   color?: number;
   useSize?: boolean;
-  design: 'category' | 'tags';
+  design: TagDesign;
 };
 
 const getFont = (size: number) => {
