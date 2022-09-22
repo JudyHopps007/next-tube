@@ -27,13 +27,7 @@ const TagsSection: FC<Props> = ({
         )}
       >
         {tags.map((tag, i) => (
-          <TagItem
-            key={i}
-            tag={tag}
-            size={Math.floor(Math.random() * 5 + 1)}
-            color={Math.floor(Math.random() * 5 + 1)}
-            design={design}
-          />
+          <TagItem key={i} tag={tag} design={design} />
         ))}
       </div>
     </section>
