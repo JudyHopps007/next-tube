@@ -23,7 +23,7 @@ const VideoItem: FC<Props> = ({
   return (
     <Link href={`/video/${video.id}`}>
       <a>
-        <div className="bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden hover:scale-[1.1] duration-300 shadow-lg group">
+        <div className="bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden hover:scale-[1.05] duration-300 shadow-lg group">
           <div className="relative">
             <img
               className="w-fill object-fill"
