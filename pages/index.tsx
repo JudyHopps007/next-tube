@@ -1,4 +1,5 @@
 import BaseLayout from 'components/layout/BaseLayout';
+import ListSection from 'components/list/ListSection';
 import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideoSection';
 import type { NextPage } from 'next';
@@ -36,7 +37,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/Qvi3VTLzSfM/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLC_y7KgaHhL_XPv2UkR9n4sUmSbdA',
   },
   {
-    id: 1,
+    id: 5,
     views: 1231231231,
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
@@ -44,7 +45,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/-_xkTE8EeLA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCQy3qgnE4lujj7ZOhpdmGNGZOkJA',
   },
   {
-    id: 2,
+    id: 6,
     views: 1241,
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
@@ -52,7 +53,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/1q-hwaWm_oU/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAGRoAuHLjEp98N5dAaZ2EFWzppQw',
   },
   {
-    id: 3,
+    id: 10,
     views: 123131,
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
@@ -60,7 +61,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/xey4G0FQvbE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_5aj8JpjYEsR0SzNY3uENBIlIiQ',
   },
   {
-    id: 4,
+    id: 9,
     views: 113,
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
@@ -70,6 +71,9 @@ const DUMMY_DATA = [
 ];
 
 const DUMMY_TAGS = [
+  'hans penter',
+  'ada',
+  'eth what',
   'lol dasd ',
   'lol2 dasd',
   'lol3 das d',
@@ -85,7 +89,8 @@ const HomePage: NextPage = () => {
   return (
     <BaseLayout>
       <VideosSection headline="Latest Videos" videos={DUMMY_DATA} />
-      <TagsSection headline="Categories" tags={DUMMY_TAGS} />
+      <TagsSection headline="Tags" tags={DUMMY_TAGS} />
+      <ListSection headline="List" keywords={DUMMY_TAGS} />
     </BaseLayout>
   );
 };

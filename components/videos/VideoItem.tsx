@@ -48,7 +48,7 @@ const VideoItem: FC<Props> = ({
           </div>
           <div
             className={classNames(
-              'mx-2 mt-2 text-xs md:text-sm line-clamp-2',
+              'mx-2 mt-2 text-sm md:text-base line-clamp-2',
               showTags ? '' : 'mb-2'
             )}
           >

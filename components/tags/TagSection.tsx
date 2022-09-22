@@ -33,7 +33,6 @@ const TagsSection: FC<Props> = ({
             size={Math.floor(Math.random() * 5 + 1)}
             color={Math.floor(Math.random() * 5 + 1)}
             design={design}
-            useSize
           />
         ))}
       </div>
