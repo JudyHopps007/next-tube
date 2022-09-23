@@ -5,7 +5,7 @@ import {
   XIcon,
   SearchIcon,
 } from '@heroicons/react/outline';
-import Button from 'components/ui/Button';
+import Button from 'components/navbar/NavButton';
 import { FC, useEffect, useState } from 'react';
 import NavItem from './NavItem';
 

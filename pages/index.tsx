@@ -1,6 +1,7 @@
 import BaseLayout from 'components/layout/BaseLayout';
 import ListSection from 'components/list/ListSection';
 import TagsSection from 'components/tags/TagSection';
+import Button from 'components/ui/Button';
 import VideosSection from 'components/videos/VideoSection';
 import type { NextPage } from 'next';
 
@@ -97,6 +98,9 @@ const HomePage: NextPage = () => {
   return (
     <BaseLayout>
       <VideosSection headline="Latest Videos" videos={DUMMY_DATA} />
+      <div className="flex justify-center my-5">
+        <Button text="Show More" href="/lulz" outline />
+      </div>
       <TagsSection headline="Tags" tags={DUMMY_TAGS} />
       <ListSection headline="List" keywords={DUMMY_TAGS} />
     </BaseLayout>
