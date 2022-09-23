@@ -7,7 +7,7 @@ const ListItem: FC<Props> = ({ item }) => {
   return (
     <li key={item} className="w-full">
       {item.length === 1 ? (
-        <div className="bg-indigo-600 text-gray-100 dark:text-indigo-400 dark:bg-indigo-400/10 px-1 font-bold rounded-md">
+        <div className="bg-slate-700 text-gray-100 dark:text-indigo-400 dark:bg-indigo-400/10 px-1 font-bold rounded-md">
           {item}
         </div>
       ) : (
