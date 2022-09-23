@@ -98,8 +98,9 @@ const HomePage: NextPage = () => {
   return (
     <BaseLayout>
       <VideosSection headline="Latest Videos" videos={DUMMY_DATA} />
-      <div className="flex justify-center my-5">
-        <Button text="Show More" href="/lulz" outline />
+      <div className="flex flex-row space-x-1 md:space-x-2 justify-center w-full my-5">
+        <Button text="< Prev" href="/lulz" outline />
+        <Button text="Next >" href="/lulz" outline />
       </div>
       <TagsSection headline="Tags" tags={DUMMY_TAGS} />
       <ListSection headline="List" keywords={DUMMY_TAGS} />

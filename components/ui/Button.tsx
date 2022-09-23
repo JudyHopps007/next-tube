@@ -11,10 +11,10 @@ type Props = {
 
 const Button: FC<Props> = ({ text, onClickHandler, href, outline = false }) => {
   let className = classNames(
-    'py-2 px-2 text-base md:text-md font-medium rounded-md hover:bg-indigo-700 hover:border-indigo-600',
+    'py-2 px-2 text-base md:text-md font-medium rounded-md hover:bg-indigo-700 hover:border-indigo-600 w-full md:w-auto shadow-md',
     outline
-      ? 'border-2 border-indigo-600 bg-transparent dark:text-gray-100 text-indigo-700 hover:text-gray-100'
-      : 'border-2 border-transparent bg-indigo-600 text-white'
+      ? 'border-2 border-indigo-600 dark:border-indigo-800 bg-transparent dark:text-gray-100 text-indigo-700 hover:text-gray-100'
+      : 'border border-transparent bg-indigo-600 text-white'
   );
 
   const buttonJSX = (
@@ -26,7 +26,7 @@ const Button: FC<Props> = ({ text, onClickHandler, href, outline = false }) => {
   if (href) {
     return (
       <Link href={href}>
-        <a>{buttonJSX}</a>
+        <a className="w-full md:w-auto">{buttonJSX}</a>
       </Link>
     );
   } else {
