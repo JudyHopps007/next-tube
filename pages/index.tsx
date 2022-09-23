@@ -9,12 +9,14 @@ const DUMMY_DATA = [
     id: 1,
     views: 1231231231,
     title: 'Lorem lol',
+    tags: ['lol'],
     image:
       'https://i.ytimg.com/vi/-_xkTE8EeLA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCQy3qgnE4lujj7ZOhpdmGNGZOkJA',
   },
   {
     id: 2,
     views: 1241,
+    tags: ['lol'],
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
     image:
@@ -23,6 +25,7 @@ const DUMMY_DATA = [
   {
     id: 3,
     views: 123131,
+    tags: ['lol'],
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
     image:
@@ -31,6 +34,7 @@ const DUMMY_DATA = [
   {
     id: 4,
     views: 113,
+    tags: ['lol', 'wtf'],
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
     image:
@@ -39,6 +43,7 @@ const DUMMY_DATA = [
   {
     id: 5,
     views: 1231231231,
+    tags: [],
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
     image:
@@ -47,6 +52,7 @@ const DUMMY_DATA = [
   {
     id: 6,
     views: 1241,
+    tags: ['lol'],
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
     image:
@@ -55,6 +61,7 @@ const DUMMY_DATA = [
   {
     id: 10,
     views: 123131,
+    tags: ['lol'],
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
     image:
@@ -65,6 +72,7 @@ const DUMMY_DATA = [
     views: 113,
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',
+    tags: ['lol'],
     image:
       'https://i.ytimg.com/vi/Qvi3VTLzSfM/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLC_y7KgaHhL_XPv2UkR9n4sUmSbdA',
   },

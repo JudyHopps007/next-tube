@@ -3,6 +3,7 @@ export type Video = {
   title: string;
   image: string;
   views: number;
+  tags: string[];
 };
 
 export type HeadlineVariant = 'h1' | 'h2' | 'h3';
