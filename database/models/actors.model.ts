@@ -2,14 +2,18 @@ import mongoose from 'mongoose';
 
 const actorsSchema = new mongoose.Schema(
   {
+    id: {
+      type: String,
+      require: [true, 'lowecase(name) of actor is required.'],
+      unique: true,
+    },
     name: {
       type: String,
-      unique: true,
-      require: [true, 'Name of actor is required.'],
+      require: [true, 'name of actor is required.'],
     },
     image: {
       type: String,
-      default: 'default-categrory.png',
+      default: '/images/placeholder-actor.png',
     },
     videoCount: {
       type: Number,

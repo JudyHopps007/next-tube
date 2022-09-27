@@ -1,3 +1,4 @@
+import CategoriesSection from 'components/categories/CategoriesSection';
 import BaseLayout from 'components/layout/BaseLayout';
 import ListSection from 'components/list/ListSection';
 import TagsSection from 'components/tags/TagSection';
@@ -94,9 +95,37 @@ const DUMMY_TAGS = [
   'lol3dasd asda sdasddas',
 ];
 
+const DUMMY_CATEGORIES = [
+  {
+    id: 'test',
+    name: 'test',
+    image: '/images/placeholder-category.png',
+    videoCount: 1337,
+  },
+  {
+    id: 'john wayne',
+    name: 'John Wayne',
+    image: '/images/placeholder-category.png',
+    videoCount: 1337,
+  },
+  {
+    id: 'lulzi lulz',
+    name: 'Lulzi lulz',
+    image: '/images/placeholder-category.png',
+    videoCount: 88,
+  },
+  {
+    id: 'jaja lulz',
+    name: 'JaJA lulz',
+    image: '/images/placeholder-category.png',
+    videoCount: 88,
+  },
+];
+
 const HomePage: NextPage = () => {
   return (
     <BaseLayout>
+      <CategoriesSection headline="Categories" categories={DUMMY_CATEGORIES} />
       <VideosSection headline="Latest Videos" videos={DUMMY_DATA} />
       <div className="flex flex-row space-x-1 md:space-x-2 justify-center w-full my-5">
         <Button text="< Prev" href="/lulz" outline />

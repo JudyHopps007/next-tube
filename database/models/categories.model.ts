@@ -2,14 +2,18 @@ import mongoose from 'mongoose';
 
 const categoriesSchema = new mongoose.Schema(
   {
+    id: {
+      type: String,
+      require: [true, 'lowecase(name) of category is required.'],
+      unique: true,
+    },
     name: {
       type: String,
-      unique: true,
-      require: [true, 'Name of category is required.'],
+      require: [true, 'name of category is required.'],
     },
     image: {
       type: String,
-      default: 'default-categrory.png',
+      default: '/images/placeholder-category.png',
     },
     videoCount: {
       type: Number,

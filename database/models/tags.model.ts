@@ -2,10 +2,14 @@ import mongoose from 'mongoose';
 
 const tagsSchema = new mongoose.Schema(
   {
+    id: {
+      type: String,
+      require: [true, 'lowecase(name) of tag is required.'],
+      unique: true,
+    },
     name: {
       type: String,
-      unique: true,
-      require: [true, 'Name of tag is required.'],
+      require: [true, 'name of tag is required.'],
     },
     relatedTags: {
       type: [String],
