@@ -7,11 +7,10 @@ export const isEmpty = (val: any) => {
 };
 
 export const slugify = (str: string) => {
-  str = str
-    .trim()
-    .toLowerCase()
-    .replaceAll(' ', '-')
-    .replaceAll('.', '-')
-    .replace(/-+/g, '-');
+  const badChars = '#!?;./`´§%&)(/$,:+';
+  for (let c of badChars) {
+    str = str.replaceAll(c, '');
+  }
+  str = str.trim().toLowerCase().replaceAll(' ', '-').replace(/-+/g, '-');
   return str;
 };

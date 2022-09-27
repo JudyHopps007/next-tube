@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
+import { buildTagUrl } from 'utils/navigation';
 
 type Props = {
   name: string;
@@ -11,7 +12,7 @@ type Props = {
 const CategoriesItem: FC<Props> = ({ name, image, count }) => {
   return (
     <div className="bg-white hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800/70 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden hover:scale-[1.05] duration-300 shadow-lg group">
-      <Link href={`/category/${name}`}>
+      <Link href={buildTagUrl(name, 'category')}>
         <a>
           <Image
             alt={name}

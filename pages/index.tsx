@@ -110,7 +110,7 @@ const DUMMY_CATEGORIES = [
   },
   {
     id: 'lulzi lulz',
-    name: 'Lulzi lulz',
+    name: 'Lulzi &   lulz $',
     image: '/images/placeholder-category.png',
     videoCount: 88,
   },

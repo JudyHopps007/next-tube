@@ -2,6 +2,7 @@ import { TagDesign } from 'types/types';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { classNames } from 'utils/helpers';
+import { buildTagUrl } from 'utils/navigation';
 
 type Props = {
   tag: string;
@@ -78,7 +79,7 @@ const TagItem: FC<Props> = ({
           'text-indigo-600 dark:text-indigo-400 bg-indigo-400/10 rounded-full py-1 px-3 hover:bg-indigo-400/20 mb-2 hover:scale-[1.05] duration-300 shadow-md'
         )}
       >
-        <Link href="/">
+        <Link href={buildTagUrl(tag, 'tag')}>
           <a>{tag}</a>
         </Link>
       </div>
@@ -92,7 +93,7 @@ const TagItem: FC<Props> = ({
           'flex mr-2 p-1 font-semibold hover:text-slate-500'
         )}
       >
-        <Link href="/">
+        <Link href={buildTagUrl(tag, 'tag')}>
           <a>{tag}</a>
         </Link>
       </div>

@@ -5,6 +5,7 @@ import millify from 'millify';
 import Link from 'next/link';
 import { classNames } from 'utils/helpers';
 import VideoTagItem from './VideoTagItem';
+import { buildVideoUrl } from 'utils/navigation';
 
 type Props = {
   video: Video;
@@ -24,7 +25,7 @@ const VideoItem: FC<Props> = ({
   return (
     <div className="bg-white hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800/70 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden hover:scale-[1.05] duration-300 shadow-lg group">
       <div className="relative">
-        <Link href={`/video/${video.id}`}>
+        <Link href={buildVideoUrl(video.id, video.title, 'video')}>
           <a>
             <img
               className="w-full object-fill"
