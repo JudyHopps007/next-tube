@@ -1,5 +1,5 @@
 import { EyeIcon, ClockIcon } from '@heroicons/react/outline';
-import { Video } from 'models/types';
+import { Video } from 'types/types';
 import React, { FC } from 'react';
 import millify from 'millify';
 import Link from 'next/link';

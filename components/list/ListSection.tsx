@@ -1,5 +1,5 @@
 import Headline from 'components/ui/Headline';
-import { HeadlineVariant } from 'models/types';
+import { HeadlineVariant } from 'types/types';
 import React, { FC, useMemo } from 'react';
 import ListItem from './ListItem';
 
