@@ -1,8 +1,8 @@
 import CategoriesSection from 'components/categories/CategoriesSection';
 import BaseLayout from 'components/layout/BaseLayout';
 import ListSection from 'components/list/ListSection';
+import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
-import Button from 'components/ui/Button';
 import VideosSection from 'components/videos/VideoSection';
 import type { NextPage } from 'next';
 
@@ -127,12 +127,9 @@ const HomePage: NextPage = () => {
     <BaseLayout>
       <CategoriesSection headline="Categories" categories={DUMMY_CATEGORIES} />
       <VideosSection headline="Latest Videos" videos={DUMMY_DATA} />
-      <div className="flex flex-row space-x-1 md:space-x-2 justify-center w-full my-5">
-        <Button text="< Prev" href="/lulz" outline />
-        <Button text="Next >" href="/lulz" outline />
-      </div>
       <TagsSection headline="Tags" tags={DUMMY_TAGS} />
       <ListSection headline="List" keywords={DUMMY_TAGS} />
+      <Pagination path="tag" name="lol" currentPage={2} />
     </BaseLayout>
   );
 };
