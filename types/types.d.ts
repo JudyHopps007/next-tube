@@ -1,9 +1,16 @@
 export type Video = {
-  id: number;
+  vid: number;
   title: string;
-  image: string;
+  thumbnail: string;
+  poster: string;
+  hd: boolean;
+  duration: number;
   views: number;
+  likes: number;
+  dislikes: number;
   tags: string[];
+  categories: string[];
+  actors: string[];
 };
 
 export type HeadlineVariant = 'h1' | 'h2' | 'h3';
@@ -16,5 +23,7 @@ export type Categories = {
   videoCount: number;
   image: string;
 };
+
+export type VideoIncreaseKeys = 'likes' | 'dislikes' | 'views';
 
 export type Actors = Categories;

@@ -1,0 +1,19 @@
+import connectToDb from 'database/database';
+import { addVideo } from 'database/services/videos.service';
+import { NextApiRequest, NextApiResponse } from 'next';
+
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    if (req.method === 'POST') {
+      const video = await addVideo(req);
+      return res.status(200).send(video);
+    }
+  } catch (err: any) {
+    return res.status(400).json({
+      message: `API Error ${err.message || 'VIDEOS/ADD unknown error'}`,
+    });
+  }
+  return res.status(400).json({ message: 'API Error' });
+};
+
+export default connectToDb(handler);

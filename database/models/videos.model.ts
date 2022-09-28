@@ -12,6 +12,7 @@ const videosSchema = new mongoose.Schema(
     title: {
       required: [true, 'title is required'],
       type: String,
+      unique: true,
       trim: true,
     },
     thumbnail: {
@@ -58,13 +59,12 @@ const videosSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Videos = mongoose.models.Videos || mongoose.model('Videos', videosSchema);
-
 videosSchema.pre('save', function (next) {
   var doc = this;
   Counter.findByIdAndUpdate(
     { _id: 'videos' },
     { $inc: { seq: 1 } },
+    { new: true, upsert: true },
     function (error, counter) {
       if (error) return next(error);
       doc.vid = counter.seq;
@@ -72,5 +72,7 @@ videosSchema.pre('save', function (next) {
     }
   );
 });
+
+const Videos = mongoose.models.Videos || mongoose.model('Videos', videosSchema);
 
 export default Videos;
