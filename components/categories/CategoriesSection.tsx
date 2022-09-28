@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import Headline from 'components/ui/Headline';
-import { Categories, Actors, HeadlineVariant } from 'types/types';
+import { HeadlineVariant, Tag } from 'types/types';
 import CategoriesItem from './CategoriesItem';
 
 type Props = {
   headline: string;
   variant?: HeadlineVariant;
-  categories: Categories[] | Actors[];
+  categories: Tag[];
 };
 
 const CategoriesSection: FC<Props> = ({
