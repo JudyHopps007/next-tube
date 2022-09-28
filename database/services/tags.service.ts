@@ -1,6 +1,7 @@
 import Tags from 'database/models/tags.model';
 import { generateTagId } from 'database/utils/helper';
 import { NextApiRequest } from 'next';
+import { TagRole } from 'types/types';
 
 export const addTag = async (req: NextApiRequest) => {
   try {
@@ -45,6 +46,7 @@ export const searchRelatedTags = async (
       },
       score: { $meta: 'textScore' },
       role: 'tag',
+      blocked: false,
     })
       .sort({ score: { $meta: 'textScore' } })
       .limit(limit)
@@ -53,4 +55,48 @@ export const searchRelatedTags = async (
   } catch (err: any) {
     throw err;
   }
+};
+
+export const updateTag = async (name: string, body: any) => {
+  try {
+    const id = generateTagId(name);
+    const tag = await Tags.findOneAndUpdate({ id: id }, { $set: body });
+    if (!tag) throw new Error(`Tag with id ${id} not found.`);
+    return tag;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateTagCount = async (name: string, amount: number) => {
+  try {
+    const id = generateTagId(name);
+    const tag = await Tags.findOneAndUpdate(
+      { id: id },
+      { $inc: { videoCount: amount } }
+    );
+    if (!tag) throw new Error(`Tag with id ${id} not found.`);
+    return tag;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const changeTagRole = async (name: string, newRole: TagRole) => {
+  try {
+    const id = generateTagId(name);
+    const tag = await Tags.findOneAndUpdate(
+      { id: id },
+      { $set: { role: newRole } }
+    );
+    if (!tag) throw new Error(`Tag with id ${id} not found.`);
+    return tag;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const countTags = async (role: TagRole = 'tag') => {
+  const count = Tags.countDocuments({ role: role });
+  return count;
 };
