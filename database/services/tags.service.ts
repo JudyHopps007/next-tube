@@ -16,6 +16,20 @@ export const addTag = async (req: NextApiRequest) => {
   }
 };
 
+export const getRandomTags = async (amount: number, select: any = {}) => {
+  try {
+    const tags = Tags.aggregate([
+      { $match: { blocked: false } },
+      { $project: { name: 1, _id: 0 } },
+      { $sample: { size: amount } },
+    ]);
+    if (!tags) throw new Error(`Could not find ${amount} Tags`);
+    return tags;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const searchRelatedTags = async (
   name: string,
   limit: number,

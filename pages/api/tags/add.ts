@@ -1,5 +1,5 @@
 import connectToDb from 'database/database';
-import { addTag, searchRelatedTags } from 'database/services/tags.service';
+import { addTag } from 'database/services/tags.service';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
