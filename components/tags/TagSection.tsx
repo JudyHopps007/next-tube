@@ -15,7 +15,7 @@ const TagsSection: FC<Props> = ({
   headline,
   tags,
   variant = 'h2',
-  design = 'tags',
+  design = 'tag',
 }) => {
   return (
     <section className="mt-5">
@@ -23,7 +23,7 @@ const TagsSection: FC<Props> = ({
       <div
         className={classNames(
           'flex flex-row content-around flex-wrap my-5',
-          design === 'tags' ? 'items-center' : 'items-baseline'
+          design === 'tag' ? 'items-center' : 'items-baseline'
         )}
       >
         {tags.map((tag, i) => (

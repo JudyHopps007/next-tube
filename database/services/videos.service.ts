@@ -1,6 +1,6 @@
 import Videos from 'database/models/videos.model';
 import { NextApiRequest } from 'next';
-import { VideoIncreaseKeys } from 'types/types';
+import { VideoIncreaseKey } from 'types/types';
 
 export const addVideo = async (req: NextApiRequest) => {
   try {
@@ -46,7 +46,7 @@ export const getRandomVideos = async (amount: number) => {
   }
 };
 
-export const increaseVideo = async (vid: number, key: VideoIncreaseKeys) => {
+export const increaseVideo = async (vid: number, key: VideoIncreaseKey) => {
   try {
     const video = await Videos.findOneAndUpdate(
       { vid: vid },

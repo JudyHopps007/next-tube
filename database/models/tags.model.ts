@@ -11,6 +11,20 @@ const tagsSchema = new mongoose.Schema(
       type: String,
       require: [true, 'name of tag is required.'],
     },
+    role: {
+      type: String,
+      enum: ['category', 'tag', 'actor'],
+      default: 'tag',
+    },
+    image: {
+      type: String,
+      default: '',
+    },
+    blocked: { type: Boolean, default: false },
+    videoCount: {
+      type: Number,
+      default: 0,
+    },
     relatedTags: {
       type: [String],
       default: [],
@@ -18,6 +32,8 @@ const tagsSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+tagsSchema.index({ name: 'text' });
 
 const Tags = mongoose.models.Tags || mongoose.model('Tags', tagsSchema);
 

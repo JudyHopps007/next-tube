@@ -15,15 +15,17 @@ export type Video = {
 
 export type HeadlineVariant = 'h1' | 'h2' | 'h3';
 
-export type TagDesign = 'category' | 'tags';
+export type TagDesign = 'category' | 'tag';
 
-export type Categories = {
+export type VideoIncreaseKey = 'likes' | 'dislikes' | 'views';
+
+export type TagRole = 'category' | 'tag' | 'actor';
+
+export type Tag = {
   id: string; // a unique string
   name: string;
   videoCount: number;
   image: string;
+  role: TagRole;
+  relatedTags: string[];
 };
-
-export type VideoIncreaseKeys = 'likes' | 'dislikes' | 'views';
-
-export type Actors = Categories;
