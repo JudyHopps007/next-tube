@@ -65,12 +65,12 @@ const getTextColor = (color: number) => {
 
 const TagItem: FC<Props> = ({
   tag,
-  design = 'tags',
+  design = 'tag',
   useSize = false,
   size = 0,
   color = 0,
 }) => {
-  if (design == 'tags') {
+  if (design == 'tag') {
     return (
       <div
         className={classNames(
