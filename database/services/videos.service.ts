@@ -16,7 +16,7 @@ export const addVideo = async (req: NextApiRequest) => {
   }
 };
 
-export const removeById = async (vid: number) => {
+export const removeVideoById = async (vid: number) => {
   try {
     const video = await Videos.findOneAndDelete({ vid });
     if (!video) throw new Error(`Video with id ${vid} not found.`);
@@ -57,6 +57,11 @@ export const increaseVideo = async (vid: number, key: VideoIncreaseKeys) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const countVideos = async () => {
+  const count = Videos.countDocuments();
+  return count;
 };
 
 export const videoExists = async (vid: number) => {
