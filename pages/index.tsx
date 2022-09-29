@@ -128,7 +128,6 @@ const HomePage: NextPage = () => {
     <BaseLayout>
       <CategoriesSection
         headline="Categories"
-        role="category"
         categories={DUMMY_CATEGORIES as Tag[]}
       />
       <VideosSection headline="Latest Videos" videos={DUMMY_DATA as Video[]} />

@@ -2,7 +2,6 @@ import React from 'react';
 
 type Props = {
   children?: React.ReactNode;
-  borderMode?: boolean;
   onClick?: () => void;
 };
 

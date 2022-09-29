@@ -5,7 +5,7 @@ import {
   XIcon,
   SearchIcon,
 } from '@heroicons/react/outline';
-import Button from 'components/navbar/NavButton';
+import NavButton from 'components/navbar/NavButton';
 import { FC, useEffect, useState } from 'react';
 import NavItem from './NavItem';
 import Search from './Search';
@@ -58,7 +58,7 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
     >
       <nav className="flex flex-row justify-between items-center bg-gray-100 dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0">
         <div className="md:hidden">
-          <Button
+          <NavButton
             onClick={() => {
               if (!showMobileNav) {
                 setShowMobileSearch(false);
@@ -71,7 +71,7 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
             ) : (
               <MenuIcon className="w-5 h-5" />
             )}
-          </Button>
+          </NavButton>
         </div>
 
         <div className="md:hidden">
@@ -108,23 +108,23 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
               setShowMobileSearch(!showMobileSearch);
             }}
           >
-            <Button>
+            <NavButton>
               {showMobileSearch ? (
                 <XIcon className="w-5 h-5" />
               ) : (
                 <SearchIcon className="h-5 w-5" />
               )}
-            </Button>
+            </NavButton>
           </div>
 
           <div className="flex items-center py-2" onClick={toogleTheme}>
-            <Button>
+            <NavButton>
               {darkTheme ? (
                 <SunIcon className="h-5 w-5" />
               ) : (
                 <MoonIcon className="h-5 w-5" />
               )}
-            </Button>
+            </NavButton>
           </div>
         </div>
       </nav>
