@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import { buildTagUrl } from 'utils/navigation';
+import { TagRole } from 'types/types';
 
-type Props = { item: string };
+type Props = { item: string; role: TagRole };
 
-const ListItem: FC<Props> = ({ item }) => {
+const ListItem: FC<Props> = ({ item, role }) => {
   return (
     <li key={item} className="w-full">
       {item.length === 1 ? (
@@ -12,7 +13,7 @@ const ListItem: FC<Props> = ({ item }) => {
           {item}
         </div>
       ) : (
-        <Link href={buildTagUrl(item, 'tag')}>
+        <Link href={buildTagUrl(item, role)}>
           <a>
             <div className="px-1 dark:hover:bg-indigo-600 hover:bg-slate-200 hover:rounded-md">
               {item}
