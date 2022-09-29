@@ -17,11 +17,15 @@ export const addTag = async (req: NextApiRequest) => {
   }
 };
 
-export const getRandomTags = async (amount: number, select: any = {}) => {
+export const getRandomTags = async (
+  amount: number,
+  role: TagRole = 'tag',
+  select: any = {}
+) => {
   try {
     const tags = Tags.aggregate([
-      { $match: { blocked: false } },
-      { $project: { name: 1, _id: 0 } },
+      { $match: { blocked: false, role: role } },
+      { $project: select },
       { $sample: { size: amount } },
     ]);
     if (!tags) throw new Error(`Could not find ${amount} Tags`);
@@ -100,3 +104,7 @@ export const countTags = async (role: TagRole = 'tag') => {
   const count = Tags.countDocuments({ role: role });
   return count;
 };
+
+export const getCategories = async () => {};
+
+export const getActors = async () => {};

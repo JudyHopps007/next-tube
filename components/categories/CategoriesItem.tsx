@@ -1,18 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
+import { TagRole } from 'types/types';
 import { buildTagUrl } from 'utils/navigation';
 
 type Props = {
   name: string;
   image: string;
   count: number;
+  role: TagRole;
 };
 
-const CategoriesItem: FC<Props> = ({ name, image, count }) => {
+const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
   return (
     <div className="bg-white hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800/70 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden hover:scale-[1.05] duration-300 shadow-lg group">
-      <Link href={buildTagUrl(name, 'category')}>
+      <Link href={buildTagUrl(name, role)}>
         <a>
           <Image
             alt={name}

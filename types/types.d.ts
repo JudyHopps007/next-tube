@@ -21,11 +21,14 @@ export type VideoIncreaseKey = 'likes' | 'dislikes' | 'views';
 
 export type TagRole = 'category' | 'tag' | 'actor';
 
-export type Tag = {
-  id: string; // a unique string
+export type Category = {
+  id: string;
   name: string;
   videoCount: number;
   image: string;
   role: TagRole;
-  relatedTags: string[];
 };
+
+export type Tag = {
+  relatedTags: string[];
+} & Category;

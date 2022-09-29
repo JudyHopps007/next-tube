@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import Headline from 'components/ui/Headline';
-import { HeadlineVariant, Tag } from 'types/types';
+import { Category, HeadlineVariant } from 'types/types';
 import CategoriesItem from './CategoriesItem';
 
 type Props = {
   headline: string;
   variant?: HeadlineVariant;
-  categories: Tag[];
+  categories: Category[];
 };
 
 const CategoriesSection: FC<Props> = ({
@@ -21,6 +21,7 @@ const CategoriesSection: FC<Props> = ({
         {categories.map((category) => (
           <CategoriesItem
             key={category.id}
+            role={category.role}
             name={category.name}
             image={category.image}
             count={category.videoCount}
