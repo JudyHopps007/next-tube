@@ -101,10 +101,42 @@ export const changeTagRole = async (name: string, newRole: TagRole) => {
 };
 
 export const countTags = async (role: TagRole = 'tag') => {
-  const count = Tags.countDocuments({ role: role });
+  const count = Tags.countDocuments({ role: role, blocked: false });
   return count;
 };
 
-export const getCategories = async () => {};
+export const getPopularTags = async (
+  role: TagRole,
+  limit: number,
+  select: any = {}
+) => {
+  try {
+    const tags = Tags.find({ role: role, blocked: false })
+      .limit(limit)
+      .sort({ videoCount: -1 })
+      .select(select);
+    return tags;
+  } catch (error) {
+    throw error;
+  }
+};
 
-export const getActors = async () => {};
+export const getTags = async (
+  role: TagRole,
+  page: number,
+  limit: number,
+  select: any = {},
+  sort: any = { createdAt: -1 }
+) => {
+  try {
+    const skip = page * limit - limit;
+    const tags = Tags.find({ role: role, blocked: false })
+      .skip(skip)
+      .limit(limit)
+      .sort(sort)
+      .select(select);
+    return tags;
+  } catch (error) {
+    throw error;
+  }
+};

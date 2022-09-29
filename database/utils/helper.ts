@@ -12,3 +12,7 @@ export const categorySelector = {
 };
 
 export const tagSelector = { name: 1, _id: 0 };
+
+export const sortLatest = { createdAt: -1 };
+
+export const sortOldest = { createdAt: -1 };
