@@ -69,3 +69,32 @@ export const videoExists = async (vid: number) => {
   if (!video) return false;
   return true;
 };
+
+export const getVideoById = async (vid: number) => {
+  try {
+    const video = await Videos.findOne({ vid: vid });
+    if (!video) throw new Error(`Video with id ${vid} not found.`);
+    return video;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getVideos = async (
+  page: number,
+  limit: number,
+  select: any = {},
+  sort: any = { createdAt: -1 }
+) => {
+  try {
+    const skip = page * limit - limit;
+    const videos = Videos.find({})
+      .skip(skip)
+      .limit(limit)
+      .sort(sort)
+      .select(select);
+    return videos;
+  } catch (error) {
+    throw error;
+  }
+};
