@@ -65,7 +65,7 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
           </ul>
         </div>
 
-        <div className="flex justify-center items-center py-2 md:py-0 md:w-72">
+        <div className="flex justify-center md:justify-end items-center py-2 md:px-2 md:py-0 md:w-72">
           <NavButton onClick={handleLogout}>
             <div className="md:hidden">
               <LogoutIcon className="w-5 h-5" />

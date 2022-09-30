@@ -4,6 +4,7 @@ import { connectToDb } from 'database/database';
 import { countTags } from 'database/services/tags.service';
 import { countVideos } from 'database/services/videos.service';
 import { NextPage, GetServerSideProps } from 'next';
+import OverviewSection from '@panel/overview';
 
 type Props = {
   videosCount: number;
@@ -21,6 +22,9 @@ const PanelIndexPage: NextPage<Props> = ({
   return (
     <PanelLayout>
       <PanelHeadline text="Statistics" />
+      <OverviewSection
+        counts={{ videosCount, tagsCount, categoriesCount, actorsCount }}
+      />
     </PanelLayout>
   );
 };
