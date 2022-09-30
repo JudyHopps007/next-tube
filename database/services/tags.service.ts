@@ -101,7 +101,7 @@ export const changeTagRole = async (name: string, newRole: TagRole) => {
 };
 
 export const countTags = async (role: TagRole = 'tag') => {
-  const count = Tags.countDocuments({ role: role, blocked: false });
+  const count = await Tags.countDocuments({ role: role, blocked: false });
   return count;
 };
 

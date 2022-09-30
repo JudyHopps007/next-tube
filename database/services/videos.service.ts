@@ -60,7 +60,7 @@ export const increaseVideo = async (vid: number, key: VideoIncreaseKey) => {
 };
 
 export const countVideos = async () => {
-  const count = Videos.countDocuments();
+  const count = await Videos.countDocuments();
   return count;
 };
 

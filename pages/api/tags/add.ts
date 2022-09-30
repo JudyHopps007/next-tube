@@ -1,4 +1,4 @@
-import connectToDb from 'database/database';
+import { connectToDbHandler } from 'database/database';
 import { addTag } from 'database/services/tags.service';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -16,4 +16,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(400).json({ message: 'API Error' });
 };
 
-export default connectToDb(handler);
+export default connectToDbHandler(handler);
