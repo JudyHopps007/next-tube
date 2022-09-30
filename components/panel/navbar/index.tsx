@@ -9,7 +9,7 @@ type PanelNavbarProps = {};
 
 const navigation = [
   {
-    name: 'Stats',
+    name: 'Statistics',
     href: '/panel',
   },
   {

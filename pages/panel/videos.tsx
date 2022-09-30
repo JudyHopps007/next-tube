@@ -1,10 +1,11 @@
-import PanelLayout from 'components/layout/PanelLayout';
+import PanelLayout from '@panel/layout/PanelLayout';
+import PanelHeadline from '@panel/ui/Headline';
 import { NextPage } from 'next';
 
 const PanelVideosPage: NextPage = () => {
   return (
     <PanelLayout>
-      <h1>Videos</h1>
+      <PanelHeadline text="Manage Videos" />
     </PanelLayout>
   );
 };

@@ -1,10 +1,11 @@
-import PanelLayout from 'components/layout/PanelLayout';
+import PanelLayout from '@panel/layout/PanelLayout';
+import PanelHeadline from '@panel/ui/Headline';
 import { NextPage } from 'next';
 
 const PanelTagsPage: NextPage = () => {
   return (
     <PanelLayout>
-      <h1>Tags</h1>
+      <PanelHeadline text="Manage Tags" />
     </PanelLayout>
   );
 };

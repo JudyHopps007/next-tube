@@ -1,5 +1,5 @@
-import PanelLayout from 'components/layout/PanelLayout';
-import Headline from 'components/ui/Headline';
+import PanelHeadline from '@panel/ui/Headline';
+import PanelLayout from '@panel/layout/PanelLayout';
 import { connectToDb } from 'database/database';
 import { countTags } from 'database/services/tags.service';
 import { countVideos } from 'database/services/videos.service';
@@ -20,7 +20,7 @@ const PanelIndexPage: NextPage<Props> = ({
 }) => {
   return (
     <PanelLayout>
-      <h1 className="font-semibold">Stats</h1>
+      <PanelHeadline text="Statistics" />
     </PanelLayout>
   );
 };

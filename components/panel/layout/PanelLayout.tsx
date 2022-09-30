@@ -1,4 +1,4 @@
-import PanelNavbar from 'components/panelbar';
+import PanelNavbar from 'components/panel/navbar';
 import React, { FC } from 'react';
 
 type PanelLayoutProps = {
