@@ -1,36 +1,48 @@
+import { ChevronDownIcon, SearchIcon } from '@heroicons/react/outline';
 import React from 'react';
+import VideosFilters from './VideosFilters';
 
 type Props = {};
 
 const VideosManager = (props: Props) => {
   return (
     <>
-      <table className="table-auto w-full">
-        <thead className="bg-indigo-800 text-left">
-          <tr>
-            <th className="p-1 font-semibold">Preview</th>
-            <th className="p-1 font-semibold">Title</th>
-            <th className="p-1 font-semibold">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="bg-slate-800">
-            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-            <td>Malcolm Lockyer</td>
-            <td>1961</td>
-          </tr>
-          <tr>
-            <td>Witchy Woman</td>
-            <td>The Eagles</td>
-            <td>1972</td>
-          </tr>
-          <tr>
-            <td>Shining Star</td>
-            <td>Earth, Wind, and Fire</td>
-            <td>1975</td>
-          </tr>
-        </tbody>
-      </table>
+      <VideosFilters />
+      <div className="w-full overflow-hidden rounded-lg shadow-xs">
+        <div className="w-full overflow-x-auto">
+          <table className="table-auto w-full">
+            <thead>
+              <tr className="text-xs font-semibold tracking-wide text-left uppercase text-gray-400 border-b border-slate-700 bg-slate-800">
+                <th className="px-4 py-3">Preview</th>
+                <th className="px-4 py-3">Title</th>
+                <th className="px-4 py-3">Date</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-700 bg-slate-800">
+              <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
+                <td className="px-4 py-3">
+                  The Sliding Mr. Bones (Next Stop, Pottersville)
+                </td>
+                <td className="px-4 py-3">Malcolm Lockyer</td>
+                <td className="px-4 py-3">1961</td>
+              </tr>
+              <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
+                <td className="px-4 py-3">Witchy Woman</td>
+                <td className="px-4 py-3">The Eagles</td>
+                <td className="px-4 py-3">1972</td>
+              </tr>
+              <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
+                <td className="px-4 py-3">Shining Star</td>
+                <td className="px-4 py-3">Earth, Wind, and Fire</td>
+                <td className="px-4 py-3">1975</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="grid px-4 py-3 text-xs font-semibold tracking-wideuppercase border-t border-slate-700 text-gray-400 bg-slate-800">
+          <span className="flex items-center"> Showing 21-30 of 100 </span>
+        </div>
+      </div>
     </>
   );
 };

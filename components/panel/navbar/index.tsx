@@ -32,7 +32,7 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
   return (
     <header
       className={classNames(
-        showMobileNav ? 'fixed w-full' : '',
+        showMobileNav ? 'fixed w-full top-0' : '',
         'border-b bg-slate-900 border-b-slate-300/10'
       )}
     >
