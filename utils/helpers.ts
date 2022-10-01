@@ -1,3 +1,5 @@
+import { Query } from 'types/types';
+
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
@@ -17,4 +19,14 @@ export const slugify = (str: string) => {
 
 export const toJson = (value: any) => {
   return JSON.parse(JSON.stringify(value));
+};
+
+export const removeEmptyParams = (obj: Query): Query => {
+  return (
+    Object.fromEntries(
+      Object.entries(obj).filter(
+        ([_, item]: any) => item != null && item.toString().trim() !== ''
+      )
+    ) ?? {}
+  );
 };

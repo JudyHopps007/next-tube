@@ -59,8 +59,12 @@ export const increaseVideo = async (vid: number, key: VideoIncreaseKey) => {
   }
 };
 
-export const countVideos = async () => {
-  const count = await Videos.countDocuments();
+export const countVideos = async (search: string = '') => {
+  const count = await Videos.countDocuments(
+    search.length > 0
+      ? { title: { $regex: `\\b${search}\\b`, $options: 'i' } }
+      : {}
+  );
   return count;
 };
 
@@ -84,11 +88,16 @@ export const getVideos = async (
   page: number,
   limit: number,
   select: any = {},
-  sort: any = { createdAt: -1 }
+  sort: any = { createdAt: -1 },
+  search: string = ''
 ) => {
   try {
     const skip = page * limit - limit;
-    const videos = Videos.find({})
+    const videos = Videos.find(
+      search.length > 0
+        ? { title: { $regex: `\\b${search}\\b`, $options: 'i' } }
+        : {}
+    )
       .skip(skip)
       .limit(limit)
       .sort(sort)

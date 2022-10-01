@@ -32,3 +32,7 @@ export type Category = {
 export type Tag = {
   relatedTags: string[];
 } & Category;
+
+export type Query = {
+  [x: string]: any;
+};

@@ -48,9 +48,10 @@ export const getServerSideProps: GetServerSideProps = async ({
     page as number,
     PANEL_CONSTANTS.VIDEOS_PER_PAGE,
     { _id: 0, vid: 1, title: 1, thumbnail: 1 },
-    orderBy === 'desc' ? { createdAt: -1 } : { createdAt: 1 }
+    orderBy === 'desc' ? { createdAt: -1 } : { createdAt: 1 },
+    search as string
   );
-  const videosCount = await countVideos();
+  const videosCount = await countVideos(search as string);
 
   return {
     props: {

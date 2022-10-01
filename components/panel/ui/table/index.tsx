@@ -1,4 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import useQueryPush from 'hooks/useQueryPush';
 import React, { FC } from 'react';
 import { Video } from 'types/types';
 import {
@@ -22,6 +23,16 @@ const Table: FC<Props> = ({
   itemsPerPage,
   titles,
 }) => {
+  const queryPush = useQueryPush();
+
+  if (items.length === 0) {
+    return (
+      <div className="w-full text-center bg-slate-800 rounded-lg p-3 text-xl ">
+        No Videos found ;(
+      </div>
+    );
+  }
+
   return (
     <div className="w-full overflow-hidden rounded-lg shadow-xs">
       <div className="w-full overflow-x-auto">
@@ -56,13 +67,27 @@ const Table: FC<Props> = ({
         </div>
         <div className="flex flex-row justify-center items-center space-x-4">
           {page > 1 && (
-            <div className="flex justify-center items-center hover:bg-indigo-600 hover:text-gray-100 py-2 px-3 rounded-lg cursor-pointer">
+            <div
+              onClick={() => {
+                if (+page - 1 === 1) {
+                  queryPush.setQueryParam({ page: null });
+                } else {
+                  queryPush.setQueryParam({ page: +page - 1 });
+                }
+              }}
+              className="flex justify-center items-center hover:bg-indigo-600 hover:text-gray-100 py-2 px-3 rounded-lg cursor-pointer"
+            >
               <ChevronLeftIcon className="w-5 h-5" />
               Prev
             </div>
           )}
           {page * itemsPerPage < itemsCount && (
-            <div className="flex justify-center items-center hover:bg-indigo-600 hover:text-gray-100 py-2 px-3 rounded-lg cursor-pointer">
+            <div
+              onClick={() => {
+                queryPush.setQueryParam({ page: +page + 1 });
+              }}
+              className="flex justify-center items-center hover:bg-indigo-600 hover:text-gray-100 py-2 px-3 rounded-lg cursor-pointer"
+            >
               Next
               <ChevronRightIcon className="w-5 h-5" />
             </div>

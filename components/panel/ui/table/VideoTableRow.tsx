@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { FC } from 'react';
 import { Video } from 'types/types';
 
@@ -11,7 +12,11 @@ const VideoTableRow: FC<Props> = ({ video }) => {
       <td className="px-4 py-3">{video.vid}</td>
       <td className="px-4 py-3">
         <div className="flex flex-row items-center space-x-3">
-          <img className="flex w-12 h-12 rounded-md" src={video.thumbnail} />
+          <img
+            className="flex w-12 h-12 rounded-md"
+            alt={video.title}
+            src={video.thumbnail}
+          />
           <div className="flex">{video.title}</div>
         </div>
       </td>

@@ -1,5 +1,6 @@
 import { SearchIcon } from '@heroicons/react/outline';
 import DropDown from '@panel/ui/Dropdown';
+import useQueryPush from 'hooks/useQueryPush';
 import React, { FC, useState } from 'react';
 
 type Props = {
@@ -21,9 +22,11 @@ const items = [
 const VideosFilters: FC<Props> = ({ orderBy, search }) => {
   const [searchQuery, setSearchQuery] = useState(search);
   const [selectedFilterQuery, setSelectedFilterQuery] = useState(orderBy);
+  const queryPush = useQueryPush();
 
   const updateFilterQuery = (newQuery: string) => {
     setSelectedFilterQuery(newQuery);
+    queryPush.setQueryParam({ orderBy: newQuery });
   };
 
   return (
@@ -33,12 +36,17 @@ const VideosFilters: FC<Props> = ({ orderBy, search }) => {
           value={searchQuery}
           className="bg-slate-700 text-gray-300 focus:outline-none w-full md:w-72 rounded-l-md px-4 py-2 md:py-3 text-sm font-medium"
           type="text"
-          placeholder="Enter searchfilter..."
+          placeholder="Search in titles..."
           onChange={(e) => {
             setSearchQuery(e.target.value);
           }}
         />
-        <button className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-r-md">
+        <button
+          onClick={() => {
+            queryPush.setQueryParam({ search: searchQuery });
+          }}
+          className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-r-md"
+        >
           <SearchIcon className="h-5 w-5 text-white" />
         </button>
       </div>
