@@ -1,0 +1,4 @@
+export const PANEL_CONSTANTS = {
+  VIDEOS_PER_PAGE: 50,
+  TAGS_PER_PAGE: 50,
+};

@@ -1,5 +1,9 @@
-import { ChevronDownIcon, SearchIcon } from '@heroicons/react/outline';
+import { PANEL_CONSTANTS } from 'constants/panel';
 import React, { FC } from 'react';
+import {
+  calculateMaxItemPerPage,
+  calculateMinItemPerPage,
+} from 'utils/navigation';
 import VideosFilters from './VideosFilters';
 
 type Props = {
@@ -48,7 +52,15 @@ const VideosManager: FC<Props> = ({ filters, videosCount, page }) => {
         </div>
         <div className="grid px-4 py-3 text-xs font-semibold tracking-wideuppercase border-t border-slate-700 text-gray-400 bg-slate-800">
           <span className="flex items-center">
-            {`Showing 21-30 of ${videosCount}`}
+            {`Showing ${calculateMinItemPerPage(
+              page,
+              PANEL_CONSTANTS.VIDEOS_PER_PAGE,
+              videosCount
+            )}-${calculateMaxItemPerPage(
+              page,
+              PANEL_CONSTANTS.VIDEOS_PER_PAGE,
+              videosCount
+            )} of ${videosCount}`}
           </span>
         </div>
       </div>
