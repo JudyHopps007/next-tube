@@ -37,12 +37,12 @@ const DropDown: FC<Props> = ({ items, selectedQuery, updateFilterQuery }) => {
     <div
       ref={dropdownRef}
       className="relative flex flex-row justify-between items-center w-full md:w-auto rounded-md bg-slate-700 px-4 py-2 md:py-3 text-sm font-medium text-gray-300 shadow-sm cursor-pointer min-w-[10rem]"
+      onClick={() => {
+        setShowDropdown(!showDropdown);
+      }}
     >
       <button
         type="button"
-        onClick={() => {
-          setShowDropdown(!showDropdown);
-        }}
         className="flex w-full focus:outline-none text-gray-100 font-semibold"
       >
         {selectedItem?.label}

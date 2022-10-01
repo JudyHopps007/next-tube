@@ -2,24 +2,25 @@ import { SearchIcon } from '@heroicons/react/outline';
 import DropDown from '@panel/ui/Dropdown';
 import React, { FC, useState } from 'react';
 
-type Props = {};
+type Props = {
+  orderBy: string;
+  search: string;
+};
 
 const items = [
   {
     label: 'Recently added',
-    query: 'createdAt_DESC',
+    query: 'desc',
   },
   {
     label: 'Oldest',
-    query: 'createdAt_ASC',
+    query: 'asc',
   },
 ];
 
-const VideosFilters: FC<Props> = (props) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFilterQuery, setSelectedFilterQuery] = useState(
-    items[0].query
-  );
+const VideosFilters: FC<Props> = ({ orderBy, search }) => {
+  const [searchQuery, setSearchQuery] = useState(search);
+  const [selectedFilterQuery, setSelectedFilterQuery] = useState(orderBy);
 
   const updateFilterQuery = (newQuery: string) => {
     setSelectedFilterQuery(newQuery);

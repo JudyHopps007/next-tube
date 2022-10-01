@@ -1,13 +1,20 @@
 import { ChevronDownIcon, SearchIcon } from '@heroicons/react/outline';
-import React from 'react';
+import React, { FC } from 'react';
 import VideosFilters from './VideosFilters';
 
-type Props = {};
+type Props = {
+  filters: {
+    orderBy: string;
+    search: string;
+  };
+  videosCount: number;
+  page: number;
+};
 
-const VideosManager = (props: Props) => {
+const VideosManager: FC<Props> = ({ filters, videosCount, page }) => {
   return (
     <>
-      <VideosFilters />
+      <VideosFilters orderBy={filters.orderBy} search={filters.search} />
       <div className="w-full overflow-hidden rounded-lg shadow-xs">
         <div className="w-full overflow-x-auto">
           <table className="table-auto w-full">
@@ -40,7 +47,9 @@ const VideosManager = (props: Props) => {
           </table>
         </div>
         <div className="grid px-4 py-3 text-xs font-semibold tracking-wideuppercase border-t border-slate-700 text-gray-400 bg-slate-800">
-          <span className="flex items-center"> Showing 21-30 of 100 </span>
+          <span className="flex items-center">
+            {`Showing 21-30 of ${videosCount}`}
+          </span>
         </div>
       </div>
     </>
