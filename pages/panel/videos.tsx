@@ -1,9 +1,13 @@
 import PanelLayout from '@panel/layout/PanelLayout';
 import PanelHeadline from '@panel/ui/Headline';
-import VideosManager from '@panel/videos';
+import Table from '@panel/ui/table';
+import VideosFilters from '@panel/videos/VideosFilters';
+import { PANEL_CONSTANTS } from 'constants/panel';
 import { connectToDb } from 'database/database';
-import { countVideos } from 'database/services/videos.service';
+import { countVideos, getVideos } from 'database/services/videos.service';
 import { GetServerSideProps, NextPage } from 'next';
+import { Video } from 'types/types';
+import { toJson } from 'utils/helpers';
 
 type Props = {
   filters: {
@@ -12,13 +16,26 @@ type Props = {
   };
   videosCount: number;
   page: number;
+  videos: Video[];
 };
 
-const PanelVideosPage: NextPage<Props> = ({ videosCount, page, filters }) => {
+const PanelVideosPage: NextPage<Props> = ({
+  videosCount,
+  page,
+  filters,
+  videos,
+}) => {
   return (
     <PanelLayout>
       <PanelHeadline text="Manage Videos" />
-      <VideosManager filters={filters} videosCount={videosCount} page={page} />
+      <VideosFilters orderBy={filters.orderBy} search={filters.search} />
+      <Table
+        titles={PANEL_CONSTANTS.VIDEOS_TABLE_TITLES}
+        itemsCount={videosCount}
+        items={videos}
+        page={page}
+        itemsPerPage={PANEL_CONSTANTS.VIDEOS_PER_PAGE}
+      />
     </PanelLayout>
   );
 };
@@ -27,12 +44,20 @@ export const getServerSideProps: GetServerSideProps = async ({
   query: { page = 1, search = '', orderBy = 'desc' },
 }) => {
   await connectToDb();
+  const videos = await getVideos(
+    page as number,
+    PANEL_CONSTANTS.VIDEOS_PER_PAGE,
+    { _id: 0, vid: 1, title: 1, thumbnail: 1 },
+    orderBy === 'desc' ? { createdAt: -1 } : { createdAt: 1 }
+  );
   const videosCount = await countVideos();
+
   return {
     props: {
       videosCount,
       page,
       filters: { orderBy, search },
+      videos: toJson(videos),
     },
   };
 };

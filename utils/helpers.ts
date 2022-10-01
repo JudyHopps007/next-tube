@@ -14,3 +14,7 @@ export const slugify = (str: string) => {
   str = str.trim().toLowerCase().replaceAll(' ', '-').replace(/-+/g, '-');
   return str;
 };
+
+export const toJson = (value: any) => {
+  return JSON.parse(JSON.stringify(value));
+};
