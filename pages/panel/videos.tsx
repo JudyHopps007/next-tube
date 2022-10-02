@@ -30,6 +30,7 @@ const PanelVideosPage: NextPage<Props> = ({
       <PanelHeadline text="Manage Videos" />
       <VideosFilters orderBy={filters.orderBy} search={filters.search} />
       <Table
+        contentType="video"
         titles={PANEL_CONSTANTS.VIDEOS_TABLE_TITLES}
         itemsCount={videosCount}
         items={videos}

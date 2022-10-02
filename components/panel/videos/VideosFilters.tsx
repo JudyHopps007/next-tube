@@ -8,10 +8,12 @@ type Props = {
   search: string;
 };
 
+const defaultQuery = 'desc';
+
 const items = [
   {
     label: 'Recently added',
-    query: 'desc',
+    query: defaultQuery,
   },
   {
     label: 'Oldest',
@@ -26,7 +28,11 @@ const VideosFilters: FC<Props> = ({ orderBy, search }) => {
 
   const updateFilterQuery = (newQuery: string) => {
     setSelectedFilterQuery(newQuery);
-    queryPush.setQueryParam({ orderBy: newQuery });
+    if (newQuery === defaultQuery) {
+      queryPush.setQueryParam({ orderBy: null });
+    } else {
+      queryPush.setQueryParam({ orderBy: newQuery });
+    }
   };
 
   return (

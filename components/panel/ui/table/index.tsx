@@ -1,17 +1,19 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import useQueryPush from 'hooks/useQueryPush';
 import React, { FC } from 'react';
-import { Video } from 'types/types';
+import { Tag, Video } from 'types/types';
 import {
   calculateMaxItemPerPage,
   calculateMinItemPerPage,
 } from 'utils/navigation';
+import TagTableRow from './TagTableRow';
 import VideoTableRow from './VideoTableRow';
 
 type Props = {
   page: number;
   itemsCount: number;
   itemsPerPage: number;
+  contentType: 'tag' | 'video';
   titles: string[];
   items: any[];
 };
@@ -22,6 +24,7 @@ const Table: FC<Props> = ({
   items,
   itemsPerPage,
   titles,
+  contentType,
 }) => {
   const queryPush = useQueryPush();
 
@@ -47,9 +50,14 @@ const Table: FC<Props> = ({
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-700 bg-slate-800">
-            {items.map((item: Video) => (
-              <VideoTableRow key={item.vid} video={item} />
-            ))}
+            {contentType === 'video' &&
+              items.map((item: Video) => (
+                <VideoTableRow key={item.vid} video={item} />
+              ))}
+            {contentType === 'tag' &&
+              items.map((item: Tag) => (
+                <TagTableRow key={item.id} tag={item} />
+              ))}
           </tbody>
         </table>
       </div>

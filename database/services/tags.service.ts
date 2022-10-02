@@ -24,7 +24,7 @@ export const getRandomTags = async (
 ) => {
   try {
     const tags = Tags.aggregate([
-      { $match: { blocked: false, role: role } },
+      { $match: { active: true, role: role } },
       { $project: select },
       { $sample: { size: amount } },
     ]);
@@ -50,7 +50,7 @@ export const searchRelatedTags = async (
       },
       score: { $meta: 'textScore' },
       role: 'tag',
-      blocked: false,
+      active: true,
     })
       .sort({ score: { $meta: 'textScore' } })
       .limit(limit)
@@ -100,8 +100,13 @@ export const changeTagRole = async (name: string, newRole: TagRole) => {
   }
 };
 
-export const countTags = async (role: TagRole = 'tag') => {
-  const count = await Tags.countDocuments({ role: role, blocked: false });
+export const countTags = async (
+  role: TagRole | null = null,
+  active: boolean | null = true
+) => {
+  const filterRole = role ? { role: role } : null;
+  const filterActive = active ? { active: active } : null;
+  const count = await Tags.countDocuments({ ...filterRole, ...filterActive });
   return count;
 };
 
@@ -111,7 +116,7 @@ export const getPopularTags = async (
   select: any = {}
 ) => {
   try {
-    const tags = Tags.find({ role: role, blocked: false })
+    const tags = Tags.find({ role: role, active: true })
       .limit(limit)
       .sort({ videoCount: -1 })
       .select(select);
@@ -122,15 +127,23 @@ export const getPopularTags = async (
 };
 
 export const getTags = async (
-  role: TagRole,
+  role: TagRole | null,
   page: number,
   limit: number,
   select: any = {},
-  sort: any = { createdAt: -1 }
+  sort: any = { createdAt: -1 },
+  search: string = '',
+  active: boolean | null = true
 ) => {
   try {
+    const filterRole = role ? { role: role } : null;
+    const fitlerSearch =
+      search.length > 0
+        ? { title: { $regex: `\\b${search}\\b`, $options: 'i' } }
+        : null;
+    const filterActive = active ? { active: active } : null;
     const skip = page * limit - limit;
-    const tags = Tags.find({ role: role, blocked: false })
+    const tags = Tags.find({ ...filterRole, ...fitlerSearch, ...filterActive })
       .skip(skip)
       .limit(limit)
       .sort(sort)
