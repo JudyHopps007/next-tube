@@ -31,6 +31,7 @@ export type Category = {
 
 export type Tag = {
   relatedTags: string[];
+  active: boolena;
 } & Category;
 
 export type Query = {
