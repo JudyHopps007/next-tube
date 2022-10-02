@@ -4,11 +4,11 @@ import useQueryPush from 'hooks/useQueryPush';
 import React, { FC, useState } from 'react';
 
 type Props = {
-  orderBy: string;
+  orderBy: string | null;
   search: string;
 };
 
-const defaultQuery = 'desc';
+const defaultQuery = null;
 
 const items = [
   {
@@ -26,13 +26,9 @@ const VideosFilters: FC<Props> = ({ orderBy, search }) => {
   const [selectedFilterQuery, setSelectedFilterQuery] = useState(orderBy);
   const queryPush = useQueryPush();
 
-  const updateFilterQuery = (newQuery: string) => {
+  const updateFilterQuery = (newQuery: string | null) => {
     setSelectedFilterQuery(newQuery);
-    if (newQuery === defaultQuery) {
-      queryPush.setQueryParam({ orderBy: null });
-    } else {
-      queryPush.setQueryParam({ orderBy: newQuery });
-    }
+    queryPush.setQueryParam({ orderBy: newQuery });
   };
 
   return (
