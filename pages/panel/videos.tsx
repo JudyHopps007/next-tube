@@ -42,14 +42,14 @@ const PanelVideosPage: NextPage<Props> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async ({
-  query: { page = 1, search = '', orderBy = 'desc' },
+  query: { page = 1, search = '', orderBy = null },
 }) => {
   await connectToDb();
   const videos = await getVideos(
     page as number,
     PANEL_CONSTANTS.VIDEOS_PER_PAGE,
     { _id: 0, vid: 1, title: 1, thumbnail: 1 },
-    orderBy === 'desc' ? { createdAt: -1 } : { createdAt: 1 },
+    orderBy ? { createdAt: -1 } : { createdAt: 1 },
     search as string
   );
   const videosCount = await countVideos(search as string);

@@ -1,3 +1,4 @@
+import TagsFilters from '@panel/filters/TagsFilters';
 import PanelLayout from '@panel/layout/PanelLayout';
 import PanelHeadline from '@panel/ui/Headline';
 import Table from '@panel/ui/table';
@@ -5,14 +6,13 @@ import { PANEL_CONSTANTS } from 'constants/panel';
 import { connectToDb } from 'database/database';
 import { countTags, getTags } from 'database/services/tags.service';
 import { GetServerSideProps, NextPage } from 'next';
-import { Tag, TagRole } from 'types/types';
+import { StateType, Tag, TagRole } from 'types/types';
 import { toJson } from 'utils/helpers';
 
 type Props = {
   filters: {
-    orderBy: string;
     search: string;
-    active: string | null;
+    state: StateType;
     role: TagRole | null;
   };
   tagsCount: number;
@@ -24,6 +24,11 @@ const PanelTagsPage: NextPage<Props> = ({ tagsCount, page, filters, tags }) => {
   return (
     <PanelLayout>
       <PanelHeadline text="Manage Tags" />
+      <TagsFilters
+        role={filters.role}
+        state={filters.state}
+        search={filters.search}
+      />
       <Table
         contentType="tag"
         titles={PANEL_CONSTANTS.TAGS_TABLE_TITLES}
@@ -37,17 +42,15 @@ const PanelTagsPage: NextPage<Props> = ({ tagsCount, page, filters, tags }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({
-  query: {
-    page = 1,
-    search = '',
-    orderBy = 'desc',
-    role = null,
-    active = null,
-  },
+  query: { page = 1, search = '', role = null, state = null },
 }) => {
   await connectToDb();
 
-  const tagsCount = await countTags(role as TagRole | null);
+  const tagsCount = await countTags(
+    role as TagRole | null,
+    state as StateType,
+    search as string
+  );
   const tags = await getTags(
     role as TagRole | null,
     page as number,
@@ -62,15 +65,16 @@ export const getServerSideProps: GetServerSideProps = async ({
       videoCount: 1,
       active: 1,
     },
-    orderBy === 'desc' ? { createdAt: -1 } : { createdAt: 1 },
-    search as string
+    { createdAt: -1 },
+    search as string,
+    state as StateType
   );
 
   return {
     props: {
       tagsCount,
       page,
-      filters: { orderBy, search, active, role },
+      filters: { search, state, role },
       tags: toJson(tags),
     },
   };

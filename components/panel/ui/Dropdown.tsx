@@ -5,10 +5,10 @@ import { classNames } from 'utils/helpers';
 type Props = {
   items: {
     label: string;
-    query: string;
+    query: string | null;
   }[];
-  selectedQuery: string;
-  updateFilterQuery: (newQuery: string) => void;
+  selectedQuery: string | null;
+  updateFilterQuery: (newQuery: string | null) => void;
 };
 
 const DropDown: FC<Props> = ({ items, selectedQuery, updateFilterQuery }) => {

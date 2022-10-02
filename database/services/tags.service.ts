@@ -1,7 +1,7 @@
 import Tags from 'database/models/tags.model';
 import { generateTagId } from 'database/utils/helper';
 import { NextApiRequest } from 'next';
-import { TagRole } from 'types/types';
+import { StateType, TagRole } from 'types/types';
 
 export const addTag = async (req: NextApiRequest) => {
   try {
@@ -102,11 +102,22 @@ export const changeTagRole = async (name: string, newRole: TagRole) => {
 
 export const countTags = async (
   role: TagRole | null = null,
-  active: boolean | null = true
+  state: StateType = null,
+  search: string = ''
 ) => {
   const filterRole = role ? { role: role } : null;
-  const filterActive = active ? { active: active } : null;
-  const count = await Tags.countDocuments({ ...filterRole, ...filterActive });
+  const filterState = state
+    ? { active: state === 'active' ? true : false }
+    : null;
+  const fitlerSearch =
+    search.length > 0
+      ? { name: { $regex: `\\b${search}\\b`, $options: 'i' } }
+      : null;
+  const count = await Tags.countDocuments({
+    ...filterRole,
+    ...filterState,
+    ...fitlerSearch,
+  });
   return count;
 };
 
@@ -133,17 +144,19 @@ export const getTags = async (
   select: any = {},
   sort: any = { createdAt: -1 },
   search: string = '',
-  active: boolean | null = true
+  state: StateType = null
 ) => {
   try {
     const filterRole = role ? { role: role } : null;
     const fitlerSearch =
       search.length > 0
-        ? { title: { $regex: `\\b${search}\\b`, $options: 'i' } }
+        ? { name: { $regex: `\\b${search}\\b`, $options: 'i' } }
         : null;
-    const filterActive = active ? { active: active } : null;
+    const filterState = state
+      ? { active: state === 'active' ? true : false }
+      : null;
     const skip = page * limit - limit;
-    const tags = Tags.find({ ...filterRole, ...fitlerSearch, ...filterActive })
+    const tags = Tags.find({ ...filterRole, ...fitlerSearch, ...filterState })
       .skip(skip)
       .limit(limit)
       .sort(sort)

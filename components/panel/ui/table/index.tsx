@@ -31,7 +31,7 @@ const Table: FC<Props> = ({
   if (items.length === 0) {
     return (
       <div className="w-full text-center bg-slate-800 rounded-lg p-3 text-xl ">
-        No Videos found ;(
+        No {contentType === 'video' ? 'Videos' : 'Tags'} found ;(
       </div>
     );
   }

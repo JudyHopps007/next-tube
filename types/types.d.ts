@@ -36,3 +36,13 @@ export type Tag = {
 export type Query = {
   [x: string]: any;
 };
+
+export type StateType = 'active' | 'inactive' | null;
+
+export type Query = {
+  [x: string]: any;
+};
+
+export type QueryProps = {
+  query: Query;
+};
