@@ -1,7 +1,7 @@
 import PanelLayout from '@panel/layout/PanelLayout';
 import PanelHeadline from '@panel/ui/Headline';
 import Table from '@panel/ui/table';
-import VideosFilters from '@panel/videos/VideosFilters';
+import VideosFilters from '@panel/filters/VideosFilters';
 import { PANEL_CONSTANTS } from 'constants/panel';
 import { connectToDb } from 'database/database';
 import { countVideos, getVideos } from 'database/services/videos.service';
