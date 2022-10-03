@@ -39,12 +39,12 @@ const stateItems = [
     query: defaultStateQuery,
   },
   {
-    label: 'Active',
-    query: 'active',
+    label: 'Priority',
+    query: 'priority',
   },
   {
-    label: 'Inactive',
-    query: 'inactive',
+    label: 'Normal',
+    query: 'normal',
   },
 ];
 
