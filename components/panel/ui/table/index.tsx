@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import useQueryPush from 'hooks/useQueryPush';
 import React, { FC } from 'react';
-import { Tag, Video } from 'types/types';
+import { Tag, VideoWithMeta } from 'types/types';
 import {
   calculateMaxItemPerPage,
   calculateMinItemPerPage,
@@ -51,7 +51,7 @@ const Table: FC<Props> = ({
           </thead>
           <tbody className="divide-y divide-slate-700 bg-slate-800">
             {contentType === 'video' &&
-              items.map((item: Video) => (
+              items.map((item: VideoWithMeta) => (
                 <VideoTableRow key={item.vid} video={item} />
               ))}
             {contentType === 'tag' &&

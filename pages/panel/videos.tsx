@@ -56,6 +56,9 @@ export const getServerSideProps: GetServerSideProps = async ({
       tags: 1,
       categories: 1,
       actors: 1,
+      alternativeTitle: 1,
+      plattform: 1,
+      originalId: 1,
     },
     orderBy ? { createdAt: 1 } : { createdAt: -1 },
     search as string

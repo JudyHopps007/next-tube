@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { FC } from 'react';
-import { Video } from 'types/types';
+import { VideoWithMeta } from 'types/types';
+import PanelTag from '../Tag';
 
 type Props = {
-  video: Video;
+  video: VideoWithMeta;
 };
 
 const VideoTableRow: FC<Props> = ({ video }) => {
@@ -17,10 +18,17 @@ const VideoTableRow: FC<Props> = ({ video }) => {
             alt={video.title}
             src={video.thumbnail}
           />
-          <div className="font-semibold">{video.title}</div>
+          <div className="flex flex-col space-y-2">
+            <div className="font-semibold">{video.title}</div>
+            <div className="font-thin">{video.alternativeTitle || '-'}</div>
+          </div>
         </div>
       </td>
-      <td className="px-4 py-3">TODO</td>
+      <td className="px-4 py-3">
+        <div className="flex flex-row items-center">
+          <PanelTag label={video.plattform} color="sky" />
+        </div>
+      </td>
       <td className="px-4 py-3">
         <div>
           {`${video.tags.length} / ${video.categories.length} / ${video.actors.length}`}

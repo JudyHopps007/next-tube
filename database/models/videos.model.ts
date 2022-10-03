@@ -23,6 +23,11 @@ const videosSchema = new mongoose.Schema(
       required: [true, 'poster is required'],
       type: String,
     },
+    alternativeTitle: {
+      type: String,
+      default: '',
+      trim: true,
+    },
     hd: {
       type: Boolean,
       default: false,
@@ -30,6 +35,18 @@ const videosSchema = new mongoose.Schema(
     duration: {
       type: Number,
       required: [true, 'duration is required'],
+    },
+    plattform: {
+      type: String,
+      required: [true, 'plattform is required'],
+    },
+    originalId: {
+      type: String,
+      required: [true, 'originalId is required'],
+    },
+    originalImage: {
+      type: String,
+      required: [true, 'originalImage is required'],
     },
     views: {
       type: Number,

@@ -2,7 +2,7 @@ export const PANEL_CONSTANTS = {
   VIDEOS_TABLE_TITLES: [
     'Id',
     'Video',
-    'Meta',
+    'Plattform',
     'Tags / Categories / Actors',
     'Actions',
   ],

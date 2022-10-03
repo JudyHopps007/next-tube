@@ -13,6 +13,15 @@ export type Video = {
   actors: string[];
 };
 
+export type VideoMeta = {
+  alternativeTitle: string;
+  plattform: string;
+  originalId: string;
+  originalImage: string;
+};
+
+export type VideoWithMeta = Video & VideoMeta;
+
 export type HeadlineVariant = 'h1' | 'h2' | 'h3';
 
 export type TagDesign = 'category' | 'tag';

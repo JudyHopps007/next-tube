@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { classNames } from 'utils/helpers';
 
-type TagColors = 'red' | 'green' | 'gray' | 'yellow';
+type TagColors = 'red' | 'green' | 'gray' | 'yellow' | 'sky';
 
 type Props = {
   label: string;
@@ -18,6 +18,8 @@ const getColor = (color: TagColors) => {
       return 'bg-gray-700';
     case 'yellow':
       return 'bg-amber-600';
+    case 'sky':
+      return 'bg-sky-600';
     default:
       return 'bg-gray-700';
   }
