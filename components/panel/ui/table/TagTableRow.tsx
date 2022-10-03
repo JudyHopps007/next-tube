@@ -18,9 +18,9 @@ const TagTableRow: FC<Props> = ({ tag }) => {
         </div>
       </td>
       <td className="px-4 py-3">
-        <div className="flex flex-row space-x-2 items-center">
+        <div className="flex flex-row md:space-x-2 items-center">
           <img
-            className="w-12 h-12 rounded-md"
+            className="hidden md:flex w-12 h-12 rounded-md"
             src={tag.image ? tag.image : '/images/placeholder-actor.png'}
             alt={tag.name}
           />

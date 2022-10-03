@@ -12,9 +12,9 @@ const VideoTableRow: FC<Props> = ({ video }) => {
     <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
       <td className="px-4 py-3 font-semibold">{video.vid}</td>
       <td className="px-4 py-3">
-        <div className="flex flex-row items-center space-x-3">
+        <div className="flex flex-row items-center md:space-x-3">
           <img
-            className="w-12 h-12 rounded-md"
+            className="hidden md:flex w-12 h-12 rounded-md"
             alt={video.title}
             src={video.thumbnail}
           />
