@@ -24,7 +24,7 @@ export const getRandomTags = async (
 ) => {
   try {
     const tags = Tags.aggregate([
-      { $match: { active: true, role: role } },
+      { $match: { role: role } },
       { $project: select },
       { $sample: { size: amount } },
     ]);
@@ -50,7 +50,6 @@ export const searchRelatedTags = async (
       },
       score: { $meta: 'textScore' },
       role: 'tag',
-      active: true,
     })
       .sort({ score: { $meta: 'textScore' } })
       .limit(limit)
@@ -107,7 +106,7 @@ export const countTags = async (
 ) => {
   const filterRole = role ? { role: role } : null;
   const filterState = state
-    ? { active: state === 'active' ? true : false }
+    ? { priority: state === 'priority' ? true : false }
     : null;
   const fitlerSearch =
     search.length > 0
@@ -127,7 +126,7 @@ export const getPopularTags = async (
   select: any = {}
 ) => {
   try {
-    const tags = Tags.find({ role: role, active: true })
+    const tags = Tags.find({ role: role })
       .limit(limit)
       .sort({ videoCount: -1 })
       .select(select);
@@ -153,7 +152,7 @@ export const getTags = async (
         ? { name: { $regex: `\\b${search}\\b`, $options: 'i' } }
         : null;
     const filterState = state
-      ? { active: state === 'active' ? true : false }
+      ? { priority: state === 'priority' ? true : false }
       : null;
     const skip = page * limit - limit;
     const tags = Tags.find({ ...filterRole, ...fitlerSearch, ...filterState })

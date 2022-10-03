@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       name: 1,
       relatedTags: 1,
       videoCount: 1,
-      active: 1,
+      priority: 1,
     },
     { createdAt: -1 },
     search as string,

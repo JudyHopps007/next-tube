@@ -32,13 +32,14 @@ export type Category = {
 export type Tag = {
   relatedTags: string[];
   active: boolena;
+  priority: boolean;
 } & Category;
 
 export type Query = {
   [x: string]: any;
 };
 
-export type StateType = 'active' | 'inactive' | null;
+export type StateType = 'priority' | 'normal' | null;
 
 export type Query = {
   [x: string]: any;
