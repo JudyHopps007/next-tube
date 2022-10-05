@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { XIcon } from '@heroicons/react/outline';
 import React, { FC } from 'react';
 import { Tag } from 'types/types';
 import ActionButton from '../ActionButton';
