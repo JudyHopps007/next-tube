@@ -8,15 +8,12 @@ type Props = {
 };
 
 const getTextSize = (variant: string) => {
-  switch (variant) {
-    case 'h3':
-      return 'text-xl md:text-2xl';
-    case 'h2':
-      return 'text-2xl md:text-3xl';
-    case 'h1':
-    default:
-      return 'text-3xl md:text-4xl';
-  }
+  const map: Record<string, any> = {
+    h3: 'text-xl md:text-2xl',
+    h2: 'text-2xl md:text-3xl',
+    h1: 'text-3xl md:text-4xl',
+  };
+  return map[variant] ?? 'text-3xl md:text-4xl';
 };
 
 const Headline: FC<Props> = ({ text, variant = 'h1', outline = false }) => {

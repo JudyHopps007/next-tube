@@ -9,20 +9,14 @@ type Props = {
 };
 
 const getColor = (color: TagColors) => {
-  switch (color) {
-    case 'red':
-      return 'bg-red-700';
-    case 'green':
-      return 'bg-emerald-700';
-    case 'gray':
-      return 'bg-gray-700';
-    case 'yellow':
-      return 'bg-amber-600';
-    case 'sky':
-      return 'bg-sky-600';
-    default:
-      return 'bg-gray-700';
-  }
+  const map: Record<string, any> = {
+    red: 'bg-red-700',
+    green: 'bg-emerald-700',
+    gray: 'bg-gray-700',
+    yellow: 'bg-amber-600',
+    sky: 'bg-sky-600',
+  };
+  return map[color] ?? 'bg-gray-700';
 };
 
 const PanelTag: FC<Props> = ({ label, color = 'gray' }) => {

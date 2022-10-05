@@ -13,28 +13,26 @@ type Props = {
 };
 
 const getIcon = (icon: string) => {
-  switch (icon) {
-    case 'Videos':
-      return (
-        <VideoCameraIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-      );
-    case 'Tags':
-      return (
-        <HashtagIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-      );
-    case 'Categories':
-      return (
-        <CollectionIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-      );
-    case 'Actors':
-      return (
-        <UsersIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-      );
-    default:
-      return (
-        <ViewGridIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-      );
-  }
+  const map: Record<string, any> = {
+    Videos: (
+      <VideoCameraIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
+    ),
+    Tags: (
+      <HashtagIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
+    ),
+    Categories: (
+      <CollectionIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
+    ),
+    Actors: (
+      <UsersIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
+    ),
+  };
+
+  return (
+    map[icon] ?? (
+      <ViewGridIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
+    )
+  );
 };
 
 const OverviewItem: FC<Props> = ({ title, count }) => {

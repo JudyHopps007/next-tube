@@ -13,54 +13,36 @@ type Props = {
 };
 
 const getFont = (size: number) => {
-  switch (size) {
-    case 1:
-      return 'font-semibold';
-    case 2:
-      return 'font-normal';
-    case 3:
-      return 'font-medium';
-    case 4:
-      return 'font-semibold';
-    case 5:
-      return 'font-bold';
-    default:
-      return 'font-medium';
-  }
+  const map: Record<number, any> = {
+    1: 'font-semibold',
+    2: 'font-normal',
+    3: 'font-medium',
+    4: 'font-semibold',
+    5: 'font-bold',
+  };
+  return map[size] ?? 'font-medium';
 };
 
 const getTextSize = (size: number) => {
-  switch (size) {
-    case 1:
-      return 'text-xl';
-    case 2:
-      return 'text-2xl';
-    case 3:
-      return 'text-3xl';
-    case 4:
-      return 'text-lg';
-    case 5:
-      return 'text-4xl';
-    default:
-      return 'text-xl';
-  }
+  const map: Record<number, any> = {
+    1: 'text-xl',
+    2: 'text-2xl',
+    3: 'text-3xl',
+    4: 'text-lg',
+    5: 'text-4xl',
+  };
+  return map[size] ?? 'text-xl';
 };
 
 const getTextColor = (color: number) => {
-  switch (color) {
-    case 1:
-      return 'text-indigo-400 dark:hover:text-indigo-400/70';
-    case 2:
-      return 'text-indigo-500 dark:hover:text-indigo-500/70';
-    case 3:
-      return 'text-indigo-800 dark:hover:text-indigo-800/70';
-    case 4:
-      return 'text-indigo-600  dark:hover:text-indigo-600/70';
-    case 5:
-      return 'text-indigo-700 dark:hover:text-indigo-700/70';
-    default:
-      return 'text-indigo-500 dark:hover:text-indigo-500/70';
-  }
+  const map: Record<number, any> = {
+    1: 'text-indigo-400 dark:hover:text-indigo-400/70',
+    2: 'text-indigo-500 dark:hover:text-indigo-500/70',
+    3: 'text-indigo-800 dark:hover:text-indigo-800/70',
+    4: 'text-indigo-600  dark:hover:text-indigo-600/70',
+    5: 'text-indigo-700 dark:hover:text-indigo-700/70',
+  };
+  return map[color] ?? 'text-indigo-500 dark:hover:text-indigo-500/70';
 };
 
 const TagItem: FC<Props> = ({
