@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "@tailwindcss/line-clamp": "^0.4.2",
+    "axios": "^1.0.0",
     "millify": "^5.0.1",
     "mongoose": "^6.6.2",
     "next": "12.3.1",

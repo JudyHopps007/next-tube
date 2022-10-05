@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import useQueryPush from 'hooks/useQueryPush';
+import useTagHandler from 'hooks/useTagHandler';
 import React, { FC } from 'react';
 import { Tag, VideoWithMeta } from 'types/types';
 import {
@@ -27,6 +28,7 @@ const Table: FC<Props> = ({
   contentType,
 }) => {
   const queryPush = useQueryPush();
+  const tagHandler = useTagHandler();
 
   if (items.length === 0) {
     return (
@@ -56,7 +58,14 @@ const Table: FC<Props> = ({
               ))}
             {contentType === 'tag' &&
               items.map((item: Tag) => (
-                <TagTableRow key={item.id} tag={item} />
+                <TagTableRow
+                  key={item.id}
+                  tag={item}
+                  deleteHandler={tagHandler.handleTagDelete}
+                  priorityDownHandler={tagHandler.handleTagPriorityDown}
+                  priorityUpHandler={tagHandler.handleTagPriorityUp}
+                  editHandler={tagHandler.handleTagEdit}
+                />
               ))}
           </tbody>
         </table>

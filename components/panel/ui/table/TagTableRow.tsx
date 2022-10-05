@@ -1,13 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
+import { XIcon } from '@heroicons/react/outline';
 import React, { FC } from 'react';
 import { Tag } from 'types/types';
+import ActionButton from '../ActionButton';
 import PanelTag from '../Tag';
 
 type Props = {
   tag: Tag;
+  deleteHandler: (id: string) => Promise<void>;
+  editHandler: (id: string) => Promise<void>;
+  priorityUpHandler: (id: string) => Promise<void>;
+  priorityDownHandler: (id: string) => Promise<void>;
 };
 
-const TagTableRow: FC<Props> = ({ tag }) => {
+const TagTableRow: FC<Props> = ({
+  tag,
+  deleteHandler,
+  editHandler,
+  priorityUpHandler,
+  priorityDownHandler,
+}) => {
   return (
     <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
       <td className="px-4 py-3">
@@ -30,7 +42,29 @@ const TagTableRow: FC<Props> = ({ tag }) => {
       <td className="px-4 py-3">
         <div className="font-semibold">{tag.relatedTags.length}</div>
       </td>
-      <td className="px-4 py-3">TODO</td>
+      <td className="px-4 py-3">
+        <div className="flex flex-row items-center">
+          {tag.priority ? (
+            <ActionButton
+              actionMode="priorityDown"
+              actionHandler={priorityDownHandler.bind(null, tag.id)}
+            />
+          ) : (
+            <ActionButton
+              actionMode="priorityUp"
+              actionHandler={priorityUpHandler.bind(null, tag.id)}
+            />
+          )}
+          <ActionButton
+            actionMode="edit"
+            actionHandler={editHandler.bind(null, tag.id)}
+          />
+          <ActionButton
+            actionMode="delete"
+            actionHandler={deleteHandler.bind(null, tag.id)}
+          />
+        </div>
+      </td>
     </tr>
   );
 };
