@@ -13,32 +13,25 @@ type Props = {
 };
 
 const getIcon = (actionMode: string) => {
-  switch (actionMode) {
-    case 'delete':
-      return <XIcon className="w-5 h-5" />;
-    case 'edit':
-      return <PencilAltIcon className="w-5 h-5" />;
-    case 'priorityUp':
-      return <ChevronUpIcon className="w-5 h-5" />;
-    case 'priorityDown':
-      return <ChevronDownIcon className="w-5 h-5" />;
-    default:
-      return 'Invalid Action Mode';
-  }
+  const map: Record<string, any> = {
+    delete: <XIcon className="w-5 h-5" />,
+    edit: <PencilAltIcon className="w-5 h-5" />,
+    priorityUp: <ChevronUpIcon className="w-5 h-5" />,
+    priorityDown: <ChevronDownIcon className="w-5 h-5" />,
+  };
+
+  return map[actionMode] ?? 'Invalid Action Mode';
 };
 
 const getColor = (actionMode: string) => {
-  switch (actionMode) {
-    case 'delete':
-      return 'bg-red-500';
-    case 'edit':
-      return 'bg-gray-500';
-    case 'priorityUp':
-    case 'priorityDown':
-      return 'bg-amber-600';
-    default:
-      return 'Invalid Action Mode';
-  }
+  const map: Record<string, any> = {
+    delete: 'bg-red-500',
+    edit: 'bg-gray-500',
+    priorityUp: 'bg-amber-600',
+    priorityDown: 'bg-amber-600',
+  };
+
+  return map[actionMode] ?? 'Invalid Action Mode';
 };
 
 const ActionButton: FC<Props> = ({ actionMode, actionHandler }) => {
