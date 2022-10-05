@@ -5,7 +5,7 @@ const useTagHandler = () => {
   const router = useRouter();
   const handleTagDelete = async (id: string) => {
     await axios.post('/api/tags/delete', { id: id });
-    router.push(router.pathname);
+    router.push(router.asPath);
   };
 
   const handleTagEdit = async (id: string) => {
@@ -17,7 +17,7 @@ const useTagHandler = () => {
       id: id,
       newPriority: true,
     });
-    router.push(router.pathname);
+    router.push(router.asPath);
   };
 
   const handleTagPriorityDown = async (id: string) => {
@@ -25,7 +25,7 @@ const useTagHandler = () => {
       id: id,
       newPriority: false,
     });
-    router.push(router.pathname);
+    router.push(router.asPath);
   };
 
   return {
