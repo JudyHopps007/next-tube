@@ -36,7 +36,7 @@ const DropDown: FC<Props> = ({ items, selectedQuery, updateFilterQuery }) => {
   return (
     <div
       ref={dropdownRef}
-      className="z-10 relative flex flex-row justify-between items-center w-full md:w-auto rounded-md bg-slate-700 px-4 py-2 md:py-3 text-sm font-medium text-gray-300 shadow-sm cursor-pointer min-w-[10rem]"
+      className="relative flex flex-row justify-between items-center w-full md:w-auto rounded-md bg-slate-700 px-4 py-2 md:py-3 text-sm font-medium text-gray-300 shadow-sm cursor-pointer min-w-[10rem]"
       onClick={() => {
         setShowDropdown(!showDropdown);
       }}
@@ -49,7 +49,7 @@ const DropDown: FC<Props> = ({ items, selectedQuery, updateFilterQuery }) => {
       </button>
       <ChevronDownIcon className="flex w-5 h-5" />
       {showDropdown && (
-        <div className="absolute right-0 top-10 md:top-12 rounded-md w-full bg-slate-700 shadow-lg text-gray-300">
+        <div className="z-50 absolute right-0 top-10 md:top-12 rounded-md w-full bg-slate-700 shadow-lg text-gray-300">
           <div className="py-1">
             {items.map((item) => (
               <div
