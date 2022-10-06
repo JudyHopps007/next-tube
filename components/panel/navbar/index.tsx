@@ -32,7 +32,7 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
   return (
     <header
       className={classNames(
-        showMobileNav ? 'fixed w-full top-0' : '',
+        showMobileNav ? 'w-full' : '',
         'border-b bg-slate-900 border-b-slate-300/10'
       )}
     >
@@ -82,11 +82,11 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
       <div
         className={classNames(
           showMobileNav ? '' : 'hidden',
-          'fixed z-50 overflow-auto flex w-full'
+          'flex z-50 overflow-auto w-full'
         )}
       >
         <div
-          className="relative p-2 bg-slate-900 w-full m-auto flex-col flex h-screen"
+          className="p-2 bg-slate-900 w-full m-auto flex-col flex h-screen"
           onClick={() => {
             setShowMobileNav(false);
           }}
