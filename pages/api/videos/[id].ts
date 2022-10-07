@@ -1,9 +1,9 @@
 import { connectToDbHandler } from 'database/database';
 import {
-  getTag,
-  removeTagById,
-  updateTag,
-} from 'database/services/tags.service';
+  getVideoById,
+  removeVideoById,
+  updateVideo,
+} from 'database/services/videos.service';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -11,16 +11,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const id = req.query.id as string;
 
     if (req.method === 'GET') {
-      const tag = await getTag(id);
-      return res.status(200).json(tag);
+      const video = await getVideoById(+id);
+      return res.status(200).json(video);
     }
     if (req.method === 'PATCH') {
-      const tag = await updateTag(id, req.body);
-      return res.status(200).send({ tag, message: 'Tag updated' });
+      const tag = await updateVideo(+id, req.body);
+      return res.status(200).send({ tag, message: 'Video updated' });
     }
     if (req.method === 'DELETE') {
-      const tag = await removeTagById(id);
-      return res.status(200).send({ message: 'Tag deleted' });
+      const tag = await removeVideoById(+id);
+      return res.status(200).send({ message: 'Video deleted' });
     }
   } catch (err: any) {
     return res.status(400).json({
