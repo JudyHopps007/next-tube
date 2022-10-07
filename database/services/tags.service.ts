@@ -95,32 +95,6 @@ export const updateTagCount = async (name: string, amount: number) => {
   }
 };
 
-export const changePriority = async (id: string, newPriority: boolean) => {
-  try {
-    const tag = await Tags.findOneAndUpdate(
-      { id: id },
-      { $set: { priority: newPriority } }
-    );
-    if (!tag) throw new Error(`Tag with id ${id} not found.`);
-    return tag;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const changeTagRole = async (id: string, newRole: TagRole) => {
-  try {
-    const tag = await Tags.findOneAndUpdate(
-      { id: id },
-      { $set: { role: newRole } }
-    );
-    if (!tag) throw new Error(`Tag with id ${id} not found.`);
-    return tag;
-  } catch (error) {
-    throw error;
-  }
-};
-
 export const countTags = async (
   role: TagRole | null = null,
   state: StateType = null,
