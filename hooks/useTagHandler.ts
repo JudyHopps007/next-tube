@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 const useTagHandler = () => {
   const router = useRouter();
   const handleTagDelete = async (id: string) => {
-    await axios.post('/api/tags/delete', { id: id });
+    await axios.delete(`/api/tags/${id}`);
     router.push(router.asPath);
   };
 
@@ -13,17 +13,15 @@ const useTagHandler = () => {
   };
 
   const handleTagPriorityUp = async (id: string) => {
-    await axios.post('/api/tags/change-priority', {
-      id: id,
-      newPriority: true,
+    await axios.patch(`/api/tags/${id}`, {
+      priority: true,
     });
     router.push(router.asPath);
   };
 
   const handleTagPriorityDown = async (id: string) => {
-    await axios.post('/api/tags/change-priority', {
-      id: id,
-      newPriority: false,
+    await axios.patch(`/api/tags/${id}`, {
+      priority: false,
     });
     router.push(router.asPath);
   };

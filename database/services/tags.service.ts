@@ -71,6 +71,16 @@ export const updateTag = async (name: string, body: any) => {
   }
 };
 
+export const getTag = async (id: string) => {
+  try {
+    const tag = await Tags.findOne({ id: id });
+    if (!tag) throw new Error(`Tag with id ${id} not found.`);
+    return tag;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const updateTagCount = async (name: string, amount: number) => {
   try {
     const id = generateTagId(name);
