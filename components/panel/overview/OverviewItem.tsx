@@ -6,7 +6,7 @@ import {
   ViewGridIcon,
 } from '@heroicons/react/outline';
 import Link from 'next/link';
-import React, { FC, HTMLAttributeReferrerPolicy } from 'react';
+import React, { FC } from 'react';
 
 type Props = {
   title: string;

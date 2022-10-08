@@ -1,4 +1,3 @@
-import { truncate } from 'fs/promises';
 import mongoose from 'mongoose';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
