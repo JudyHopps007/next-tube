@@ -30,7 +30,7 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id }) => {
 
   return (
     <PanelModal isShowing={isShowing} title="Edit Tag" onClose={onClose}>
-      {tag ? <div>{tag.name}</div> : <Spinner border="border-gray-400" />}
+      {tag ? <div>{tag.name}</div> : <Spinner borderColor="border-gray-400" />}
     </PanelModal>
   );
 };
