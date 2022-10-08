@@ -19,6 +19,10 @@ const PanelIndexPage: NextPage<Props> = ({
   categoriesCount,
   actorsCount,
 }) => {
+  const test = () => {
+    console.log('TEST');
+  };
+
   return (
     <PanelLayout>
       <PanelHeadline text="Statistics" />

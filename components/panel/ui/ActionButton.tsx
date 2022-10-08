@@ -9,7 +9,7 @@ import { classNames } from 'utils/helpers';
 
 type Props = {
   actionMode: 'delete' | 'edit' | 'priorityUp' | 'priorityDown';
-  actionHandler: () => Promise<void>;
+  actionHandler: () => Promise<void> | void;
 };
 
 const getIcon = (actionMode: string) => {

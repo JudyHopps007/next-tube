@@ -40,7 +40,6 @@ export type Category = {
 
 export type Tag = {
   relatedTags: string[];
-  active: boolena;
   priority: boolean;
 } & Category;
 

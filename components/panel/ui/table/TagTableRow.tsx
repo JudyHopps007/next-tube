@@ -7,7 +7,7 @@ import PanelTag from '../Tag';
 type Props = {
   tag: Tag;
   deleteHandler: (id: string) => Promise<void>;
-  editHandler: (id: string) => Promise<void>;
+  editHandler: (id: string) => void;
   priorityUpHandler: (id: string) => Promise<void>;
   priorityDownHandler: (id: string) => Promise<void>;
 };
