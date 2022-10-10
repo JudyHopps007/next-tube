@@ -4,9 +4,8 @@ import PanelModal from '@panel/ui/Modal';
 import PanelTextInput from '@panel/ui/TextInput';
 import Spinner from '@ui/Spinner';
 import { roles } from 'constants/ui';
-import useTagHandler from 'hooks/useTagHandler';
-import React, { FC, useEffect, useState } from 'react';
-import { Tag } from 'types/types';
+import useTagData from 'hooks/useTagData';
+import React, { FC } from 'react';
 
 type Props = {
   isShowing: boolean;
@@ -16,28 +15,7 @@ type Props = {
 };
 
 const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
-  const tagHandler = useTagHandler();
-  const [tag, setTag] = useState<Tag | null>(null);
-  const { tagGet } = tagHandler;
-
-  useEffect(() => {
-    const getTagData = async () => {
-      if (id) {
-        const tag = await tagGet(id);
-        setTag(tag as unknown as Tag);
-      }
-    };
-    getTagData();
-    return () => {
-      setTag(null);
-    };
-  }, [id]);
-
-  const updateTag = (key: string, value: string | number | boolean) => {
-    setTag((currentTag) => {
-      return { ...currentTag, [key]: value } as Tag;
-    });
-  };
+  const { tag, updateTag } = useTagData(id);
 
   return (
     <PanelModal isShowing={isShowing} title="Edit Tag" onClose={onClose}>

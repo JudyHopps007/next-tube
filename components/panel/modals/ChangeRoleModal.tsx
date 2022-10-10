@@ -2,9 +2,9 @@ import DropDown from '@panel/ui/Dropdown';
 import PanelModal from '@panel/ui/Modal';
 import Spinner from '@ui/Spinner';
 import { roles } from 'constants/ui';
-import useTagHandler from 'hooks/useTagHandler';
-import React, { FC, useEffect, useState } from 'react';
-import { Tag, TagRole } from 'types/types';
+import useTagData from 'hooks/useTagData';
+import React, { FC } from 'react';
+import { TagRole } from 'types/types';
 
 type Props = {
   isShowing: boolean;
@@ -19,23 +19,7 @@ const ChangeRoleModal: FC<Props> = ({
   onClose,
   saveChanges,
 }) => {
-  const tagHandler = useTagHandler();
-  const [tag, setTag] = useState<Tag | null>(null);
-  const { tagGet } = tagHandler;
-
-  useEffect(() => {
-    const getTagData = async () => {
-      if (id) {
-        const tag = await tagGet(id);
-        setTag(tag as unknown as Tag);
-      }
-    };
-    getTagData();
-    return () => {
-      setTag(null);
-    };
-  }, [id]);
-
+  const { tag, updateTag } = useTagData(id);
   return (
     <PanelModal isShowing={isShowing} title="Edit Tag" onClose={onClose}>
       {tag ? (
@@ -46,7 +30,7 @@ const ChangeRoleModal: FC<Props> = ({
               items={roles}
               selectedQuery={tag.role}
               updateFilterQuery={(newRole) => {
-                setTag({ ...tag, role: newRole as TagRole });
+                updateTag('role', newRole as string);
               }}
             />
           </div>
