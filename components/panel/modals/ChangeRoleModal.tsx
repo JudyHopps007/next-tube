@@ -20,7 +20,7 @@ const ChangeRoleModal: FC<Props> = ({
 }) => {
   const { tag, updateTag } = useTagData(id);
   return (
-    <PanelModal isShowing={isShowing} title="Edit Tag" onClose={onClose}>
+    <PanelModal isShowing={isShowing} title="Change Role" onClose={onClose}>
       {tag ? (
         <>
           <div className="flex flex-col">
