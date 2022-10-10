@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-const useTagHandler = () => {
+const useTagAPI = () => {
   const router = useRouter();
   const tagDelete = async (id: string) => {
     await axios.delete(`/api/tags/${id}`);
@@ -41,4 +41,4 @@ const useTagHandler = () => {
   };
 };
 
-export default useTagHandler;
+export default useTagAPI;

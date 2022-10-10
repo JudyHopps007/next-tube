@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { Tag } from 'types/types';
-import useTagHandler from './useTagHandler';
+import useTagAPI from './useTagAPI';
 
 const useTagData = (id: string | null) => {
-  const tagHandler = useTagHandler();
+  const tagAPI = useTagAPI();
   const [tag, setTag] = useState<Tag | null>(null);
-  const { tagGet } = tagHandler;
+  const { tagGet } = tagAPI;
 
   useEffect(() => {
     const getTagData = async () => {

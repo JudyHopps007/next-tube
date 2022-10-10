@@ -2,7 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ChangeRoleModal from '@panel/modals/ChangeRoleModal';
 import EditTagModal from '@panel/modals/EditTagModal';
 import useQueryPush from 'hooks/useQueryPush';
-import useTagHandler from 'hooks/useTagHandler';
+import useTagAPI from 'hooks/useTagAPI';
 import React, { FC, useState } from 'react';
 import { PaneldModals, Tag, VideoWithMeta } from 'types/types';
 import {
@@ -36,7 +36,7 @@ const Table: FC<Props> = ({
   const [modalDataId, setModalDataId] = useState<string | null>(null);
 
   const queryPush = useQueryPush();
-  const tagHandler = useTagHandler();
+  const tagAPI = useTagAPI();
 
   const updateModal = (key: PaneldModals, id: string | null) => {
     setModalDataId(id);
@@ -81,9 +81,9 @@ const Table: FC<Props> = ({
                   <TagTableRow
                     key={item.id}
                     tag={item}
-                    deleteHandler={tagHandler.tagDelete}
-                    priorityDownHandler={tagHandler.tagPriorityDown}
-                    priorityUpHandler={tagHandler.tagPriorityUp}
+                    deleteHandler={tagAPI.tagDelete}
+                    priorityDownHandler={tagAPI.tagPriorityDown}
+                    priorityUpHandler={tagAPI.tagPriorityUp}
                     editHandler={(id) => {
                       updateModal('showEditTagsModal', id);
                     }}
@@ -141,7 +141,7 @@ const Table: FC<Props> = ({
         onClose={() => {
           updateModal('showChangeRoleModal', null);
         }}
-        saveChanges={tagHandler.tagEdit}
+        saveChanges={tagAPI.tagEdit}
         id={modalDataId}
         isShowing={modals.showChangeRoleModal}
       />
@@ -149,7 +149,7 @@ const Table: FC<Props> = ({
         onClose={() => {
           updateModal('showEditTagsModal', null);
         }}
-        saveChanges={tagHandler.tagEdit}
+        saveChanges={tagAPI.tagEdit}
         id={modalDataId}
         isShowing={modals.showEditTagsModal}
       />
