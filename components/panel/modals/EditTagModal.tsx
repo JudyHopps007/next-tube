@@ -16,7 +16,6 @@ type Props = {
 
 const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
   const { tag, updateTag } = useTagData(id);
-
   return (
     <PanelModal isShowing={isShowing} title="Edit Tag" onClose={onClose}>
       {tag ? (
