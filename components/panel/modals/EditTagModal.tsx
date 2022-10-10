@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { RefreshIcon } from '@heroicons/react/outline';
 import LabelCheckbox from '@panel/ui/Checkbox';
 import DropDown from '@panel/ui/Dropdown';
@@ -65,6 +66,7 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
               <img
                 className="w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto"
                 src={tag.image || '/images/no-image.png'}
+                alt="Tag image preview"
               />
               <div>
                 <button className="bg-sky-700 hover:bg-sky-600 p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none">
