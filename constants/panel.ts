@@ -10,3 +10,18 @@ export const PANEL_CONSTANTS = {
   TAGS_TABLE_TITLES: ['Id', 'Info', 'Related Tags', 'Actions'],
   TAGS_PER_PAGE: 50,
 };
+
+export const TAG_ROLES_DROPDOWN = [
+  {
+    label: 'Tag',
+    query: 'tag',
+  },
+  {
+    label: 'Category',
+    query: 'category',
+  },
+  {
+    label: 'Actor',
+    query: 'actor',
+  },
+];

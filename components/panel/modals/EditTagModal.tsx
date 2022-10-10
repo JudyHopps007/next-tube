@@ -3,7 +3,7 @@ import DropDown from '@panel/ui/Dropdown';
 import PanelModal from '@panel/ui/Modal';
 import PanelTextInput from '@panel/ui/TextInput';
 import Spinner from '@ui/Spinner';
-import { roles } from 'constants/ui';
+import { TAG_ROLES_DROPDOWN } from 'constants/panel';
 import useTagData from 'hooks/useTagData';
 import React, { FC } from 'react';
 
@@ -47,7 +47,7 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
           <div className="flex flex-col">
             <span className="font-semibold my-1">Role</span>
             <DropDown
-              items={roles}
+              items={TAG_ROLES_DROPDOWN}
               selectedQuery={tag.role}
               updateFilterQuery={(newRole) => {
                 updateTag('role', newRole as string);

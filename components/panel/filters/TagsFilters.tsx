@@ -1,6 +1,6 @@
 import { SearchIcon } from '@heroicons/react/outline';
 import DropDown from '@panel/ui/Dropdown';
-import { roles } from 'constants/ui';
+import { TAG_ROLES_DROPDOWN } from 'constants/panel';
 import useQueryPush from 'hooks/useQueryPush';
 import React, { FC, useState } from 'react';
 import { StateType, TagRole } from 'types/types';
@@ -18,7 +18,7 @@ const roleItems = [
     label: 'All Roles',
     query: defaultRoleQuery,
   },
-  ...roles,
+  ...TAG_ROLES_DROPDOWN,
 ];
 
 const defaultStateQuery = null;
