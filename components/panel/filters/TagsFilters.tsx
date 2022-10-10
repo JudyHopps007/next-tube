@@ -1,5 +1,6 @@
 import { SearchIcon } from '@heroicons/react/outline';
 import DropDown from '@panel/ui/Dropdown';
+import { roles } from 'constants/ui';
 import useQueryPush from 'hooks/useQueryPush';
 import React, { FC, useState } from 'react';
 import { StateType, TagRole } from 'types/types';
@@ -17,18 +18,7 @@ const roleItems = [
     label: 'All Roles',
     query: defaultRoleQuery,
   },
-  {
-    label: 'Tags',
-    query: 'tag',
-  },
-  {
-    label: 'Categories',
-    query: 'category',
-  },
-  {
-    label: 'Actors',
-    query: 'actor',
-  },
+  ...roles,
 ];
 
 const defaultStateQuery = null;

@@ -1,9 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import ChangeRoleModal from '@panel/modals/ChangeRoleModal';
 import EditTagModal from '@panel/modals/EditTagModal';
 import useQueryPush from 'hooks/useQueryPush';
 import useTagHandler from 'hooks/useTagHandler';
 import React, { FC, useState } from 'react';
-import { Tag, VideoWithMeta } from 'types/types';
+import { PaneldModals, Tag, VideoWithMeta } from 'types/types';
 import {
   calculateMaxItemPerPage,
   calculateMinItemPerPage,
@@ -30,19 +31,19 @@ const Table: FC<Props> = ({
 }) => {
   const [modals, setModals] = useState({
     showEditTagsModal: false,
-    showQuickCategoriesTagsModal: false,
+    showChangeRoleModal: false,
   });
   const [modalDataId, setModalDataId] = useState<string | null>(null);
 
   const queryPush = useQueryPush();
   const tagHandler = useTagHandler();
 
-  const updateModal = (key: 'showEditTagsModal', id: string | null) => {
+  const updateModal = (key: PaneldModals, id: string | null) => {
     setModalDataId(id);
     showModal(key);
   };
 
-  const showModal = (key: 'showEditTagsModal') => {
+  const showModal = (key: PaneldModals) => {
     setModals((currentModals) => {
       return { ...currentModals, [key]: !currentModals[key] };
     });
@@ -85,6 +86,9 @@ const Table: FC<Props> = ({
                     priorityUpHandler={tagHandler.tagPriorityUp}
                     editHandler={(id) => {
                       updateModal('showEditTagsModal', id);
+                    }}
+                    changeRoleHandler={(id) => {
+                      updateModal('showChangeRoleModal', id);
                     }}
                   />
                 ))}
@@ -133,10 +137,19 @@ const Table: FC<Props> = ({
           </div>
         </div>
       </div>
+      <ChangeRoleModal
+        onClose={() => {
+          updateModal('showChangeRoleModal', null);
+        }}
+        saveChanges={tagHandler.tagEdit}
+        id={modalDataId}
+        isShowing={modals.showChangeRoleModal}
+      />
       <EditTagModal
         onClose={() => {
           updateModal('showEditTagsModal', null);
         }}
+        saveChanges={tagHandler.tagEdit}
         id={modalDataId}
         isShowing={modals.showEditTagsModal}
       />

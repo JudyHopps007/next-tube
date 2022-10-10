@@ -56,3 +56,5 @@ export type Query = {
 export type QueryProps = {
   query: Query;
 };
+
+export type PaneldModals = 'showChangeRoleModal' | 'showEditTagsModal';

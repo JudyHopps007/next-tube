@@ -2,13 +2,14 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   PencilAltIcon,
+  RefreshIcon,
   XIcon,
 } from '@heroicons/react/outline';
 import React, { FC } from 'react';
 import { classNames } from 'utils/helpers';
 
 type Props = {
-  actionMode: 'delete' | 'edit' | 'priorityUp' | 'priorityDown';
+  actionMode: 'delete' | 'edit' | 'priorityUp' | 'priorityDown' | 'changeRole';
   actionHandler: () => Promise<void> | void;
 };
 
@@ -18,6 +19,7 @@ const getIcon = (actionMode: string) => {
     edit: <PencilAltIcon className="w-5 h-5" />,
     priorityUp: <ChevronUpIcon className="w-5 h-5" />,
     priorityDown: <ChevronDownIcon className="w-5 h-5" />,
+    changeRole: <RefreshIcon className="w-5 h-5" />,
   };
 
   return map[actionMode] ?? 'Invalid Action Mode';
@@ -29,6 +31,7 @@ const getColor = (actionMode: string) => {
     edit: 'bg-gray-500',
     priorityUp: 'bg-amber-600',
     priorityDown: 'bg-amber-600',
+    changeRole: 'bg-sky-600',
   };
 
   return map[actionMode] ?? 'Invalid Action Mode';

@@ -8,6 +8,7 @@ type Props = {
   tag: Tag;
   deleteHandler: (id: string) => Promise<void>;
   editHandler: (id: string) => void;
+  changeRoleHandler: (id: string) => void;
   priorityUpHandler: (id: string) => Promise<void>;
   priorityDownHandler: (id: string) => Promise<void>;
 };
@@ -18,6 +19,7 @@ const TagTableRow: FC<Props> = ({
   editHandler,
   priorityUpHandler,
   priorityDownHandler,
+  changeRoleHandler,
 }) => {
   return (
     <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
@@ -54,6 +56,10 @@ const TagTableRow: FC<Props> = ({
               actionHandler={priorityUpHandler.bind(null, tag.id)}
             />
           )}
+          <ActionButton
+            actionMode="changeRole"
+            actionHandler={changeRoleHandler.bind(null, tag.id)}
+          />
           <ActionButton
             actionMode="edit"
             actionHandler={editHandler.bind(null, tag.id)}

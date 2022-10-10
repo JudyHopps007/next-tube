@@ -1,12 +1,10 @@
-import LabelCheckbox from '@panel/ui/Checkbox';
 import DropDown from '@panel/ui/Dropdown';
 import PanelModal from '@panel/ui/Modal';
-import PanelTextInput from '@panel/ui/TextInput';
 import Spinner from '@ui/Spinner';
 import { roles } from 'constants/ui';
 import useTagHandler from 'hooks/useTagHandler';
 import React, { FC, useEffect, useState } from 'react';
-import { Tag } from 'types/types';
+import { Tag, TagRole } from 'types/types';
 
 type Props = {
   isShowing: boolean;
@@ -15,7 +13,12 @@ type Props = {
   saveChanges: (id: string, data: any) => Promise<void>;
 };
 
-const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
+const ChangeRoleModal: FC<Props> = ({
+  isShowing,
+  id,
+  onClose,
+  saveChanges,
+}) => {
   const tagHandler = useTagHandler();
   const [tag, setTag] = useState<Tag | null>(null);
   const { tagGet } = tagHandler;
@@ -33,47 +36,17 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
     };
   }, [id]);
 
-  const updateTag = (key: string, value: string | number | boolean) => {
-    setTag((currentTag) => {
-      return { ...currentTag, [key]: value } as Tag;
-    });
-  };
-
   return (
     <PanelModal isShowing={isShowing} title="Edit Tag" onClose={onClose}>
       {tag ? (
         <>
-          <PanelTextInput
-            label="Name"
-            value={tag.name}
-            handleChange={(e) => {
-              updateTag('name', e.target.value);
-            }}
-          />
-
-          <LabelCheckbox
-            label="Priority"
-            value={tag.priority}
-            handleChange={() => {
-              updateTag('priority', !tag.priority);
-            }}
-          />
-
-          <PanelTextInput
-            label="Video Count"
-            value={tag.videoCount}
-            handleChange={(e) => {
-              updateTag('videoCount', e.target.value);
-            }}
-          />
-
           <div className="flex flex-col">
             <span className="font-semibold my-1">Role</span>
             <DropDown
               items={roles}
               selectedQuery={tag.role}
               updateFilterQuery={(newRole) => {
-                updateTag('role', newRole as string);
+                setTag({ ...tag, role: newRole as TagRole });
               }}
             />
           </div>
@@ -83,9 +56,6 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
               onClick={() => {
                 const tagId = tag.id;
                 const data = {
-                  videoCount: tag.videoCount,
-                  name: tag.name,
-                  priority: tag.priority,
                   role: tag.role,
                 };
                 onClose();
@@ -110,4 +80,4 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
   );
 };
 
-export default EditTagModal;
+export default ChangeRoleModal;

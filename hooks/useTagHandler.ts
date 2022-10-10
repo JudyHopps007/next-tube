@@ -8,8 +8,9 @@ const useTagHandler = () => {
     router.push(router.asPath);
   };
 
-  const tagEdit = async (id: string) => {
-    console.log('tagEdit', id);
+  const tagEdit = async (id: string, data: any) => {
+    await axios.patch(`/api/tags/${id}`, data);
+    router.push(router.asPath);
   };
 
   const tagPriorityUp = async (id: string) => {
