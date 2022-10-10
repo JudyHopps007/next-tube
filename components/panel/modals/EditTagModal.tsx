@@ -4,6 +4,7 @@ import PanelModal from '@panel/ui/Modal';
 import PanelTextInput from '@panel/ui/TextInput';
 import Spinner from '@ui/Spinner';
 import { TAG_ROLES_DROPDOWN } from 'constants/panel';
+import { generateTagId } from 'database/utils/helper';
 import useTagData from 'hooks/useTagData';
 import React, { FC } from 'react';
 
@@ -64,6 +65,7 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   name: tag.name,
                   priority: tag.priority,
                   role: tag.role,
+                  id: generateTagId(tag.name),
                 };
                 onClose();
                 saveChanges(tagId, data);
