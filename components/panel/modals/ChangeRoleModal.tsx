@@ -4,7 +4,6 @@ import Spinner from '@ui/Spinner';
 import { roles } from 'constants/ui';
 import useTagData from 'hooks/useTagData';
 import React, { FC } from 'react';
-import { TagRole } from 'types/types';
 
 type Props = {
   isShowing: boolean;
