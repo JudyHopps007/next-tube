@@ -30,7 +30,7 @@ const ModalButton: FC<Props> = ({
       className={classNames(
         getColor(btnType),
         width,
-        'p-1 rounded-md shadow-lg md:w-full'
+        'p-2 rounded-md shadow-lg md:w-full'
       )}
     >
       {text}

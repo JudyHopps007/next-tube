@@ -34,9 +34,10 @@ const TagEditor: FC<Props> = ({ relatedTags, label, removeTag, addTag }) => {
 
       <div className="flex flex-row justify-between space-x-2 items-center mt-2">
         <input
-          className="bg-slate-700 focus:outline-none py-1 px-2 w-full rounded-md"
+          className="bg-slate-700 focus:outline-none p-2 w-full rounded-md"
           type="text"
           value={tagName}
+          placeholder="Enter new tag..."
           onChange={(e) => setTagName(e.target.value)}
         />
         <ModalButton
