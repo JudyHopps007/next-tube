@@ -34,7 +34,7 @@ const TagTableRow: FC<Props> = ({
         <div className="flex flex-row md:space-x-2 items-center">
           <img
             className="hidden md:flex w-12 h-12 rounded-md"
-            src={tag.image ? tag.image : '/images/placeholder-actor.png'}
+            src={tag.image ? tag.image : '/images/no-image.png'}
             alt={tag.name}
             loading="lazy"
           />
