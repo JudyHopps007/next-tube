@@ -25,7 +25,6 @@ const useTagData = (id: string | null) => {
     key: string,
     value: string | number | boolean | string[]
   ) => {
-    console.log(value);
     setTag((currentTag) => {
       return { ...currentTag, [key]: value } as Tag;
     });

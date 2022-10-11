@@ -102,7 +102,7 @@ export const countTags = async (
 ) => {
   const filterRole = role ? { role: role } : null;
   const filterState = state
-    ? { priority: state === 'priority' ? true : false }
+    ? { isPriority: state === 'priority' ? true : false }
     : null;
   const fitlerSearch =
     search.length > 0
@@ -148,7 +148,7 @@ export const getTags = async (
         ? { name: { $regex: `\\b${search}\\b`, $options: 'i' } }
         : null;
     const filterState = state
-      ? { priority: state === 'priority' ? true : false }
+      ? { isPriority: state === 'priority' ? true : false }
       : null;
     const skip = page * limit - limit;
     const tags = Tags.find({ ...filterRole, ...fitlerSearch, ...filterState })

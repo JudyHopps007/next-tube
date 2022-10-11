@@ -37,9 +37,9 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
 
               <LabelCheckbox
                 label="Priority"
-                value={tag.priority}
+                value={tag.isPriority}
                 handleChange={() => {
-                  updateTag('priority', !tag.priority);
+                  updateTag('isPriority', !tag.isPriority);
                 }}
               />
 
@@ -106,7 +106,7 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                 const data = {
                   videoCount: tag.videoCount,
                   name: tag.name,
-                  priority: tag.priority,
+                  isPriority: tag.isPriority,
                   role: tag.role,
                   relatedTags: tag.relatedTags,
                   id: generateTagId(tag.name),

@@ -40,7 +40,8 @@ export type Category = {
 
 export type Tag = {
   relatedTags: string[];
-  priority: boolean;
+  isPriority: boolean;
+  isParsed: boolean;
 } & Category;
 
 export type Query = {

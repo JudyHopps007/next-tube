@@ -15,14 +15,14 @@ const useTagAPI = () => {
 
   const tagPriorityUp = async (id: string) => {
     await axios.patch(`/api/tags/${id}`, {
-      priority: true,
+      isPriority: true,
     });
     router.push(router.asPath);
   };
 
   const tagPriorityDown = async (id: string) => {
     await axios.patch(`/api/tags/${id}`, {
-      priority: false,
+      isPriority: false,
     });
     router.push(router.asPath);
   };

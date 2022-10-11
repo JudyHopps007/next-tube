@@ -20,7 +20,8 @@ const tagsSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
-    priority: { type: Boolean, default: false },
+    isPriority: { type: Boolean, default: false },
+    isParsed: { type: Boolean, default: false },
     videoCount: {
       type: Number,
       default: 0,

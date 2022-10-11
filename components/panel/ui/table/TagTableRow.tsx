@@ -25,7 +25,7 @@ const TagTableRow: FC<Props> = ({
     <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
       <td className="px-4 py-3">
         <div className="flex flex-row space-x-2 justify-start items-center">
-          {tag.priority && <PanelTag label="priority" color="yellow" />}
+          {tag.isPriority && <PanelTag label="priority" color="yellow" />}
           <PanelTag label={tag.role} color="gray" />
           <div className="font-thin text-xs">{tag.id}</div>
         </div>
@@ -46,7 +46,7 @@ const TagTableRow: FC<Props> = ({
       </td>
       <td className="px-4 py-3">
         <div className="flex flex-row items-center">
-          {tag.priority ? (
+          {tag.isPriority ? (
             <ActionButton
               actionMode="priorityDown"
               actionHandler={priorityDownHandler.bind(null, tag.id)}
