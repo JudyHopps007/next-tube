@@ -4,6 +4,7 @@ import LabelCheckbox from '@panel/ui/Checkbox';
 import DropDown from '@panel/ui/Dropdown';
 import PanelModal from '@panel/ui/Modal';
 import ModalButton from '@panel/ui/ModalButton';
+import TagEditor from '@panel/ui/TagEditor';
 import PanelTextInput from '@panel/ui/TextInput';
 import Spinner from '@ui/Spinner';
 import { TAG_ROLES_DROPDOWN } from 'constants/panel';
@@ -60,9 +61,28 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   }}
                 />
               </div>
+
+              <TagEditor
+                label="Related Tags"
+                relatedTags={tag.relatedTags}
+                removeTag={(tagToRemove) => {
+                  const currentTags = tag.relatedTags.slice();
+                  updateTag(
+                    'relatedTags',
+                    currentTags.filter((t) => t !== tagToRemove)
+                  );
+                }}
+                addTag={(tagToAdd) => {
+                  const currentTags = tag.relatedTags.slice();
+                  if (!currentTags.includes(tagToAdd)) {
+                    currentTags.push(tagToAdd);
+                    updateTag('relatedTags', currentTags);
+                  }
+                }}
+              />
             </div>
 
-            <div className="flex flex-col min-w-fit justify-center">
+            <div className="flex flex-col min-w-fit justify-start">
               <span className="font-semibold my-1">Image</span>
               <img
                 className="w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto"
@@ -70,7 +90,7 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                 alt="Tag image preview"
               />
               <div>
-                <button className="bg-sky-700 hover:bg-sky-600 p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none">
+                <button className="bg-sky-600 hover:bg-sky-500 p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none">
                   <div className="flex justify-center items-center">
                     <RefreshIcon className="w-5 h-5" />
                   </div>
@@ -88,6 +108,7 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   name: tag.name,
                   priority: tag.priority,
                   role: tag.role,
+                  relatedTags: tag.relatedTags,
                   id: generateTagId(tag.name),
                 };
                 onClose();

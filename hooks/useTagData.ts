@@ -21,7 +21,11 @@ const useTagData = (id: string | null) => {
     };
   }, [id]);
 
-  const updateTag = (key: string, value: string | number | boolean) => {
+  const updateTag = (
+    key: string,
+    value: string | number | boolean | string[]
+  ) => {
+    console.log(value);
     setTag((currentTag) => {
       return { ...currentTag, [key]: value } as Tag;
     });

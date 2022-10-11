@@ -5,23 +5,31 @@ type Props = {
   text: string;
   handleClick?: () => void;
   btnType?: string;
+  width?: string;
 };
 
 const getColor = (btnType: string) => {
   const map: Record<string, any> = {
     normal: 'bg-gray-500 hover:bg-gray-400',
+    secondary: 'bg-sky-600 hover:bg-sky-500',
     success: 'bg-emerald-600 hover:bg-emerald-500',
     danger: 'bg-red-500 hover:bg-red-400',
   };
   return map[btnType] ?? 'bg-gray-500 hover:bg-gray-400';
 };
 
-const ModalButton: FC<Props> = ({ handleClick, text, btnType = 'normal' }) => {
+const ModalButton: FC<Props> = ({
+  handleClick,
+  text,
+  btnType = 'normal',
+  width = '',
+}) => {
   return (
     <button
       onClick={handleClick}
       className={classNames(
         getColor(btnType),
+        width,
         'p-1 rounded-md shadow-lg md:w-full'
       )}
     >
