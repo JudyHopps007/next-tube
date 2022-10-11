@@ -37,7 +37,7 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
       )}
     >
       <nav className="flex flex-row justify-between items-center bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0 py-2 md:py-0">
-        <div className="md:hidden">
+        <div className="z-50 md:hidden">
           <NavButton
             onClick={() => {
               setShowMobileNav(!showMobileNav);
@@ -65,7 +65,7 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
           </ul>
         </div>
 
-        <div className="flex justify-center md:justify-end items-center py-2 md:px-2 md:py-0 md:w-72">
+        <div className="z-50 flex justify-center md:justify-end items-center py-2 md:px-2 md:py-0 md:w-72">
           <NavButton onClick={handleLogout}>
             <div className="md:hidden">
               <LogoutIcon className="w-5 h-5" />
@@ -82,11 +82,11 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
       <div
         className={classNames(
           showMobileNav ? '' : 'hidden',
-          'flex z-50 overflow-auto w-full'
+          'flex overflow-auto w-full'
         )}
       >
         <div
-          className="p-2 bg-slate-900 w-full m-auto flex-col flex h-screen"
+          className="w-full p-2 z-50"
           onClick={() => {
             setShowMobileNav(false);
           }}
@@ -103,6 +103,7 @@ const PanelNavbar: FC<PanelNavbarProps> = () => {
             ))}
           </ul>
         </div>
+        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
       </div>
     </header>
   );
