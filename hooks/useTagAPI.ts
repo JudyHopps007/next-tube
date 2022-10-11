@@ -32,12 +32,19 @@ const useTagAPI = () => {
     return tag.data;
   };
 
+  const tagRandomImage = async (name: string) => {
+    const result = await axios.get(`/api/parser/image?keyword=${name}`);
+    const { image } = result.data;
+    return image;
+  };
+
   return {
     tagDelete,
     tagEdit,
     tagPriorityUp,
     tagPriorityDown,
     tagGet,
+    tagRandomImage,
   };
 };
 

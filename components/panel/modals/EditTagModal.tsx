@@ -10,17 +10,30 @@ import Spinner from '@ui/Spinner';
 import { TAG_ROLES_DROPDOWN } from 'constants/panel';
 import { generateTagId } from 'database/utils/helper';
 import useTagData from 'hooks/useTagData';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 type Props = {
   isShowing: boolean;
   id: string | null;
   onClose: () => void;
   saveChanges: (id: string, data: any) => Promise<void>;
+  requestImage: (name: string) => Promise<string>;
 };
 
-const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
+const EditTagModal: FC<Props> = ({
+  isShowing,
+  onClose,
+  id,
+  saveChanges,
+  requestImage,
+}) => {
   const { tag, updateTag } = useTagData(id);
+  const [image, setImage] = useState(tag?.image);
+
+  useEffect(() => {
+    setImage(tag?.image);
+  }, [tag]);
+
   return (
     <PanelModal isShowing={isShowing} title="Edit Tag" onClose={onClose}>
       {tag ? (
@@ -86,11 +99,17 @@ const EditTagModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
               <span className="font-semibold my-1">Image</span>
               <img
                 className="w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto"
-                src={tag.image || '/images/no-image.png'}
+                src={image || '/images/no-image.png'}
                 alt="Tag image preview"
               />
               <div>
-                <button className="bg-sky-600 hover:bg-sky-500 p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none">
+                <button
+                  onClick={async () => {
+                    const imageRes = await requestImage(tag.name);
+                    setImage(imageRes);
+                  }}
+                  className="bg-sky-600 hover:bg-sky-500 p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none"
+                >
                   <div className="flex justify-center items-center">
                     <RefreshIcon className="w-5 h-5" />
                   </div>

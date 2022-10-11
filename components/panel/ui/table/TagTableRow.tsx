@@ -26,6 +26,7 @@ const TagTableRow: FC<Props> = ({
       <td className="px-4 py-3">
         <div className="flex flex-row space-x-2 justify-start items-center">
           {tag.isPriority && <PanelTag label="priority" color="yellow" />}
+          {tag.isParsed && <PanelTag label="parsed" color="sky" />}
           <PanelTag label={tag.role} color="gray" />
           <div className="font-thin text-xs">{tag.id}</div>
         </div>
