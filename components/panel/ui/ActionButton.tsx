@@ -27,11 +27,11 @@ const getIcon = (actionMode: string) => {
 
 const getColor = (actionMode: string) => {
   const map: Record<string, any> = {
-    delete: 'bg-red-500',
-    edit: 'bg-gray-500',
-    priorityUp: 'bg-amber-600',
-    priorityDown: 'bg-amber-600',
-    changeRole: 'bg-sky-600',
+    delete: 'bg-red-500 hover:bg-red-400',
+    edit: 'bg-gray-500 hover:bg-gray-400',
+    priorityUp: 'bg-amber-600 hover:bg-amber-500',
+    priorityDown: 'bg-amber-600 hover:bg-amber-500',
+    changeRole: 'bg-sky-600 hover:bg-sky-500',
   };
 
   return map[actionMode] ?? 'Invalid Action Mode';

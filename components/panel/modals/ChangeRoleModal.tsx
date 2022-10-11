@@ -1,5 +1,6 @@
 import DropDown from '@panel/ui/Dropdown';
 import PanelModal from '@panel/ui/Modal';
+import ModalButton from '@panel/ui/ModalButton';
 import Spinner from '@ui/Spinner';
 import { TAG_ROLES_DROPDOWN } from 'constants/panel';
 import useTagData from 'hooks/useTagData';
@@ -35,8 +36,8 @@ const ChangeRoleModal: FC<Props> = ({
           </div>
 
           <div className="flex flex-col md:flex-row md:space-y-0 w-full space-y-2 md:space-x-2 mt-8">
-            <button
-              onClick={() => {
+            <ModalButton
+              handleClick={() => {
                 const tagId = tag.id;
                 const data = {
                   role: tag.role,
@@ -44,16 +45,10 @@ const ChangeRoleModal: FC<Props> = ({
                 onClose();
                 saveChanges(tagId, data);
               }}
-              className="bg-emerald-700 hover:bg-emerald-600 p-1 rounded-md shadow-lg md:w-full"
-            >
-              Save Changes
-            </button>
-            <button
-              onClick={onClose}
-              className="bg-red-500 hover:bg-red-400 p-1 rounded-md shadow-lg md:w-full"
-            >
-              Close
-            </button>
+              btnType="success"
+              text="Save Changes"
+            />
+            <ModalButton handleClick={onClose} btnType="danger" text="Close" />
           </div>
         </>
       ) : (

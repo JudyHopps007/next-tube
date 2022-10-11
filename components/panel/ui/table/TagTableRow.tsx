@@ -36,6 +36,7 @@ const TagTableRow: FC<Props> = ({
             className="hidden md:flex w-12 h-12 rounded-md"
             src={tag.image ? tag.image : '/images/placeholder-actor.png'}
             alt={tag.name}
+            loading="lazy"
           />
           <div className="font-semibold">{tag.name}</div>
         </div>

@@ -17,6 +17,7 @@ const VideoTableRow: FC<Props> = ({ video }) => {
             className="hidden md:flex w-12 h-12 rounded-md"
             alt={video.title}
             src={video.thumbnail}
+            loading="lazy"
           />
           <div className="flex flex-col space-y-2">
             <div className="font-semibold">{video.title}</div>
