@@ -6,6 +6,7 @@ type Props = {
   handleClick?: () => void;
   btnType?: string;
   width?: string;
+  disabled?: boolean;
 };
 
 const getColor = (btnType: string) => {
@@ -23,9 +24,11 @@ const ModalButton: FC<Props> = ({
   text,
   btnType = 'normal',
   width = '',
+  disabled = false,
 }) => {
   return (
     <button
+      disabled={disabled}
       onClick={handleClick}
       className={classNames(
         getColor(btnType),

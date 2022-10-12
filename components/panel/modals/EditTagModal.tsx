@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { RefreshIcon } from '@heroicons/react/outline';
+import { RefreshIcon, XIcon } from '@heroicons/react/outline';
 import LabelCheckbox from '@panel/ui/Checkbox';
 import DropDown from '@panel/ui/Dropdown';
 import PanelModal from '@panel/ui/Modal';
@@ -18,6 +18,7 @@ type Props = {
   onClose: () => void;
   saveChanges: (id: string, data: any) => Promise<void>;
   requestImage: (name: string) => Promise<string>;
+  requestTags: (name: string) => Promise<string[]>;
 };
 
 const EditTagModal: FC<Props> = ({
@@ -26,12 +27,15 @@ const EditTagModal: FC<Props> = ({
   id,
   saveChanges,
   requestImage,
+  requestTags,
 }) => {
   const { tag, updateTag } = useTagData(id);
   const [image, setImage] = useState(tag?.image);
+  const [loadingTags, setLoadingTags] = useState<boolean>(false);
 
   useEffect(() => {
     setImage(tag?.image);
+    setLoadingTags(false);
   }, [tag]);
 
   return (
@@ -97,24 +101,54 @@ const EditTagModal: FC<Props> = ({
 
             <div className="flex flex-col min-w-fit justify-start">
               <span className="font-semibold my-1">Image</span>
-              <img
-                className="w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto"
-                src={image || '/images/no-image.png'}
-                alt="Tag image preview"
-              />
-              <div>
+              <div className="relative">
+                <img
+                  className="w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto"
+                  src={image || '/images/no-image.png'}
+                  alt="Tag image preview"
+                />
+                <div
+                  className="absolute right-1 top-1"
+                  onClick={() => {
+                    setImage('');
+                    updateTag('image', '');
+                  }}
+                >
+                  <XIcon className="w-5 h-5 bg-slate-500/30 hover:text-gray-300 hover:bg-slate-500/60 rounded-md cursor-pointer" />
+                </div>
+              </div>
+              <div className="mb-2 md:mb-5">
                 <button
                   onClick={async () => {
                     const imageRes = await requestImage(tag.name);
                     setImage(imageRes);
+                    updateTag('image', imageRes);
                   }}
-                  className="bg-sky-600 hover:bg-sky-500 p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none"
+                  className="bg-sky-600 hover:bg-sky-500 p-2 md:p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none"
                 >
                   <div className="flex justify-center items-center">
-                    <RefreshIcon className="w-5 h-5" />
+                    <RefreshIcon className="w-5 h-5 mr-1" /> Refresh Image
                   </div>
                 </button>
               </div>
+
+              {!tag.isParsed && (
+                <ModalButton
+                  handleClick={async () => {
+                    setLoadingTags(true);
+                    const relatedTags = await requestTags(tag.name);
+                    updateTag(
+                      'relatedTags',
+                      Array.from(new Set(tag.relatedTags.concat(relatedTags)))
+                    );
+                    updateTag('isParsed', true);
+                    setLoadingTags(false);
+                  }}
+                  text={loadingTags ? 'Loading...' : 'Load Related Tags'}
+                  disabled={loadingTags}
+                  btnType="secondary"
+                />
+              )}
             </div>
           </div>
 
@@ -127,6 +161,8 @@ const EditTagModal: FC<Props> = ({
                   name: tag.name,
                   isPriority: tag.isPriority,
                   role: tag.role,
+                  isParsed: tag.isParsed,
+                  image: tag.image,
                   relatedTags: tag.relatedTags,
                   id: generateTagId(tag.name),
                 };

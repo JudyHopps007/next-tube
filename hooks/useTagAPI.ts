@@ -38,6 +38,12 @@ const useTagAPI = () => {
     return image;
   };
 
+  const tagRelated = async (name: string) => {
+    const result = await axios.get(`/api/parser/tags?keyword=${name}`);
+    const { relatedTags } = result.data;
+    return relatedTags;
+  };
+
   return {
     tagDelete,
     tagEdit,
@@ -45,6 +51,7 @@ const useTagAPI = () => {
     tagPriorityDown,
     tagGet,
     tagRandomImage,
+    tagRelated,
   };
 };
 

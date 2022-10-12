@@ -150,6 +150,7 @@ const Table: FC<Props> = ({
           updateModal('showEditTagsModal', null);
         }}
         requestImage={tagAPI.tagRandomImage}
+        requestTags={tagAPI.tagRelated}
         saveChanges={tagAPI.tagEdit}
         id={modalDataId}
         isShowing={modals.showEditTagsModal}
