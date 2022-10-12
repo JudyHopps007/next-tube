@@ -44,6 +44,10 @@ const useTagAPI = () => {
     return relatedTags;
   };
 
+  const tagAdd = async (data: any) => {
+    await axios.post('/api/tags', data);
+  };
+
   return {
     tagDelete,
     tagEdit,
@@ -52,6 +56,7 @@ const useTagAPI = () => {
     tagGet,
     tagRandomImage,
     tagRelated,
+    tagAdd,
   };
 };
 

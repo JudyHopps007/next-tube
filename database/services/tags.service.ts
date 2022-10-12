@@ -1,20 +1,25 @@
 import Tags from 'database/models/tags.model';
 import { generateTagId } from 'database/utils/helper';
-import { NextApiRequest } from 'next';
 import { StateType, TagRole } from 'types/types';
 
-export const addTag = async (req: NextApiRequest) => {
+export const addTag = async (data: any) => {
+  console.log(data);
   try {
-    const { tagData } = req.body;
     const tag = new Tags({
-      id: generateTagId(tagData.name),
-      ...tagData,
+      id: generateTagId(data.name),
+      ...data,
     });
     await tag.save();
     return tag;
   } catch (err: any) {
     throw err;
   }
+};
+
+export const tagExists = async (id: string) => {
+  const tag = await Tags.findOne({ id: id });
+  if (!tag) return false;
+  return true;
 };
 
 export const getRandomTags = async (

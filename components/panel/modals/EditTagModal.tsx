@@ -156,7 +156,7 @@ const EditTagModal: FC<Props> = ({
             <ModalButton
               handleClick={() => {
                 const tagId = tag.id;
-                const data = {
+                const data: any = {
                   videoCount: tag.videoCount,
                   name: tag.name,
                   isPriority: tag.isPriority,
