@@ -12,7 +12,7 @@ type Props = {
 
 const OverviewSection: FC<Props> = ({ counts }) => {
   return (
-    <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-2">
+    <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-2 mb-5 md:mb-10">
       <OverviewItem
         title="Videos"
         href="/panel/videos"

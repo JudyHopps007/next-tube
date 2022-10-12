@@ -17,8 +17,16 @@ const navigation = [
     href: '/panel/videos',
   },
   {
+    name: 'Add Videos',
+    href: '/panel/add-videos',
+  },
+  {
     name: 'Manage Tags',
     href: '/panel/tags',
+  },
+  {
+    name: 'Add Tags',
+    href: '/panel/add-tags',
   },
 ];
 
