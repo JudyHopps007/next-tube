@@ -7,6 +7,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      scale: {
+        flip: '-1',
+      },
       fontFamily: {
         inter: ['inter', 'serif'],
       },
