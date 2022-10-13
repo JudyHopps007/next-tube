@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { RefreshIcon } from '@heroicons/react/outline';
 import PanelModal from '@panel/ui/Modal';
 import ModalButton from '@panel/ui/ModalButton';
 import PanelTextInput from '@panel/ui/TextInput';
 import Spinner from '@ui/Spinner';
 import useVideoData from 'hooks/useVideoData';
 import React, { FC, useEffect, useState } from 'react';
+import { randomImageId } from 'utils/helpers';
 
 type Props = {
   isShowing: boolean;
@@ -16,6 +18,9 @@ type Props = {
 const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
   const { video, updateVideo } = useVideoData(id, isShowing);
   const [image, setImage] = useState(video?.originalImage);
+
+  const canRefreshImage =
+    video?.plattform === 'xvideos' || video?.plattform === 'xnxx';
 
   useEffect(() => {
     setImage(video?.originalImage);
@@ -74,6 +79,17 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   src={video.originalImage || '/images/no-image.png'}
                   alt="Tag image preview"
                 />
+                {canRefreshImage && (
+                  <div
+                    className="absolute right-1 top-1"
+                    onClick={() => {
+                      const newImage = randomImageId(video.originalImage);
+                      updateVideo('originalImage', newImage);
+                    }}
+                  >
+                    <RefreshIcon className="w-5 h-5 bg-slate-500/30 hover:text-gray-300 hover:bg-slate-500/60 rounded-md cursor-pointer" />
+                  </div>
+                )}
               </div>
               <div className="text-sm text-gray-100 mt-3">
                 Plattform:{' '}
@@ -94,6 +110,7 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   likes: video.likes,
                   dislikes: video.dislikes,
                   views: video.views,
+                  originalImage: video.originalImage,
                 };
                 onClose();
                 saveChanges(video.id, data);

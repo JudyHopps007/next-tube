@@ -1,25 +1,14 @@
 import { MAX_RELATED_TAGS, IMAGE_TUBES } from 'constants/parser';
 import { TUBES, parser } from 'tube-utils';
+import { randomImageId } from './helpers';
 
 const getRandomTube = (tubes: TUBES[]) => {
   return tubes[Math.floor(Math.random() * tubes.length)];
 };
 
 const randomizeImage = (tube: TUBES, image: string) => {
-  if (tube === TUBES.XNXX || tube === TUBES.XVIDEOS) {
-    const lastDot = image.lastIndexOf('.');
-    const imageType = image.substring(lastDot);
-    const beforeNumber = image.lastIndexOf('.', lastDot - 1);
-    const imagePath = image.substring(0, beforeNumber + 1);
-    const newImageIndex = Math.floor(Math.random() * 10) + 5;
-    return (
-      imagePath
-        .replace('169poster', '169lll')
-        .replace('xnxxposter', 'xnxxlll') +
-      newImageIndex +
-      imageType
-    );
-  }
+  if (tube === TUBES.XNXX || tube === TUBES.XVIDEOS)
+    return randomImageId(image);
   return image;
 };
 

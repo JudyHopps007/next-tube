@@ -30,3 +30,22 @@ export const removeEmptyParams = (obj: Query): Query => {
     ) ?? {}
   );
 };
+
+export const randomImageId = (image: string) => {
+  try {
+    const lastDot = image.lastIndexOf('.');
+    const imageType = image.substring(lastDot);
+    const beforeNumber = image.lastIndexOf('.', lastDot - 1);
+    const imagePath = image.substring(0, beforeNumber + 1);
+    const newImageIndex = Math.floor(Math.random() * 10) + 5;
+    return (
+      imagePath
+        .replace('169poster', '169lll')
+        .replace('xnxxposter', 'xnxxlll') +
+      newImageIndex +
+      imageType
+    );
+  } catch (err: any) {
+    return image;
+  }
+};
