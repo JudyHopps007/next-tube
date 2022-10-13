@@ -16,7 +16,7 @@ const VideosSection: FC<Props> = ({ headline, videos, variant = 'h1' }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:gird-cols-4 gap-5 my-6">
         {videos.map((video) => (
           <VideoItem
-            key={video.vid}
+            key={video.id}
             video={video}
             showHd
             showViews

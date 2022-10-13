@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import { Tag } from 'types/types';
 import useTagAPI from './useTagAPI';
 
-const useTagData = (id: string | null) => {
+const useTagData = (id: string | null, isReady: boolean) => {
   const tagAPI = useTagAPI();
   const [tag, setTag] = useState<Tag | null>(null);
   const { tagGet } = tagAPI;
 
   useEffect(() => {
     const getTagData = async () => {
-      if (id) {
+      if (id && isReady) {
         const tag = await tagGet(id);
         setTag(tag as unknown as Tag);
       }

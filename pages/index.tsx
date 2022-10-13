@@ -9,7 +9,7 @@ import { Tag, Video } from 'types/types';
 
 const DUMMY_DATA = [
   {
-    vid: 1,
+    id: 1,
     views: 1231231231,
     title: 'Lorem lol',
     tags: ['lol'],
@@ -17,7 +17,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/-_xkTE8EeLA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCQy3qgnE4lujj7ZOhpdmGNGZOkJA',
   },
   {
-    vid: 2,
+    id: 2,
     views: 1241,
     tags: ['lol'],
     title:
@@ -26,7 +26,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/1q-hwaWm_oU/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAGRoAuHLjEp98N5dAaZ2EFWzppQw',
   },
   {
-    vid: 3,
+    id: 3,
     views: 123131,
     tags: ['lol'],
     title:
@@ -35,7 +35,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/xey4G0FQvbE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_5aj8JpjYEsR0SzNY3uENBIlIiQ',
   },
   {
-    vid: 4,
+    id: 4,
     views: 113,
     tags: ['lol', 'wtf'],
     title:
@@ -44,7 +44,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/Qvi3VTLzSfM/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLC_y7KgaHhL_XPv2UkR9n4sUmSbdA',
   },
   {
-    vid: 5,
+    id: 5,
     views: 1231231231,
     tags: [],
     title:
@@ -53,7 +53,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/-_xkTE8EeLA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCQy3qgnE4lujj7ZOhpdmGNGZOkJA',
   },
   {
-    vid: 6,
+    id: 6,
     views: 1241,
     tags: ['lol'],
     title:
@@ -62,7 +62,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/1q-hwaWm_oU/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAGRoAuHLjEp98N5dAaZ2EFWzppQw',
   },
   {
-    vid: 10,
+    id: 10,
     views: 123131,
     tags: ['lol'],
     title:
@@ -71,7 +71,7 @@ const DUMMY_DATA = [
       'https://i.ytimg.com/vi/xey4G0FQvbE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_5aj8JpjYEsR0SzNY3uENBIlIiQ',
   },
   {
-    vid: 9,
+    id: 9,
     views: 113,
     title:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!',

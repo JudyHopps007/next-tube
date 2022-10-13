@@ -3,7 +3,7 @@ import Counter from './counter.model';
 
 const videosSchema = new mongoose.Schema(
   {
-    vid: {
+    id: {
       type: Number,
       required: [true, 'video id is required'],
       unique: true,
@@ -84,7 +84,7 @@ videosSchema.pre('save', function (next) {
     { new: true, upsert: true },
     function (error, counter) {
       if (error) return next(error);
-      doc.vid = counter.seq;
+      doc.id = counter.seq;
       next();
     }
   );

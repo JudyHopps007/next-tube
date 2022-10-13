@@ -29,7 +29,7 @@ const EditTagModal: FC<Props> = ({
   requestImage,
   requestTags,
 }) => {
-  const { tag, updateTag } = useTagData(id);
+  const { tag, updateTag } = useTagData(id, isShowing);
   const [image, setImage] = useState(tag?.image);
   const [loadingTags, setLoadingTags] = useState<boolean>(false);
 

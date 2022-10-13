@@ -25,9 +25,9 @@ const randomizeImage = (tube: TUBES, image: string) => {
 
 export const getRelatedTags = async (keyword: string) => {
   const relatedTags = await parser.getRelatedKeywords(keyword, [
-    TUBES.XHAMSTER,
-    TUBES.XNXX,
     TUBES.XVIDEOS,
+    TUBES.XNXX,
+    TUBES.XHAMSTER,
   ]);
 
   if (relatedTags.length === 0) return [];

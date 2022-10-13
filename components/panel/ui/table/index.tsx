@@ -1,8 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ChangeRoleModal from '@panel/modals/ChangeRoleModal';
 import EditTagModal from '@panel/modals/EditTagModal';
+import EditVideoModal from '@panel/modals/EditVideoModal';
 import useQueryPush from 'hooks/useQueryPush';
 import useTagAPI from 'hooks/useTagAPI';
+import useVideoAPI from 'hooks/useVideoApi';
 import React, { FC, useState } from 'react';
 import { PaneldModals, Tag, VideoWithMeta } from 'types/types';
 import {
@@ -31,12 +33,14 @@ const Table: FC<Props> = ({
 }) => {
   const [modals, setModals] = useState({
     showEditTagsModal: false,
+    showEditVideosModal: false,
     showChangeRoleModal: false,
   });
   const [modalDataId, setModalDataId] = useState<string | null>(null);
 
   const queryPush = useQueryPush();
   const tagAPI = useTagAPI();
+  const videoAPI = useVideoAPI();
 
   const updateModal = (key: PaneldModals, id: string | null) => {
     setModalDataId(id);
@@ -74,7 +78,14 @@ const Table: FC<Props> = ({
             <tbody className="divide-y divide-slate-700 bg-slate-800">
               {contentType === 'video' &&
                 items.map((item: VideoWithMeta) => (
-                  <VideoTableRow key={item.vid} video={item} />
+                  <VideoTableRow
+                    key={item.id}
+                    video={item}
+                    deleteHandler={videoAPI.videoDelete}
+                    editHandler={(id) => {
+                      updateModal('showEditVideosModal', id.toString());
+                    }}
+                  />
                 ))}
               {contentType === 'tag' &&
                 items.map((item: Tag) => (
@@ -137,24 +148,38 @@ const Table: FC<Props> = ({
           </div>
         </div>
       </div>
-      <ChangeRoleModal
-        onClose={() => {
-          updateModal('showChangeRoleModal', null);
-        }}
-        saveChanges={tagAPI.tagEdit}
-        id={modalDataId}
-        isShowing={modals.showChangeRoleModal}
-      />
-      <EditTagModal
-        onClose={() => {
-          updateModal('showEditTagsModal', null);
-        }}
-        requestImage={tagAPI.tagRandomImage}
-        requestTags={tagAPI.tagRelated}
-        saveChanges={tagAPI.tagEdit}
-        id={modalDataId}
-        isShowing={modals.showEditTagsModal}
-      />
+      {contentType === 'tag' && (
+        <>
+          <ChangeRoleModal
+            onClose={() => {
+              updateModal('showChangeRoleModal', null);
+            }}
+            saveChanges={tagAPI.tagEdit}
+            id={modalDataId}
+            isShowing={modals.showChangeRoleModal}
+          />
+          <EditTagModal
+            onClose={() => {
+              updateModal('showEditTagsModal', null);
+            }}
+            requestImage={tagAPI.tagRandomImage}
+            requestTags={tagAPI.tagRelated}
+            saveChanges={tagAPI.tagEdit}
+            id={modalDataId}
+            isShowing={modals.showEditTagsModal}
+          />
+        </>
+      )}
+      {contentType === 'video' && (
+        <EditVideoModal
+          onClose={() => {
+            updateModal('showEditVideosModal', null);
+          }}
+          saveChanges={tagAPI.tagEdit}
+          id={modalDataId}
+          isShowing={modals.showEditVideosModal}
+        />
+      )}
     </>
   );
 };

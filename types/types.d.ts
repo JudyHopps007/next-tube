@@ -1,5 +1,5 @@
 export type Video = {
-  vid: number;
+  id: number;
   title: string;
   thumbnail: string;
   poster: string;
@@ -58,4 +58,7 @@ export type QueryProps = {
   query: Query;
 };
 
-export type PaneldModals = 'showChangeRoleModal' | 'showEditTagsModal';
+export type PaneldModals =
+  | 'showChangeRoleModal'
+  | 'showEditTagsModal'
+  | 'showEditVideosModal';

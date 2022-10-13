@@ -6,7 +6,7 @@ export const addVideo = async (req: NextApiRequest) => {
   try {
     const { videoData } = req.body;
     const video = new Videos({
-      vid: 1, // get replaced with counter value
+      id: 1, // get replaced with counter value
       ...videoData,
     });
     await video.save();
@@ -16,20 +16,20 @@ export const addVideo = async (req: NextApiRequest) => {
   }
 };
 
-export const removeVideoById = async (vid: number) => {
+export const removeVideoById = async (id: number) => {
   try {
-    const video = await Videos.findOneAndDelete({ vid });
-    if (!video) throw new Error(`Video with id ${vid} not found.`);
+    const video = await Videos.findOneAndDelete({ id });
+    if (!video) throw new Error(`Video with id ${id} not found.`);
     return true;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateVideo = async (vid: number, body: any) => {
+export const updateVideo = async (id: number, body: any) => {
   try {
-    const video = await Videos.findOneAndUpdate({ vid: vid }, { $set: body });
-    if (!video) throw new Error(`Video with id ${vid} not found.`);
+    const video = await Videos.findOneAndUpdate({ id: id }, { $set: body });
+    if (!video) throw new Error(`Video with id ${id} not found.`);
     return video;
   } catch (error) {
     throw error;
@@ -46,13 +46,13 @@ export const getRandomVideos = async (amount: number) => {
   }
 };
 
-export const increaseVideo = async (vid: number, key: VideoIncreaseKey) => {
+export const increaseVideo = async (id: number, key: VideoIncreaseKey) => {
   try {
     const video = await Videos.findOneAndUpdate(
-      { vid: vid },
+      { id: id },
       { $inc: { [key]: 1 } }
     );
-    if (!video) throw new Error(`Video with id ${vid} not found.`);
+    if (!video) throw new Error(`Video with id ${id} not found.`);
     return video;
   } catch (error) {
     throw error;
@@ -68,16 +68,16 @@ export const countVideos = async (search: string = '') => {
   return count;
 };
 
-export const videoExists = async (vid: number) => {
-  const video = await Videos.findOne({ vid });
+export const videoExists = async (id: number) => {
+  const video = await Videos.findOne({ id });
   if (!video) return false;
   return true;
 };
 
-export const getVideoById = async (vid: number) => {
+export const getVideoById = async (id: number) => {
   try {
-    const video = await Videos.findOne({ vid: vid });
-    if (!video) throw new Error(`Video with id ${vid} not found.`);
+    const video = await Videos.findOne({ id: id });
+    if (!video) throw new Error(`Video with id ${id} not found.`);
     return video;
   } catch (error) {
     throw error;

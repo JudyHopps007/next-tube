@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     PANEL_CONSTANTS.VIDEOS_PER_PAGE,
     {
       _id: 0,
-      vid: 1,
+      id: 1,
       title: 1,
       thumbnail: 1,
       tags: 1,
