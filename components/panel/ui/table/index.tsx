@@ -175,7 +175,7 @@ const Table: FC<Props> = ({
           onClose={() => {
             updateModal('showEditVideosModal', null);
           }}
-          saveChanges={tagAPI.tagEdit}
+          saveChanges={videoAPI.videoEdit}
           id={modalDataId}
           isShowing={modals.showEditVideosModal}
         />

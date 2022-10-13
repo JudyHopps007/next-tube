@@ -14,9 +14,15 @@ const useVideoAPI = () => {
     router.push(router.asPath);
   };
 
+  const videoEdit = async (id: number, data: any) => {
+    await axios.patch(`/api/videos/${id}`, data);
+    router.push(router.asPath);
+  };
+
   return {
     videoGet,
     videoDelete,
+    videoEdit,
   };
 };
 
