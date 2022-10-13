@@ -4,7 +4,7 @@ import EditTagModal from '@panel/modals/EditTagModal';
 import EditVideoModal from '@panel/modals/EditVideoModal';
 import useQueryPush from 'hooks/useQueryPush';
 import useTagAPI from 'hooks/useTagAPI';
-import useVideoAPI from 'hooks/useVideoApi';
+import useVideoAPI from 'hooks/useVideoAPI';
 import React, { FC, useState } from 'react';
 import { PaneldModals, Tag, VideoWithMeta } from 'types/types';
 import {

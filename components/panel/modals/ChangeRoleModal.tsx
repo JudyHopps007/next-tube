@@ -19,7 +19,7 @@ const ChangeRoleModal: FC<Props> = ({
   onClose,
   saveChanges,
 }) => {
-  const { tag, updateTag } = useTagData(id);
+  const { tag, updateTag } = useTagData(id, isShowing);
   return (
     <PanelModal isShowing={isShowing} title="Change Role" onClose={onClose}>
       {tag ? (

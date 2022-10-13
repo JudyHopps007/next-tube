@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { VideoWithMeta } from 'types/types';
-import useVideoAPI from './useVideoApi';
+import useVideoAPI from './useVideoAPI';
 
 const useVideoData = (id: string | null, isReady: boolean) => {
   const videoAPI = useVideoAPI();
