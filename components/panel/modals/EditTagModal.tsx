@@ -81,7 +81,7 @@ const EditTagModal: FC<Props> = ({
 
               <TagEditor
                 label="Related Tags"
-                relatedTags={tag.relatedTags}
+                tags={tag.relatedTags}
                 removeTag={(tagToRemove) => {
                   const currentTags = tag.relatedTags.slice();
                   updateTag(

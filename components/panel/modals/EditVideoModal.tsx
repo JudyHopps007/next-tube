@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { RefreshIcon } from '@heroicons/react/outline';
+import LabelCheckbox from '@panel/ui/Checkbox';
 import PanelModal from '@panel/ui/Modal';
 import ModalButton from '@panel/ui/ModalButton';
+import TagEditor from '@panel/ui/TagEditor';
 import PanelTextInput from '@panel/ui/TextInput';
 import Spinner from '@ui/Spinner';
 import useVideoData from 'hooks/useVideoData';
@@ -46,28 +48,71 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   updateVideo('alternativeTitle', e.target.value);
                 }}
               />
-              <PanelTextInput
-                label="Likes"
-                value={video.likes}
-                inputType="number"
-                handleChange={(e) => {
-                  updateVideo('likes', e.target.value);
+
+              <LabelCheckbox
+                label="HD"
+                value={video.hd}
+                handleChange={() => {
+                  updateVideo('hd', !video.hd);
                 }}
               />
-              <PanelTextInput
-                label="Dislikes"
-                value={video.dislikes}
-                inputType="number"
-                handleChange={(e) => {
-                  updateVideo('dislikes', e.target.value);
+
+              <TagEditor
+                label="Tags"
+                tags={video.tags}
+                removeTag={(tagToRemove) => {
+                  const currentTags = video.tags.slice();
+                  updateVideo(
+                    'tags',
+                    currentTags.filter((t) => t !== tagToRemove)
+                  );
+                }}
+                addTag={(tagToAdd) => {
+                  const currentTags = video.tags.slice();
+                  if (!currentTags.includes(tagToAdd)) {
+                    currentTags.push(tagToAdd);
+                    updateVideo('tags', currentTags);
+                  }
                 }}
               />
-              <PanelTextInput
-                label="Views"
-                value={video.views}
-                inputType="number"
-                handleChange={(e) => {
-                  updateVideo('views', e.target.value);
+
+              <TagEditor
+                label="Categories"
+                tags={video.categories}
+                btnLabel="Add Category"
+                removeTag={(categoryToRemove) => {
+                  const currentCategories = video.categories.slice();
+                  updateVideo(
+                    'categories',
+                    currentCategories.filter((t) => t !== categoryToRemove)
+                  );
+                }}
+                addTag={(categoryToAdd) => {
+                  const currentCategories = video.categories.slice();
+                  if (!currentCategories.includes(categoryToAdd)) {
+                    currentCategories.push(categoryToAdd);
+                    updateVideo('categories', currentCategories);
+                  }
+                }}
+              />
+
+              <TagEditor
+                label="Actors"
+                tags={video.actors}
+                btnLabel="Add Actor"
+                removeTag={(actorToRemove) => {
+                  const currentActors = video.actors.slice();
+                  updateVideo(
+                    'actors',
+                    currentActors.filter((t) => t !== actorToRemove)
+                  );
+                }}
+                addTag={(actorToAdd) => {
+                  const currentActors = video.actors.slice();
+                  if (!currentActors.includes(actorToAdd)) {
+                    currentActors.push(actorToAdd);
+                    updateVideo('actors', currentActors);
+                  }
                 }}
               />
             </div>
@@ -99,6 +144,16 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                 Original ID:{' '}
                 <span className="font-semibold">{video.originalId}</span>
               </div>
+              <div className="text-sm text-gray-100 mt-3">
+                Views: <span className="font-semibold">{video.views}</span>
+              </div>
+              <div className="text-sm text-gray-100 mt-3">
+                Likes: <span className="font-semibold">{video.likes}</span>
+              </div>
+              <div className="text-sm text-gray-100 mt-3">
+                Dislikes:{' '}
+                <span className="font-semibold">{video.dislikes}</span>
+              </div>
             </div>
           </div>
           <div className="flex flex-col md:flex-row md:space-y-0 w-full space-y-2 md:space-x-2 mt-8">
@@ -107,10 +162,11 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                 const data: any = {
                   alternativeTitle: video.alternativeTitle,
                   title: video.title,
-                  likes: video.likes,
-                  dislikes: video.dislikes,
-                  views: video.views,
+                  tags: video.tags,
+                  categories: video.categories,
+                  actors: video.actors,
                   originalImage: video.originalImage,
+                  hd: video.hd,
                 };
                 onClose();
                 saveChanges(video.id, data);

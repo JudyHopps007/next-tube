@@ -3,20 +3,27 @@ import React, { FC, useState } from 'react';
 import ModalButton from './ModalButton';
 
 type Props = {
-  relatedTags: string[];
+  tags: string[];
   label: string;
+  btnLabel?: string;
   removeTag: (tag: string) => void;
   addTag: (tag: string) => void;
 };
 
-const TagEditor: FC<Props> = ({ relatedTags, label, removeTag, addTag }) => {
+const TagEditor: FC<Props> = ({
+  tags,
+  label,
+  removeTag,
+  addTag,
+  btnLabel = 'Add Tag',
+}) => {
   const [tagName, setTagName] = useState('');
 
   return (
     <div className="flex flex-col mt-2">
       <span className="font-semibold my-1">{label}</span>
       <div className="flex row content-around flex-wrap">
-        {relatedTags.map((tag, i) => (
+        {tags.map((tag, i) => (
           <div
             key={i}
             className="bg-slate-700 border border-slate-600 px-2 rounded-full mr-1 mb-1"
@@ -41,7 +48,7 @@ const TagEditor: FC<Props> = ({ relatedTags, label, removeTag, addTag }) => {
           onChange={(e) => setTagName(e.target.value)}
         />
         <ModalButton
-          text="Add Tag"
+          text={btnLabel}
           width="w-32"
           btnType="secondary"
           handleClick={() => {
