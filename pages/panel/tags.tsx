@@ -1,13 +1,13 @@
 import TagsFilters from '@panel/filters/TagsFilters';
-import PanelLayout from '@panel/layout/PanelLayout';
 import PanelHeadline from '@panel/ui/Headline';
 import Table from '@panel/ui/table';
 import { PANEL_CONSTANTS } from 'constants/panel';
 import { connectToDb } from 'database/database';
 import { countTags, getTags } from 'database/services/tags.service';
-import { GetServerSideProps, NextPage } from 'next';
-import { StateType, Tag, TagRole } from 'types/types';
+import { GetServerSideProps } from 'next';
+import { NextPageWithLayout, StateType, Tag, TagRole } from 'types/types';
 import { toJson } from 'utils/helpers';
+import { getPanelLayout } from 'utils/layout';
 
 type Props = {
   filters: {
@@ -20,9 +20,14 @@ type Props = {
   tags: Tag[];
 };
 
-const PanelTagsPage: NextPage<Props> = ({ tagsCount, page, filters, tags }) => {
+const PanelTagsPage: NextPageWithLayout<Props> = ({
+  tagsCount,
+  page,
+  filters,
+  tags,
+}) => {
   return (
-    <PanelLayout>
+    <>
       <PanelHeadline text="Manage Tags" />
       <TagsFilters
         role={filters.role}
@@ -37,7 +42,7 @@ const PanelTagsPage: NextPage<Props> = ({ tagsCount, page, filters, tags }) => {
         page={page}
         itemsPerPage={PANEL_CONSTANTS.TAGS_PER_PAGE}
       />
-    </PanelLayout>
+    </>
   );
 };
 
@@ -80,5 +85,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     },
   };
 };
+
+PanelTagsPage.getLayout = getPanelLayout;
 
 export default PanelTagsPage;

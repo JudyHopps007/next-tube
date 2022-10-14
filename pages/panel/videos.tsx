@@ -1,13 +1,13 @@
-import PanelLayout from '@panel/layout/PanelLayout';
 import PanelHeadline from '@panel/ui/Headline';
 import Table from '@panel/ui/table';
 import VideosFilters from '@panel/filters/VideosFilters';
 import { PANEL_CONSTANTS } from 'constants/panel';
 import { connectToDb } from 'database/database';
 import { countVideos, getVideos } from 'database/services/videos.service';
-import { GetServerSideProps, NextPage } from 'next';
-import { Video } from 'types/types';
+import { GetServerSideProps } from 'next';
+import { NextPageWithLayout, Video } from 'types/types';
 import { toJson } from 'utils/helpers';
+import { getPanelLayout } from 'utils/layout';
 
 type Props = {
   filters: {
@@ -19,14 +19,14 @@ type Props = {
   videos: Video[];
 };
 
-const PanelVideosPage: NextPage<Props> = ({
+const PanelVideosPage: NextPageWithLayout<Props> = ({
   videosCount,
   page,
   filters,
   videos,
 }) => {
   return (
-    <PanelLayout>
+    <>
       <PanelHeadline text="Manage Videos" />
       <VideosFilters orderBy={filters.orderBy} search={filters.search} />
       <Table
@@ -37,7 +37,7 @@ const PanelVideosPage: NextPage<Props> = ({
         page={page}
         itemsPerPage={PANEL_CONSTANTS.VIDEOS_PER_PAGE}
       />
-    </PanelLayout>
+    </>
   );
 };
 
@@ -74,5 +74,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     },
   };
 };
+
+PanelVideosPage.getLayout = getPanelLayout;
 
 export default PanelVideosPage;

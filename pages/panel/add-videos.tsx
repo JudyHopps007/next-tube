@@ -1,11 +1,13 @@
-import PanelLayout from '@panel/layout/PanelLayout';
-import { NextPage } from 'next';
 import React from 'react';
+import { NextPageWithLayout } from 'types/types';
+import { getPanelLayout } from 'utils/layout';
 
 type Props = {};
 
-const PanelAddVideos: NextPage<Props> = ({}) => {
-  return <PanelLayout>PanelAddVideos</PanelLayout>;
+const PanelAddVideos: NextPageWithLayout<Props> = ({}) => {
+  return <>PanelAddVideos</>;
 };
+
+PanelAddVideos.getLayout = getPanelLayout;
 
 export default PanelAddVideos;

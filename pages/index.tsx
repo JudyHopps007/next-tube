@@ -1,11 +1,10 @@
 import CategoriesSection from 'components/categories/CategoriesSection';
-import BaseLayout from 'components/layout/BaseLayout';
 import ListSection from 'components/list/ListSection';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideoSection';
-import type { NextPage } from 'next';
-import { Tag, Video } from 'types/types';
+import { NextPageWithLayout, Tag, Video } from 'types/types';
+import { getBaseLayout } from 'utils/layout';
 
 const DUMMY_DATA = [
   {
@@ -123,9 +122,9 @@ const DUMMY_CATEGORIES = [
   },
 ];
 
-const HomePage: NextPage = () => {
+const HomePage: NextPageWithLayout = () => {
   return (
-    <BaseLayout>
+    <>
       <CategoriesSection
         headline="Categories"
         categories={DUMMY_CATEGORIES as Tag[]}
@@ -134,8 +133,10 @@ const HomePage: NextPage = () => {
       <TagsSection headline="Tags" tags={DUMMY_TAGS} />
       <ListSection headline="List" keywords={DUMMY_TAGS} />
       <Pagination path="tag" name="lol" currentPage={2} />
-    </BaseLayout>
+    </>
   );
 };
+
+HomePage.getLayout = getBaseLayout;
 
 export default HomePage;

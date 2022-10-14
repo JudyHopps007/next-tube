@@ -1,11 +1,12 @@
 import PanelHeadline from '@panel/ui/Headline';
-import PanelLayout from '@panel/layout/PanelLayout';
 import { connectToDb } from 'database/database';
 import { countTags } from 'database/services/tags.service';
 import { countVideos } from 'database/services/videos.service';
-import { NextPage, GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 import OverviewSection from '@panel/overview';
 import AddContentSection from '@panel/content';
+import { NextPageWithLayout } from 'types/types';
+import { getPanelLayout } from 'utils/layout';
 
 type Props = {
   videosCount: number;
@@ -14,21 +15,21 @@ type Props = {
   actorsCount: number;
 };
 
-const PanelIndexPage: NextPage<Props> = ({
+const PanelIndexPage: NextPageWithLayout<Props> = ({
   videosCount,
   tagsCount,
   categoriesCount,
   actorsCount,
 }) => {
   return (
-    <PanelLayout>
+    <>
       <PanelHeadline text="Statistics" />
       <OverviewSection
         counts={{ videosCount, tagsCount, categoriesCount, actorsCount }}
       />
       <PanelHeadline text="Add New Content" />
       <AddContentSection />
-    </PanelLayout>
+    </>
   );
 };
 
@@ -47,5 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
+
+PanelIndexPage.getLayout = getPanelLayout;
 
 export default PanelIndexPage;

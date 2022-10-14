@@ -19,14 +19,8 @@ type Props = {
 
 const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
   const { video, updateVideo } = useVideoData(id, isShowing);
-  const [image, setImage] = useState(video?.originalImage);
-
   const canRefreshImage =
     video?.plattform === 'xvideos' || video?.plattform === 'xnxx';
-
-  useEffect(() => {
-    setImage(video?.originalImage);
-  }, [video]);
 
   return (
     <PanelModal isShowing={isShowing} title="Edit Video" onClose={onClose}>
@@ -126,13 +120,13 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                 />
                 {canRefreshImage && (
                   <div
-                    className="absolute right-1 top-1"
+                    className="absolute right-1 top-1 p-1 bg-sky-600 hover:text-gray-300 hover:bg-sky-500 rounded-md cursor-pointer"
                     onClick={() => {
                       const newImage = randomImageId(video.originalImage);
                       updateVideo('originalImage', newImage);
                     }}
                   >
-                    <RefreshIcon className="w-5 h-5 bg-slate-500/30 hover:text-gray-300 hover:bg-slate-500/60 rounded-md cursor-pointer" />
+                    <RefreshIcon className="w-5 h-5 " />
                   </div>
                 )}
               </div>
