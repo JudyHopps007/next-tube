@@ -114,9 +114,9 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
               <span className="font-semibold my-1">Image</span>
               <div className="relative">
                 <img
-                  className="w-full md:w-48 md:h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto scale-x-flip"
+                  className="w-full md:w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto scale-x-flip"
                   src={video.originalImage || '/images/no-image.png'}
-                  alt="Tag image preview"
+                  alt="Video image preview"
                 />
                 {canRefreshImage && (
                   <div

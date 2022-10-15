@@ -103,7 +103,7 @@ const EditTagModal: FC<Props> = ({
               <span className="font-semibold my-1">Image</span>
               <div className="relative">
                 <img
-                  className="w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto"
+                  className="w-full md:w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto"
                   src={image || '/images/no-image.png'}
                   alt="Tag image preview"
                 />
