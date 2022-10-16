@@ -20,7 +20,6 @@ const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
             alt={name}
             src={image}
             layout={'responsive'}
-            objectFit="fill"
             width={450}
             height={250}
           />

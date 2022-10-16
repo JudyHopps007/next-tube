@@ -117,7 +117,7 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
             </NavButton>
           </div>
 
-          <div className="flex items-center py-2" onClick={toogleTheme}>
+          <div className="flex items-center py-2 lg:px-2" onClick={toogleTheme}>
             <NavButton>
               {darkTheme ? (
                 <SunIcon className="h-5 w-5" />
