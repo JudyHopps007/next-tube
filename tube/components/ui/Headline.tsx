@@ -18,7 +18,7 @@ const getTextSize = (variant: string) => {
 
 const Headline: FC<Props> = ({ text, variant = 'h1', outline = false }) => {
   let className = classNames(
-    'mb-1 md:mb-3  font-semibold',
+    'mb-1 md:mb-3 font-semibold',
     getTextSize(variant),
     outline
       ? 'bg-indigo-700 text-slate-100 dark:text-gray-100 dark:bg-slate-800/80 rounded-md p-2 text-center md:text-left'
