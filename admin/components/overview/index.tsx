@@ -13,25 +13,21 @@ type Props = {
 const OverviewSection: FC<Props> = ({ counts }) => {
   return (
     <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-2 mb-5 md:mb-10">
-      <OverviewItem
-        title="Videos"
-        href="/panel/videos"
-        count={counts.videosCount}
-      />
+      <OverviewItem title="Videos" href="/videos" count={counts.videosCount} />
       <OverviewItem
         title="Tags"
         count={counts.tagsCount}
-        href="/panel/tags?role=tag"
+        href="/tags?role=tag"
       />
       <OverviewItem
         title="Categories"
         count={counts.categoriesCount}
-        href="/panel/tags?role=category"
+        href="/tags?role=category"
       />
       <OverviewItem
         title="Actors"
         count={counts.actorsCount}
-        href="/panel/tags?role=actor"
+        href="/tags?role=actor"
       />
     </div>
   );
