@@ -40,7 +40,7 @@ const LoginPage: FC<Props> = ({}) => {
   };
 
   return (
-    <div className="flex flex-col max-w-sm space-y-2 mx-auto bg-slate-800 p-3 rounded-md text-gray-100 shadow-lg border-b-4 border-b-indigo-900">
+    <div className="flex flex-col max-w-sm space-y-2 mx-auto bg-slate-800 p-5 rounded-md text-gray-100 shadow-lg border-b-4 border-b-indigo-900">
       {!checkSession ? (
         <>
           <Headline text="Login" />
