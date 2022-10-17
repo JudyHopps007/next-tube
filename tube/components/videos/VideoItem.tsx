@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { classNames } from 'utils/helpers';
 import VideoTagItem from './VideoTagItem';
 import { buildVideoUrl } from 'utils/navigation';
+import Image from 'next/image';
 
 type Props = {
   video: Video;
@@ -27,10 +28,12 @@ const VideoItem: FC<Props> = ({
       <div className="relative">
         <Link href={buildVideoUrl(video.id, video.title, 'video')}>
           <a>
-            <img
-              className="w-full object-fill"
+            <Image
               alt={video.title}
               src={video.thumbnail}
+              layout={'responsive'}
+              width={400}
+              height={250}
             />
           </a>
         </Link>
