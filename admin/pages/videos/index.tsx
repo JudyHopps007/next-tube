@@ -7,6 +7,8 @@ import { countVideos, getVideos } from '@db/services/videos.service';
 import { GetServerSideProps, NextPage } from 'next';
 import { toJson } from 'utils/helpers';
 import { Video } from 'types/types';
+import { getSession } from 'next-auth/react';
+import { redirectUser } from 'utils/auth';
 
 type Props = {
   filters: {
@@ -40,9 +42,11 @@ const PanelVideosPage: NextPage<Props> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({
-  query: { page = 1, search = '', orderBy = null },
-}) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { page = 1, search = '', orderBy = null } = context.query;
+  const session = await getSession(context);
+  const { needRedirect, loginPath } = redirectUser(session);
+  if (needRedirect) return loginPath;
   await connectToDb();
   const videos = await getVideos(
     page as number,

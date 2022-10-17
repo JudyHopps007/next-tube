@@ -5,6 +5,8 @@ import { countVideos } from '@db/services/videos.service';
 import { GetServerSideProps, NextPage } from 'next';
 import OverviewSection from 'components/overview';
 import AddContentSection from 'components/content';
+import { getSession } from 'next-auth/react';
+import { redirectUser } from 'utils/auth';
 
 type Props = {
   videosCount: number;
@@ -32,6 +34,9 @@ const PanelIndexPage: NextPage<Props> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  const { needRedirect, loginPath } = redirectUser(session);
+  if (needRedirect) return loginPath;
   await connectToDb();
   const videosCount = await countVideos();
   const tagsCount = await countTags('tag');

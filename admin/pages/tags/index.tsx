@@ -7,6 +7,8 @@ import { countTags, getTags } from '@db/services/tags.service';
 import { GetServerSideProps, NextPage } from 'next';
 import { StateType, Tag, TagRole } from 'types/types';
 import { toJson } from 'utils/helpers';
+import { getSession } from 'next-auth/react';
+import { redirectUser } from 'utils/auth';
 
 type Props = {
   filters: {
@@ -40,9 +42,11 @@ const PanelTagsPage: NextPage<Props> = ({ tagsCount, page, filters, tags }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({
-  query: { page = 1, search = '', role = null, state = null },
-}) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { page = 1, search = '', role = null, state = null } = context.query;
+  const session = await getSession(context);
+  const { needRedirect, loginPath } = redirectUser(session);
+  if (needRedirect) return loginPath;
   await connectToDb();
 
   const tagsCount = await countTags(

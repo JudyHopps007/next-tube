@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import React, { FC, useState } from 'react';
 import { classNames } from 'utils/helpers';
 import PanelNavItem from './PanelNavItem';
+import { signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 type PanelNavbarProps = {};
 
@@ -30,13 +32,30 @@ const navigation = [
   },
 ];
 
-const handleLogout = () => {};
+const handleLogout = () => {
+  signOut();
+};
 
 const PanelNavbar: FC<PanelNavbarProps> = () => {
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
   const [showMobileNav, setShowMobileNav] = useState(false);
   const fullClass = showMobileNav ? 'w-full' : '';
   const { pathname } = useRouter();
 
+  if (loading) {
+    return <div className="p-5 bg-slate-900"></div>;
+  }
+
+  if (status === 'unauthenticated') {
+    return (
+      <div className="p-5 bg-slate-900">
+        <div className="text-center text-gray-100 font-bold text-3xl">
+          Admin Panel
+        </div>
+      </div>
+    );
+  }
   return (
     <header
       className={classNames(
