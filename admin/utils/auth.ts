@@ -1,4 +1,6 @@
+import { NextApiRequest } from 'next';
 import type { Session } from 'next-auth';
+import { getSession } from 'next-auth/react';
 
 export const redirectUser = (session: Session | null) => {
   let needRedirect = false;
@@ -10,4 +12,12 @@ export const redirectUser = (session: Session | null) => {
   }
 
   return { needRedirect, loginPath };
+};
+
+export const hasSession = async (req: NextApiRequest) => {
+  const session = await getSession({ req });
+  if (session && session?.user?.name === process.env.USERNAME) {
+    return true;
+  }
+  return false;
 };

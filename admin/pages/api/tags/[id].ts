@@ -1,9 +1,13 @@
 import { connectToDbHandler } from '@db/database';
 import { getTag, removeTagById, updateTag } from '@db/services/tags.service';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { hasSession } from 'utils/auth';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    if (!(await hasSession(req))) {
+      return res.status(400).json({ message: 'API Error - No Auth' });
+    }
     const id = req.query.id as string;
 
     if (req.method === 'GET') {

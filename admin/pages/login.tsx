@@ -28,7 +28,7 @@ const LoginPage: FC<Props> = ({}) => {
   const handleLogin = async () => {
     const res = await signIn('credentials', {
       redirect: false,
-      username,
+      name: username,
       password,
     });
     if (!res?.ok) {
