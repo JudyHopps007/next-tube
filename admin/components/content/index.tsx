@@ -6,12 +6,12 @@ type Props = {};
 
 const navigation = [
   {
-    href: '/panel/add-tags',
+    href: '/tags/add',
     label: 'Add Tags',
     icon: <PlusIcon className="w-5 h-5 mr-1" />,
   },
   {
-    href: '/panel/add-videos',
+    href: '/videos/add',
     label: 'Add Videos',
     icon: <PlusIcon className="w-5 h-5 mr-1" />,
   },

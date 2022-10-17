@@ -1,12 +1,15 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import AdminLayout from 'components/layout/AdminLayout';
+import { SessionProvider } from 'next-auth/react';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <AdminLayout>
-      <Component {...pageProps} />
-    </AdminLayout>
+    <SessionProvider session={session}>
+      <AdminLayout>
+        <Component {...pageProps} />
+      </AdminLayout>
+    </SessionProvider>
   );
 }
 

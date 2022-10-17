@@ -18,7 +18,7 @@ const navigation = [
   },
   {
     name: 'Add Videos',
-    href: '/add-videos',
+    href: '/videos/add',
   },
   {
     name: 'Manage Tags',
@@ -26,7 +26,7 @@ const navigation = [
   },
   {
     name: 'Add Tags',
-    href: '/add-tags',
+    href: '/tags/add',
   },
 ];
 
