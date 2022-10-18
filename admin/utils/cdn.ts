@@ -19,12 +19,16 @@ const createPathRecursive = (newPath: string) => {
   }
 };
 
-const getFinalPath = (originalImage: string, subPath: string) => {
+const getFinalPath = (
+  originalImage: string,
+  subPath: string,
+  fullPath: boolean = true
+) => {
   const rnd = getRnd(originalImage);
   const imagePath = process.env.CDN_IMAGE_DIR!;
 
   return path.join(
-    getCDNPath(),
+    fullPath ? getCDNPath() : '/',
     imagePath,
     subPath.length === 0 ? (Math.floor(rnd() * 999) + 111).toString() : subPath
   );
@@ -68,7 +72,10 @@ export const createImage = async (
       .resize(width, height, { fit: 'fill' })
       .webp({ lossless: true })
       .toFile(path.join(finalPath, slugify(title) + prefix + '.webp'));
-    return path.join(finalPath, slugify(title) + prefix + '.webp');
+    return path.join(
+      getFinalPath(originalImage, subPath, false),
+      slugify(title) + prefix + '.webp'
+    );
   } catch (err: any) {
     console.log(err.message || 'Image Error');
     return null;
