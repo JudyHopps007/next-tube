@@ -24,11 +24,12 @@ const VideoItem: FC<Props> = ({
   showTags = false,
 }) => {
   return (
-    <div className="bg-white hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800/70 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden hover:scale-[1.05] duration-300 shadow-lg group">
+    <div className="bg-white hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800/70 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden shadow-lg group">
       <div className="relative">
         <Link href={buildVideoUrl(video.id, video.title, 'video')}>
           <a>
             <Image
+              className="hover:scale-110 ease-in duration-500"
               alt={video.title}
               src={video.thumbnail}
               layout={'responsive'}
@@ -38,17 +39,17 @@ const VideoItem: FC<Props> = ({
           </a>
         </Link>
         {showHd && (
-          <span className="bg-indigo-700 py-1 px-2 bg-opacity-90 text-white text-xs font-semibold rounded-md absolute top-1 right-1 group-hover:transition-opacity group-hover:opacity-0 group-hover:duration-500">
+          <span className="bg-indigo-700 py-1 px-2 bg-opacity-90 text-white text-xs font-semibold rounded-md absolute top-1 right-1 group-hover:transition-opacity group-hover:opacity-0 group-hover:duration-500 group-hover:ease-in">
             HD
           </span>
         )}
         {showViews && (
-          <span className="bg-slate-900 py-1 px-2 bg-opacity-95 text-white text-xs font-light rounded-tr-md absolute bottom-0 left-0 inline-flex group-hover:transition-opacity group-hover:opacity-0 group-hover:duration-500">
+          <span className="bg-slate-900 py-1 px-2 bg-opacity-95 text-white text-xs font-light rounded-tr-md absolute bottom-0 left-0 inline-flex group-hover:transition-opacity group-hover:opacity-0 group-hover:duration-500 group-hover:ease-in">
             <EyeIcon className="w-4 h-4 mr-1" /> {millify(video.views)}
           </span>
         )}
         {showDuration && (
-          <span className="bg-slate-900/90 py-1 px-2 text-white text-xs font-light rounded-tl-md absolute bottom-0 right-0 inline-flex group-hover:transition-opacity group-hover:opacity-0 group-hover:duration-500">
+          <span className="bg-slate-900/90 py-1 px-2 text-white text-xs font-light rounded-tl-md absolute bottom-0 right-0 inline-flex group-hover:transition-opacity group-hover:opacity-0 group-hover:duration-500 group-hover:ease-in">
             <ClockIcon className="w-4 h-4 mr-1" /> 4min
           </span>
         )}

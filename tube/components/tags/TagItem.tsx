@@ -58,7 +58,7 @@ const TagItem: FC<Props> = ({
         className={classNames(
           'text-sm md:text-base leading-5 mr-2',
           useSize ? getFont(size) : 'font-medium',
-          'text-indigo-600 dark:text-indigo-400 bg-indigo-400/10 rounded-full py-1 px-3 hover:bg-indigo-400/20 mb-2 hover:scale-[1.05] duration-300 shadow-md'
+          'text-indigo-600 dark:text-indigo-400 bg-indigo-400/10 rounded-full py-1 px-3 hover:bg-indigo-400/20 mb-2 hover:scale-[1.05] duration-500 ease-in shadow-md'
         )}
       >
         <Link href={buildTagUrl(tag, 'tag')}>
