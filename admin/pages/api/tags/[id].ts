@@ -1,5 +1,6 @@
 import { connectToDbHandler } from '@db/database';
 import { getTag, removeTagById, updateTag } from '@db/services/tags.service';
+import { IMAGE_SETTINGS } from 'constants/image';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Tag } from 'types/types';
 import { hasSession } from 'utils/auth';
@@ -24,14 +25,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         tag.name !== req.body.name ||
         tag.role !== req.body.role
       ) {
-        deleteImage(tag.originalImage, tag.name, tag.role, '');
+        const oldRole = tag.role as 'tag';
+        deleteImage(
+          tag.originalImage,
+          tag.name,
+          IMAGE_SETTINGS[oldRole].subPath,
+          IMAGE_SETTINGS[oldRole].prefix
+        );
+        const role = req.body.role as 'tag';
         const image = await createImage(
           req.body.originalImage,
           req.body.name,
-          250,
-          400,
-          req.body.role,
-          ''
+          IMAGE_SETTINGS[role].height,
+          IMAGE_SETTINGS[role].width,
+          IMAGE_SETTINGS[role].subPath,
+          IMAGE_SETTINGS[role].prefix
         );
         updatedTag = await updateTag(id, { ...req.body, image });
       } else {
@@ -42,7 +50,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'DELETE') {
       const tag = (await getTag(id)) as Tag;
       if (tag.originalImage) {
-        deleteImage(tag.originalImage, tag.name, tag.role, '');
+        const role = tag.role as 'tag';
+        deleteImage(
+          tag.originalImage,
+          tag.name,
+          IMAGE_SETTINGS[role].subPath,
+          IMAGE_SETTINGS[role].prefix
+        );
       }
       await removeTagById(id);
       return res.status(200).send({ message: 'Tag deleted' });

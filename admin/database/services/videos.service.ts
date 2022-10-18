@@ -1,3 +1,4 @@
+import { IMAGE_SETTINGS } from 'constants/image';
 import Videos from 'database/models/videos.model';
 import { NextApiRequest } from 'next';
 import { VideoIncreaseKey } from 'types/types';
@@ -9,18 +10,18 @@ export const addVideo = async (req: NextApiRequest) => {
     const thumbnail = await createImage(
       videoData.originalImage,
       videoData.title,
-      168,
-      300,
-      '',
-      '_thumb'
+      IMAGE_SETTINGS.thumbnail.height,
+      IMAGE_SETTINGS.thumbnail.width,
+      IMAGE_SETTINGS.thumbnail.subPath,
+      IMAGE_SETTINGS.thumbnail.prefix
     );
     const poster = await createImage(
       videoData.originalImage,
       videoData.title,
-      280,
-      500,
-      '',
-      '_poster'
+      IMAGE_SETTINGS.poster.height,
+      IMAGE_SETTINGS.poster.width,
+      IMAGE_SETTINGS.poster.subPath,
+      IMAGE_SETTINGS.poster.prefix
     );
 
     const video = new Videos({

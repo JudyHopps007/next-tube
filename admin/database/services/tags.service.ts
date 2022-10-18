@@ -1,3 +1,4 @@
+import { IMAGE_SETTINGS } from 'constants/image';
 import Tags from 'database/models/tags.model';
 import { generateTagId } from 'database/utils/helper';
 import { StateType, TagRole } from 'types/types';
@@ -6,13 +7,14 @@ import { createImage } from 'utils/cdn';
 export const addTag = async (data: any) => {
   let image = '';
   if (data?.originalImage) {
+    const role = data.role as 'tag';
     image = (await createImage(
       data.originalImage,
       data.name,
-      250,
-      400,
-      data.role,
-      ''
+      IMAGE_SETTINGS[role].height,
+      IMAGE_SETTINGS[role].width,
+      IMAGE_SETTINGS[role].subPath,
+      IMAGE_SETTINGS[role].prefix
     )) as string;
   }
 
