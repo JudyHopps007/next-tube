@@ -1,13 +1,26 @@
 import Tags from 'database/models/tags.model';
 import { generateTagId } from 'database/utils/helper';
 import { StateType, TagRole } from 'types/types';
+import { createImage } from 'utils/cdn';
 
 export const addTag = async (data: any) => {
-  console.log(data);
+  let image = '';
+  if (data?.originalImage) {
+    image = (await createImage(
+      data.originalImage,
+      data.name,
+      250,
+      400,
+      data.role,
+      ''
+    )) as string;
+  }
+
   try {
     const tag = new Tags({
-      id: generateTagId(data.name),
       ...data,
+      id: generateTagId(data.name),
+      image: image,
     });
     await tag.save();
     return tag;

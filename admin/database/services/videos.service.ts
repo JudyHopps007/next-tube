@@ -1,13 +1,33 @@
 import Videos from 'database/models/videos.model';
 import { NextApiRequest } from 'next';
 import { VideoIncreaseKey } from 'types/types';
+import { createImage } from 'utils/cdn';
 
 export const addVideo = async (req: NextApiRequest) => {
   try {
     const { videoData } = req.body;
+    const thumbnail = await createImage(
+      videoData.originalImage,
+      videoData.title,
+      168,
+      300,
+      '',
+      '_thumb'
+    );
+    const poster = await createImage(
+      videoData.originalImage,
+      videoData.title,
+      280,
+      500,
+      '',
+      '_poster'
+    );
+
     const video = new Videos({
-      id: 1, // get replaced with counter value
       ...videoData,
+      id: 1, // get replaced with counter value
+      poster,
+      thumbnail,
     });
     await video.save();
     return video;

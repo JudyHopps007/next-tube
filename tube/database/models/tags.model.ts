@@ -21,6 +21,10 @@ const tagsSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    originalImage: {
+      type: String,
+      default: '',
+    },
     isPriority: { type: Boolean, default: false },
     isParsed: { type: Boolean, default: false },
     videoCount: {

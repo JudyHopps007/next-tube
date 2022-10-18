@@ -29,6 +29,7 @@ export type Category = {
   name: string;
   videoCount: number;
   image: string;
+  originalImage: string;
   role: TagRole;
 };
 

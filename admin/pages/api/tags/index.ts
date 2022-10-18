@@ -3,6 +3,7 @@ import { addTag, tagExists } from '@db/services/tags.service';
 import { generateTagId } from '@db/utils/helper';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { hasSession } from 'utils/auth';
+import { createImage } from 'utils/cdn';
 import { getRelatedImage, getRelatedTags } from 'utils/parser';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -24,12 +25,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         isParsed = true;
       }
 
-      let image = '';
+      let originalImage = '';
       if (parseImage) {
-        image = await getRelatedImage(generateTagId(name));
+        originalImage = await getRelatedImage(generateTagId(name));
       }
 
-      const tag = await addTag({ name, role, relatedTags, image, isParsed });
+      const tag = await addTag({
+        name,
+        role,
+        relatedTags,
+        originalImage,
+        isParsed,
+      });
       return res.status(200).send(tag);
     }
   } catch (err: any) {

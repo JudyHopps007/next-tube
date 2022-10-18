@@ -30,11 +30,11 @@ const EditTagModal: FC<Props> = ({
   requestTags,
 }) => {
   const { tag, updateTag } = useTagData(id, isShowing);
-  const [image, setImage] = useState(tag?.image);
+  const [image, setImage] = useState(tag?.originalImage);
   const [loadingTags, setLoadingTags] = useState<boolean>(false);
 
   useEffect(() => {
-    setImage(tag?.image);
+    setImage(tag?.originalImage);
     setLoadingTags(false);
   }, [tag]);
 
@@ -122,7 +122,7 @@ const EditTagModal: FC<Props> = ({
                   onClick={async () => {
                     const imageRes = await requestImage(tag.name);
                     setImage(imageRes);
-                    updateTag('image', imageRes);
+                    updateTag('originalImage', imageRes);
                   }}
                   className="bg-sky-600 hover:bg-sky-500 p-2 md:p-1 md:rounded-b-md shadow-lg w-full mt-2 md:mt-0 rounded-md md:rounded-t-none"
                 >
@@ -162,7 +162,7 @@ const EditTagModal: FC<Props> = ({
                   isPriority: tag.isPriority,
                   role: tag.role,
                   isParsed: tag.isParsed,
-                  image: tag.image,
+                  originalImage: tag.originalImage,
                   relatedTags: tag.relatedTags,
                   id: generateTagId(tag.name),
                 };
