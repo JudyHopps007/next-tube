@@ -41,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           IMAGE_SETTINGS[role].subPath,
           IMAGE_SETTINGS[role].prefix
         );
-        updatedTag = await updateTag(id, { ...req.body, image });
+        updatedTag = await updateTag(id, { ...req.body, image: image || '' });
       } else {
         updatedTag = await updateTag(id, req.body);
       }

@@ -111,7 +111,7 @@ const EditTagModal: FC<Props> = ({
                   className="absolute right-1 top-1"
                   onClick={() => {
                     setImage('');
-                    updateTag('image', '');
+                    updateTag('originalImage', '');
                   }}
                 >
                   <XIcon className="w-5 h-5 bg-slate-500/30 hover:text-gray-300 hover:bg-slate-500/60 rounded-md cursor-pointer" />

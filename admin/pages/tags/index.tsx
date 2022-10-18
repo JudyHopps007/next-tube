@@ -67,6 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       relatedTags: 1,
       videoCount: 1,
       isPriority: 1,
+      originalImage: 1,
       isParsed: 1,
     },
     { createdAt: -1 },
