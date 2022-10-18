@@ -40,7 +40,9 @@ const ChangeRoleModal: FC<Props> = ({
               handleClick={() => {
                 const tagId = tag.id;
                 const data = {
+                  name: tag.name,
                   role: tag.role,
+                  originalImage: tag.originalImage,
                 };
                 onClose();
                 saveChanges(tagId, data);
