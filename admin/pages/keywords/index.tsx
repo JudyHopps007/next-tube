@@ -3,89 +3,84 @@ import PanelHeadline from '@ui/Headline';
 import Table from 'components/table';
 import { PANEL_CONSTANTS } from 'constants/panel';
 import { connectToDb } from '@db/database';
-import { countTags, getTags } from '@db/services/tags.service';
 import { GetServerSideProps, NextPage } from 'next';
-import { TagStateType, Tag, TagRole } from 'types/types';
+import { Keyword, KeywordRole, KeywordStateType } from 'types/types';
 import { toJson } from 'utils/helpers';
 import { getSession } from 'next-auth/react';
 import { redirectUser } from 'utils/auth';
+import { countKeywords, getKeywords } from '@db/services/keywords.service';
+import KeywordsFilters from 'components/filters/KeywordsFilter';
 
 type Props = {
   filters: {
+    state: KeywordStateType;
+    role: KeywordRole | null;
     search: string;
-    state: TagStateType;
-    role: TagRole | null;
   };
-  tagsCount: number;
+  keywordsCount: number;
   page: number;
-  tags: Tag[];
+  keywords: Keyword[];
 };
 
-const PanelTagsPage: NextPage<Props> = ({ tagsCount, page, filters, tags }) => {
+const PanelTagsPage: NextPage<Props> = ({
+  keywordsCount,
+  page,
+  filters,
+  keywords,
+}) => {
   return (
     <>
       <PanelHeadline
-        text="Manage Tags"
-        btnText="Add Tags"
-        href="/tags/add"
+        text="Manage Keywords"
+        btnText="Add Keywords"
+        href="/keywords/add"
         hasIcon
       />
-      <TagsFilters
+      <KeywordsFilters
         role={filters.role}
         state={filters.state}
         search={filters.search}
-      />
-      <Table
-        contentType="tag"
-        titles={PANEL_CONSTANTS.TAGS_TABLE_TITLES}
-        itemsCount={tagsCount}
-        items={tags}
-        page={page}
-        itemsPerPage={PANEL_CONSTANTS.TAGS_PER_PAGE}
       />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { page = 1, search = '', role = null, state = null } = context.query;
+  const { page = 1, role = null, search = '', state = null } = context.query;
   const session = await getSession(context);
   const { needRedirect, loginPath } = redirectUser(session);
   if (needRedirect) return loginPath;
   await connectToDb();
 
-  const tagsCount = await countTags(
-    role as TagRole | null,
-    state as TagStateType,
+  const keywordsCount = await countKeywords(
+    role as KeywordRole | null,
+    state as KeywordStateType,
     search as string
   );
-  const tags = await getTags(
-    role as TagRole | null,
+  const keywords = await getKeywords(
+    role as KeywordRole | null,
     page as number,
-    PANEL_CONSTANTS.TAGS_PER_PAGE,
+    PANEL_CONSTANTS.KEYWORDS_PER_PAGE,
     {
       _id: 0,
       id: 1,
       role: 1,
-      image: 1,
       name: 1,
-      relatedTags: 1,
-      videoCount: 1,
-      isPriority: 1,
-      originalImage: 1,
       isParsed: 1,
+      message: 1,
+      videosCount: 1,
     },
     { createdAt: -1 },
     search as string,
-    state as TagStateType
+    state as KeywordStateType
   );
 
   return {
     props: {
-      tagsCount,
+      keywordsCount,
       page,
       filters: { search, state, role },
-      tags: toJson(tags),
+      keywords: toJson(keywords),
     },
   };
 };

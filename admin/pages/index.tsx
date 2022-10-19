@@ -7,12 +7,14 @@ import OverviewSection from 'components/overview';
 import AddContentSection from 'components/content';
 import { getSession } from 'next-auth/react';
 import { redirectUser } from 'utils/auth';
+import { countKeywords } from '@db/services/keywords.service';
 
 type Props = {
   videosCount: number;
   tagsCount: number;
   categoriesCount: number;
   actorsCount: number;
+  keywordsCount: number;
 };
 
 const PanelIndexPage: NextPage<Props> = ({
@@ -20,12 +22,19 @@ const PanelIndexPage: NextPage<Props> = ({
   tagsCount,
   categoriesCount,
   actorsCount,
+  keywordsCount,
 }) => {
   return (
     <>
       <PanelHeadline text="Statistics" />
       <OverviewSection
-        counts={{ videosCount, tagsCount, categoriesCount, actorsCount }}
+        counts={{
+          videosCount,
+          tagsCount,
+          categoriesCount,
+          actorsCount,
+          keywordsCount,
+        }}
       />
       <PanelHeadline text="Add New Content" />
       <AddContentSection />
@@ -42,12 +51,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const tagsCount = await countTags('tag');
   const categoriesCount = await countTags('category');
   const actorsCount = await countTags('actor');
+  const keywordsCount = await countKeywords();
   return {
     props: {
       videosCount,
       tagsCount,
       categoriesCount,
       actorsCount,
+      keywordsCount,
     },
   };
 };

@@ -40,21 +40,51 @@ export const getKeyword = async (id: number) => {
   }
 };
 
-export const getTags = async (
+export const countKeywords = async (
+  role: KeywordRole | null = null,
+  state: 'parsed' | 'unparsed' | null = null,
+  search: string = ''
+) => {
+  const filterRole = role ? { role: role } : null;
+  const filterState = state
+    ? { isParsed: state === 'parsed' ? true : false }
+    : null;
+  const fitlerSearch =
+    search.length > 0
+      ? { name: { $regex: `\\b${search}\\b`, $options: 'i' } }
+      : null;
+  const count = await Keywords.countDocuments({
+    ...filterRole,
+    ...filterState,
+    ...fitlerSearch,
+  });
+  return count;
+};
+
+export const getKeywords = async (
   role: KeywordRole | null,
   page: number,
   limit: number,
   select: any = {},
   sort: any = { createdAt: -1 },
+  search: string = '',
   state: 'parsed' | 'unparsed' | null = null
 ) => {
   try {
     const filterRole = role ? { role: role } : null;
+    const fitlerSearch =
+      search.length > 0
+        ? { name: { $regex: `\\b${search}\\b`, $options: 'i' } }
+        : null;
     const filterState = state
       ? { isParsed: state === 'parsed' ? true : false }
       : null;
     const skip = page * limit - limit;
-    const keywords = Keywords.find({ ...filterRole, ...filterState })
+    const keywords = Keywords.find({
+      ...filterRole,
+      ...fitlerSearch,
+      ...filterState,
+    })
       .skip(skip)
       .limit(limit)
       .sort(sort)

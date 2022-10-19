@@ -28,7 +28,12 @@ const PanelVideosPage: NextPage<Props> = ({
 }) => {
   return (
     <>
-      <PanelHeadline text="Manage Videos" />
+      <PanelHeadline
+        text="Manage Videos"
+        btnText="Add Videos"
+        href="/videos/add"
+        hasIcon
+      />
       <VideosFilters orderBy={filters.orderBy} search={filters.search} />
       <Table
         contentType="video"

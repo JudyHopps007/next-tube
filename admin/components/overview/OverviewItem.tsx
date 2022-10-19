@@ -1,4 +1,5 @@
 import {
+  ClipboardListIcon,
   CollectionIcon,
   HashtagIcon,
   UsersIcon,
@@ -27,6 +28,9 @@ const getIcon = (icon: string) => {
     ),
     Actors: (
       <UsersIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
+    ),
+    Keywords: (
+      <ClipboardListIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
     ),
   };
 

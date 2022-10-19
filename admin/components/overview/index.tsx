@@ -7,6 +7,7 @@ type Props = {
     tagsCount: number;
     categoriesCount: number;
     actorsCount: number;
+    keywordsCount: number;
   };
 };
 
@@ -28,6 +29,11 @@ const OverviewSection: FC<Props> = ({ counts }) => {
         title="Actors"
         count={counts.actorsCount}
         href="/tags?role=actor"
+      />
+      <OverviewItem
+        title="Keywords"
+        count={counts.keywordsCount}
+        href="/keywords"
       />
     </div>
   );

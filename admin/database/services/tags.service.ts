@@ -1,7 +1,7 @@
 import { IMAGE_SETTINGS } from 'constants/image';
 import Tags from 'database/models/tags.model';
 import { generateTagId } from 'database/utils/helper';
-import { StateType, TagRole } from 'types/types';
+import { TagStateType, TagRole } from 'types/types';
 import { createImage } from 'utils/cdn';
 
 export const addTag = async (data: any) => {
@@ -117,7 +117,7 @@ export const updateTagCount = async (name: string, amount: number) => {
 
 export const countTags = async (
   role: TagRole | null = null,
-  state: StateType = null,
+  state: TagStateType = null,
   search: string = ''
 ) => {
   const filterRole = role ? { role: role } : null;
@@ -159,7 +159,7 @@ export const getTags = async (
   select: any = {},
   sort: any = { createdAt: -1 },
   search: string = '',
-  state: StateType = null
+  state: TagStateType = null
 ) => {
   try {
     const filterRole = role ? { role: role } : null;

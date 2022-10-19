@@ -35,6 +35,15 @@ export type Category = {
   role: TagRole;
 };
 
+export type Keyword = {
+  id: number;
+  role: KeywordRole;
+  name: string;
+  isParsed: boolean;
+  message: string;
+  videosCount: number;
+};
+
 export type Tag = {
   relatedTags: string[];
   isPriority: boolean;
@@ -45,7 +54,8 @@ export type Query = {
   [x: string]: any;
 };
 
-export type StateType = 'priority' | 'normal' | null;
+export type TagStateType = 'priority' | 'normal' | null;
+export type KeywordStateType = 'parsed' | 'unparsed' | null;
 
 export type Query = {
   [x: string]: any;

@@ -9,6 +9,8 @@ export const PANEL_CONSTANTS = {
   VIDEOS_PER_PAGE: 50,
   TAGS_TABLE_TITLES: ['Id', 'Info', 'Related Tags', 'Actions'],
   TAGS_PER_PAGE: 50,
+  KEYWORDS_TABLE_TITLES: ['Id', 'Name', 'Status', 'Actions'],
+  KEYWORDS_PER_PAGE: 50,
 };
 
 export const TAG_ROLES_DROPDOWN = [

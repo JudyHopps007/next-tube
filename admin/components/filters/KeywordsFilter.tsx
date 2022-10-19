@@ -1,27 +1,32 @@
 import { SearchIcon } from '@heroicons/react/outline';
 import DropDown from '@ui/Dropdown';
-import { TAG_ROLES_DROPDOWN } from 'constants/panel';
 import useQueryPush from 'hooks/useQueryPush';
 import React, { FC, useState } from 'react';
-import { TagRole, TagStateType } from 'types/types';
+import { KeywordRole, KeywordStateType } from 'types/types';
 
 type Props = {
-  role: TagRole | null;
+  role: KeywordRole | null;
   search: string;
-  state: TagStateType;
+  state: KeywordStateType;
 };
 
 const defaultRoleQuery = null;
+const defaultStateQuery = null;
 
 const roleItems = [
   {
     label: 'All Roles',
     query: defaultRoleQuery,
   },
-  ...TAG_ROLES_DROPDOWN,
+  {
+    label: 'Keywords',
+    query: 'keyword',
+  },
+  {
+    label: 'Titles',
+    query: 'title',
+  },
 ];
-
-const defaultStateQuery = null;
 
 const stateItems = [
   {
@@ -29,16 +34,16 @@ const stateItems = [
     query: defaultStateQuery,
   },
   {
-    label: 'Priority',
-    query: 'priority',
+    label: 'Parsed',
+    query: 'parsed',
   },
   {
-    label: 'Normal',
-    query: 'normal',
+    label: 'Not Parsed',
+    query: 'unparsed',
   },
 ];
 
-const TagsFilters: FC<Props> = ({ role, search, state }) => {
+const KeywordsFilters: FC<Props> = ({ role, search, state }) => {
   const [searchQuery, setSearchQuery] = useState(search);
   const [selectedRoleFilterQuery, setSelectedRoleFilterQuery] = useState(role);
   const [selectedStateFilterQuery, setSelectedStateFilterQuery] =
@@ -47,12 +52,12 @@ const TagsFilters: FC<Props> = ({ role, search, state }) => {
   const queryPush = useQueryPush();
 
   const updateStateFilterQuery = (newQuery: string | null) => {
-    setSelectedStateFilterQuery(newQuery as TagStateType);
+    setSelectedStateFilterQuery(newQuery as KeywordStateType);
     queryPush.setQueryParam({ state: newQuery });
   };
 
   const updateRoleFilterQuery = (newQuery: string | null) => {
-    setSelectedRoleFilterQuery(newQuery as TagRole | null);
+    setSelectedRoleFilterQuery(newQuery as KeywordRole | null);
     queryPush.setQueryParam({ role: newQuery });
   };
 
@@ -94,4 +99,4 @@ const TagsFilters: FC<Props> = ({ role, search, state }) => {
   );
 };
 
-export default TagsFilters;
+export default KeywordsFilters;
