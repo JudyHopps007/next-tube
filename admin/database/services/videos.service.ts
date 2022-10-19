@@ -6,18 +6,18 @@ import { createImage } from 'utils/cdn';
 
 export const addVideo = async (req: NextApiRequest) => {
   try {
-    const { videoData } = req.body;
+    const { originalImage, title } = req.body;
     const thumbnail = await createImage(
-      videoData.originalImage,
-      videoData.title,
+      originalImage,
+      title,
       IMAGE_SETTINGS.thumbnail.height,
       IMAGE_SETTINGS.thumbnail.width,
       IMAGE_SETTINGS.thumbnail.subPath,
       IMAGE_SETTINGS.thumbnail.prefix
     );
     const poster = await createImage(
-      videoData.originalImage,
-      videoData.title,
+      originalImage,
+      title,
       IMAGE_SETTINGS.poster.height,
       IMAGE_SETTINGS.poster.width,
       IMAGE_SETTINGS.poster.subPath,
@@ -25,7 +25,7 @@ export const addVideo = async (req: NextApiRequest) => {
     );
 
     const video = new Videos({
-      ...videoData,
+      ...req.body,
       id: 1, // get replaced with counter value
       poster,
       thumbnail,

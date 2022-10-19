@@ -3,7 +3,6 @@ import { addTag, tagExists } from '@db/services/tags.service';
 import { generateTagId } from '@db/utils/helper';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { hasSession } from 'utils/auth';
-import { createImage } from 'utils/cdn';
 import { getRelatedImage, getRelatedTags } from 'utils/parser';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
