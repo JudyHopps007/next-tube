@@ -24,6 +24,8 @@ export type VideoWithMeta = Video & VideoMeta;
 
 export type TagRole = 'category' | 'tag' | 'actor';
 
+export type KeywordRole = 'title' | 'keyword';
+
 export type Category = {
   id: string;
   name: string;
