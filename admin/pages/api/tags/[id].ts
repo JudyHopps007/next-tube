@@ -21,9 +21,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const tag = await getTag(id);
       let updatedTag = null;
       if (
-        tag.originalImage !== req.body.originalImage ||
-        tag.name !== req.body.name ||
-        tag.role !== req.body.role
+        (req.body.originalImage &&
+          tag.originalImage !== req.body.originalImage) ||
+        (req.body.name && tag.name !== req.body.name) ||
+        (req.body.role && tag.role !== req.body.role)
       ) {
         const oldRole = tag.role as 'tag';
         deleteImage(

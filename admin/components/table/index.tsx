@@ -2,25 +2,39 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ChangeRoleModal from 'components/modals/ChangeRoleModal';
 import EditTagModal from 'components/modals/EditTagModal';
 import EditVideoModal from 'components/modals/EditVideoModal';
+import useKeywordAPI from 'hooks/useKeywordAPI';
 import useQueryPush from 'hooks/useQueryPush';
 import useTagAPI from 'hooks/useTagAPI';
 import useVideoAPI from 'hooks/useVideoAPI';
 import React, { FC, useState } from 'react';
-import { PanelModals, Tag, VideoWithMeta } from 'types/types';
+import { Keyword, PanelModals, Tag, VideoWithMeta } from 'types/types';
 import {
   calculateMaxItemPerPage,
   calculateMinItemPerPage,
 } from 'utils/navigation';
+import KeywordTableRow from './KeywordTableRow';
 import TagTableRow from './TagTableRow';
 import VideoTableRow from './VideoTableRow';
+
+type ContentType = 'tag' | 'video' | 'keyword';
 
 type Props = {
   page: number;
   itemsCount: number;
   itemsPerPage: number;
-  contentType: 'tag' | 'video';
+  contentType: ContentType;
   titles: string[];
   items: any[];
+};
+
+const getUnit = (contentType: ContentType) => {
+  const map = {
+    tag: 'Tags',
+    video: 'Videos',
+    keyword: 'Keywords',
+  };
+
+  return map[contentType] ?? 'Items';
 };
 
 const Table: FC<Props> = ({
@@ -41,6 +55,7 @@ const Table: FC<Props> = ({
   const queryPush = useQueryPush();
   const tagAPI = useTagAPI();
   const videoAPI = useVideoAPI();
+  const keywordAPI = useKeywordAPI();
 
   const updateModal = (key: PanelModals, id: string | null) => {
     setModalDataId(id);
@@ -56,7 +71,7 @@ const Table: FC<Props> = ({
   if (items.length === 0) {
     return (
       <div className="w-full text-center bg-slate-800 rounded-lg p-3 text-xl ">
-        No {contentType === 'video' ? 'Videos' : 'Tags'} found ;(
+        No {getUnit(contentType)} found ;(
       </div>
     );
   }
@@ -101,6 +116,15 @@ const Table: FC<Props> = ({
                     changeRoleHandler={(id) => {
                       updateModal('showChangeRoleModal', id);
                     }}
+                  />
+                ))}
+              {contentType === 'keyword' &&
+                items.map((item: Keyword) => (
+                  <KeywordTableRow
+                    key={item.id}
+                    keyword={item}
+                    deleteHandler={keywordAPI.keywordDelete}
+                    changeRoleHandler={keywordAPI.keywordChangeRole}
                   />
                 ))}
             </tbody>

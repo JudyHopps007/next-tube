@@ -25,9 +25,6 @@ const TagTableRow: FC<Props> = ({
     <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
       <td className="px-4 py-3">
         <div className="flex flex-row space-x-2 justify-start items-center">
-          {tag.isPriority && <PanelTag label="priority" color="yellow" />}
-          {tag.isParsed && <PanelTag label="parsed" color="sky" />}
-          <PanelTag label={tag.role} color="gray" />
           <div className="font-thin text-xs">{tag.id}</div>
         </div>
       </td>
@@ -40,6 +37,13 @@ const TagTableRow: FC<Props> = ({
             loading="lazy"
           />
           <div className="font-semibold">{tag.name}</div>
+        </div>
+      </td>
+      <td className="px-4 py-3">
+        <div className="flex flex-row space-x-2 justify-start items-center">
+          {tag.isPriority && <PanelTag label="priority" color="yellow" />}
+          {tag.isParsed && <PanelTag label="parsed" color="sky" />}
+          <PanelTag label={tag.role} color="orange" />
         </div>
       </td>
       <td className="px-4 py-3">

@@ -41,6 +41,14 @@ const PanelTagsPage: NextPage<Props> = ({
         state={filters.state}
         search={filters.search}
       />
+      <Table
+        contentType="keyword"
+        titles={PANEL_CONSTANTS.KEYWORDS_TABLE_TITLES}
+        itemsCount={keywordsCount}
+        items={keywords}
+        page={page}
+        itemsPerPage={PANEL_CONSTANTS.KEYWORDS_PER_PAGE}
+      />
     </>
   );
 };

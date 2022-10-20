@@ -94,3 +94,13 @@ export const getKeywords = async (
     throw error;
   }
 };
+
+export const removeKeywordById = async (id: number) => {
+  try {
+    const keyword = await Keywords.findOneAndDelete({ id: id });
+    if (!keyword) throw new Error(`Keyword with id ${id} not found.`);
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -7,9 +7,16 @@ export const PANEL_CONSTANTS = {
     'Actions',
   ],
   VIDEOS_PER_PAGE: 50,
-  TAGS_TABLE_TITLES: ['Id', 'Info', 'Related Tags', 'Actions'],
+  TAGS_TABLE_TITLES: ['Id', 'Name', 'Status', 'Related Tags', 'Actions'],
   TAGS_PER_PAGE: 50,
-  KEYWORDS_TABLE_TITLES: ['Id', 'Name', 'Status', 'Actions'],
+  KEYWORDS_TABLE_TITLES: [
+    'Id',
+    'Name',
+    'Status',
+    'Message',
+    'Videos Added',
+    'Actions',
+  ],
   KEYWORDS_PER_PAGE: 50,
 };
 
