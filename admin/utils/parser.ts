@@ -35,6 +35,9 @@ export const getRelatedImage = async (keyword: string) => {
   const tubeSource = getRandomTube(IMAGE_TUBES);
   const page = Math.floor(Math.random() * 5) + 1;
   const searchResults = await parser.parseSearch(tubeSource, keyword, page);
+
+  if (searchResults.videos.length === 0) return '';
+
   const result =
     searchResults.videos[
       Math.floor(Math.random() * searchResults.videos.length)
