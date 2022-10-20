@@ -24,7 +24,7 @@ const navigation = [
 
 const AddContentSection = (props: Props) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-x-2 gap-y-2">
       {navigation.map((item) => (
         <Link key={item.href} href={item.href}>
           <a className="p-2 bg-slate-700 hover:bg-slate-700/90 w-full rounded-md font-semibold inline-flex items-center hover:text-gray-200">

@@ -23,6 +23,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       if (
         (req.body.originalImage &&
           tag.originalImage !== req.body.originalImage) ||
+        (req.body.originalImage === '' &&
+          tag.originalImage !== req.body.originalImage) ||
         (req.body.name && tag.name !== req.body.name) ||
         (req.body.role && tag.role !== req.body.role)
       ) {
