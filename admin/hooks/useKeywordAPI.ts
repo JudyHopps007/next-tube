@@ -21,10 +21,15 @@ const useKeywordAPI = () => {
     router.push(router.asPath);
   };
 
+  const keywordAdd = async (data: any) => {
+    await axios.post('/api/keywords', data);
+  };
+
   return {
     keywordDelete,
     keywordEdit,
     keywordChangeRole,
+    keywordAdd,
   };
 };
 

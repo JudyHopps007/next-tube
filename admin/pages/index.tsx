@@ -4,7 +4,7 @@ import { countTags } from '@db/services/tags.service';
 import { countVideos } from '@db/services/videos.service';
 import { GetServerSideProps, NextPage } from 'next';
 import OverviewSection from 'components/overview';
-import AddContentSection from 'components/content';
+import AddContentSection from 'components/content/AddContentSection';
 import { getSession } from 'next-auth/react';
 import { redirectUser } from 'utils/auth';
 import { countKeywords } from '@db/services/keywords.service';

@@ -1,5 +1,4 @@
-import AddTagsSection from 'components/content/AddTagsSection';
-import PanelHeadline from '@ui/Headline';
+import AddKeywordsSection from 'components/content/AddKeywordsSection';
 import React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
@@ -10,7 +9,7 @@ type Props = {};
 const AddTags: NextPage<Props> = ({}) => {
   return (
     <>
-      <AddTagsSection />
+      <AddKeywordsSection />
     </>
   );
 };

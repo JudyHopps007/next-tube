@@ -49,3 +49,14 @@ export const randomImageId = (image: string) => {
     return image;
   }
 };
+
+export const textAreaToArray = (tags: string) => {
+  const tagArray = tags.split(/\n/);
+  let result = [] as string[];
+  for (let tag of tagArray) {
+    if (tag.trim().length > 1) {
+      result.push(tag);
+    }
+  }
+  return result;
+};

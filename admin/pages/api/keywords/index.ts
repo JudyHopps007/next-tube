@@ -10,7 +10,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       if (role === 'title' && (await keywordExists(name, role))) {
         return res.status(200).send({ exists: true });
       }
-
       const keyword = await addKeyword({
         name,
         role,

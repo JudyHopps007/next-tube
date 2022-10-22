@@ -1,49 +1,59 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { RefreshIcon } from '@heroicons/react/outline';
 import Alert from '@ui/Alert';
 import Button from '@ui/Button';
-import LabelCheckbox from '@ui/Checkbox';
 import DropDown from '@ui/Dropdown';
 import Headline from '@ui/Headline';
 import ProgressBar from '@ui/ProgressBar';
-import { TAG_ROLES_DROPDOWN } from 'constants/panel';
-import useTagAPI from 'hooks/useTagAPI';
+import useKeywordAPI from 'hooks/useKeywordAPI';
 import React, { useEffect, useState } from 'react';
+import { KeywordRole } from 'types/types';
 import { classNames, textAreaToArray } from 'utils/helpers';
 
 type Props = {};
 
-const AddTagsSection = (props: Props) => {
-  const [tags, setTags] = useState('');
-  const [role, setRole] = useState('tag');
+const KEYWORDS_ROLE_DROPDOWN = [
+  {
+    label: 'Keywords',
+    query: 'keyword',
+  },
+  {
+    label: 'Titles',
+    query: 'title',
+  },
+];
+
+const AddKeywordsSection = (props: Props) => {
   const [amount, setAmount] = useState(0);
+  const [keywords, setKeywords] = useState('');
+  const [role, setRole] = useState('keyword');
   const [settings, setSettings] = useState({
-    parseRelated: false,
-    parseImage: false,
     target: 0,
     completed: 0,
     progress: 0,
     isRunning: false,
     isDone: false,
-    tags: [] as string[],
+    keywords: [] as string[],
   });
-  const tagAPI = useTagAPI();
 
-  const updateSettings = (newSettings: any) => {
+  useEffect(() => {
+    setAmount(keywords.length === 0 ? 0 : textAreaToArray(keywords).length);
+  }, [keywords]);
+
+  const keywordAPI = useKeywordAPI();
+
+  const updateSettings = (data: any) => {
     setSettings((currentSettings) => {
-      return { ...currentSettings, ...newSettings };
+      return { ...currentSettings, ...data };
     });
   };
 
-  useEffect(() => {
-    setAmount(tags.length === 0 ? 0 : textAreaToArray(tags).length);
-  }, [tags]);
+  const unitName = role === 'keyword' ? 'Keywords' : 'Titles';
 
-  const addTags = () => {
-    const tagsArray = textAreaToArray(tags);
+  const addKeywords = () => {
+    const keywordsArray = textAreaToArray(keywords);
     updateSettings({
-      tags: tagsArray.slice(),
-      target: tagsArray.length,
+      keywords: keywordsArray.slice(),
+      target: keywordsArray.length,
       progress: 0,
       completed: 0,
       isRunning: true,
@@ -51,25 +61,15 @@ const AddTagsSection = (props: Props) => {
     });
   };
 
-  const roleMap: Record<string, any> = {
-    tag: 'Tags',
-    actor: 'Actors',
-    category: 'Categories',
-  };
-
-  const unitName = roleMap[role] ?? 'Tags';
-
   const { completed, target, isRunning, isDone } = settings;
 
   useEffect(() => {
     const addTag = async () => {
       if (isRunning && completed <= target) {
         if (completed < target) {
-          await tagAPI.tagAdd({
-            name: settings.tags[completed],
+          await keywordAPI.keywordAdd({
+            name: settings.keywords[completed],
             role: role,
-            parseImage: settings.parseImage,
-            parseRelated: settings.parseRelated,
           });
           updateSettings({ completed: completed + 1 });
         }
@@ -79,7 +79,7 @@ const AddTagsSection = (props: Props) => {
           isRunning: false,
           isDone: true,
         });
-        setTags('');
+        setKeywords('');
       }
     };
     addTag();
@@ -93,11 +93,10 @@ const AddTagsSection = (props: Props) => {
     <>
       <Headline text={`Add ${unitName}`} />
       <DropDown
-        items={TAG_ROLES_DROPDOWN}
+        items={KEYWORDS_ROLE_DROPDOWN}
         selectedQuery={role}
         updateFilterQuery={(newRole) => {
-          setRole(newRole as string);
-          if (newRole === 'tag') updateSettings({ parseImage: false });
+          setRole(newRole as KeywordRole);
         }}
       />
       <div className="relative mt-3">
@@ -106,47 +105,31 @@ const AddTagsSection = (props: Props) => {
           className="w-full bg-slate-800 focus:outline-none rounded-md p-4"
           rows={15}
           cols={10}
-          value={tags}
+          value={keywords}
           placeholder={`Enter ${unitName}...`}
           onChange={(e) => {
-            setTags(e.target.value);
+            setKeywords(e.target.value);
           }}
         />
         <div className="absolute top-1 right-3 text-indigo-500">
           {amount} {unitName}
         </div>
       </div>
-      <LabelCheckbox
-        label="Parse Related Tags"
-        value={settings.parseRelated}
-        handleChange={() => {
-          updateSettings({ parseRelated: !settings.parseRelated });
-        }}
-      />
-      {role !== 'tag' && (
-        <LabelCheckbox
-          label="Parse Default Image"
-          value={settings.parseImage}
-          handleChange={() => {
-            updateSettings({ parseImage: !settings.parseImage });
-          }}
-        />
-      )}
       {!isRunning && (
         <Button
           title={`Add ${unitName}`}
           handleClick={() => {
-            if (tags.length === 0) return;
-            addTags();
+            if (keywords.length === 0) return;
+            addKeywords();
           }}
         />
       )}
       {isRunning && (
         <ProgressBar
-          completed={settings.completed}
+          color="bg-indigo-700"
           target={settings.target}
           progress={settings.progress}
-          color="bg-emerald-500"
+          completed={settings.completed}
         />
       )}
       {isDone && (
@@ -159,4 +142,4 @@ const AddTagsSection = (props: Props) => {
   );
 };
 
-export default AddTagsSection;
+export default AddKeywordsSection;
