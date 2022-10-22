@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { RefreshIcon } from '@heroicons/react/outline';
 import Alert from '@ui/Alert';
 import Button from '@ui/Button';
 import LabelCheckbox from '@ui/Checkbox';
@@ -9,7 +8,7 @@ import ProgressBar from '@ui/ProgressBar';
 import { TAG_ROLES_DROPDOWN } from 'constants/panel';
 import useTagAPI from 'hooks/useTagAPI';
 import React, { useEffect, useState } from 'react';
-import { classNames, textAreaToArray } from 'utils/helpers';
+import { textAreaToArray } from 'utils/helpers';
 
 type Props = {};
 

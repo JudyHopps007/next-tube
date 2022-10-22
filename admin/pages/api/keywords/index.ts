@@ -5,6 +5,9 @@ import { hasSession } from 'utils/auth';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    if (!(await hasSession(req))) {
+      return res.status(400).json({ message: 'API Error - No Auth' });
+    }
     if (req.method === 'POST') {
       const { role, name } = req.body;
       if (role === 'title' && (await keywordExists(name, role))) {

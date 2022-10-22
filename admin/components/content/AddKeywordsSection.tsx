@@ -1,4 +1,4 @@
-import { RefreshIcon } from '@heroicons/react/outline';
+/* eslint-disable react-hooks/exhaustive-deps */
 import Alert from '@ui/Alert';
 import Button from '@ui/Button';
 import DropDown from '@ui/Dropdown';
@@ -7,7 +7,7 @@ import ProgressBar from '@ui/ProgressBar';
 import useKeywordAPI from 'hooks/useKeywordAPI';
 import React, { useEffect, useState } from 'react';
 import { KeywordRole } from 'types/types';
-import { classNames, textAreaToArray } from 'utils/helpers';
+import { textAreaToArray } from 'utils/helpers';
 
 type Props = {};
 
