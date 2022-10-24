@@ -17,7 +17,7 @@ const Modal: FC<Props> = ({ isShowing, children, title, onClose }) => {
     <>
       {isShowing ? (
         <>
-          <div className="justify-center items-start md:items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 mx-2 md:mx-0">
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 mx-2 md:mx-0">
             <div
               className="relative max-w-lg md:max-w-xl lg:max-w-3xl mx-auto dark:bg-slate-900 dark:text-gray-300 bg-gray-100 text-black shadow-lg border-2 dark:border-slate-700 border-gray-200 rounded-lg w-full"
               ref={modalRef}
