@@ -19,7 +19,7 @@ const VideoTableRow: FC<Props> = ({ video, deleteHandler, editHandler }) => {
           <div
             className={classNames(
               video.isUp ? 'bg-green-400' : 'bg-red-400',
-              'rounded-full w-2 h-2 mr-1'
+              'rounded-full w-2 h-2 mr-1 animate-pulse duration-1000'
             )}
           ></div>
           {video.id}
