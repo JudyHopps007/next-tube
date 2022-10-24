@@ -1,6 +1,7 @@
 import { connectToDbHandler } from '@db/database';
 import {
   getKeyword,
+  keywordExists,
   removeKeywordById,
   updateKeyword,
 } from '@db/services/keywords.service';
@@ -19,10 +20,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json(keyword);
     }
     if (req.method === 'PATCH') {
-      const updatedKeyword = await updateKeyword(+id, req.body);
-      return res
-        .status(200)
-        .send({ updatedKeyword, message: 'Keyword updated' });
+      const { role } = req.body;
+      let canBeUpdated = true;
+
+      if (role === 'title') {
+        const keyword = await getKeyword(+id);
+        const exists = await keywordExists(keyword.name, role);
+        canBeUpdated = !exists;
+      }
+
+      if (canBeUpdated) {
+        const updatedKeyword = await updateKeyword(+id, req.body);
+        return res
+          .status(200)
+          .send({ updatedKeyword, updated: true, message: 'Keyword updated' });
+      } else {
+        return res.status(200).send({
+          updated: false,
+          message: 'Title not unique',
+        });
+      }
     }
     if (req.method === 'DELETE') {
       await removeKeywordById(+id);
