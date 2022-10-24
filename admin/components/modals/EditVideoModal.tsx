@@ -8,7 +8,7 @@ import TextInput from '@ui/TextInput';
 import Spinner from '@ui/Spinner';
 import useVideoData from 'hooks/useVideoData';
 import React, { FC } from 'react';
-import { randomImageId } from 'utils/helpers';
+import { classNames, randomImageId } from 'utils/helpers';
 
 type Props = {
   isShowing: boolean;
@@ -129,6 +129,18 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                     <RefreshIcon className="w-5 h-5 " />
                   </div>
                 )}
+              </div>
+              <div className="text-sm text-gray-100 mt-3 inline-flex items-baseline justify-start">
+                Status:
+                <div
+                  className={classNames(
+                    video.isUp ? 'bg-green-400' : 'bg-red-400',
+                    'ml-1 rounded-full w-2 h-2 animate-pulse mr-1'
+                  )}
+                ></div>
+                <div className="text-xs flex font-semibold">
+                  {video.isUp ? 'Online' : 'Offline'}
+                </div>
               </div>
               <div className="text-sm text-gray-100 mt-3">
                 Plattform:{' '}
