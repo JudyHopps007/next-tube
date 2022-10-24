@@ -1,9 +1,11 @@
-import Feedback from 'components/feedback/Feedback';
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
 
 type FooterProps = {};
 
-const Footer: FC<FooterProps> = (props) => {
+const Modal = dynamic(() => import('components/feedback/Feedback'));
+
+const Footer = (props: FooterProps) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -17,7 +19,7 @@ const Footer: FC<FooterProps> = (props) => {
         Test Modal
       </button>
       {showModal && (
-        <Feedback
+        <Modal
           showModal={showModal}
           onClose={() => {
             setShowModal(false);
