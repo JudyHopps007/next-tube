@@ -34,3 +34,6 @@ export const TAG_ROLES_DROPDOWN = [
     query: 'actor',
   },
 ];
+
+export const ADD_TAG_STEPSIZE = 10;
+export const ADD_KEYWORD_STEPSIZE = 10;

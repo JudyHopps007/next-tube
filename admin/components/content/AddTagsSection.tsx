@@ -5,7 +5,7 @@ import LabelCheckbox from '@ui/Checkbox';
 import DropDown from '@ui/Dropdown';
 import Headline from '@ui/Headline';
 import ProgressBar from '@ui/ProgressBar';
-import { TAG_ROLES_DROPDOWN } from 'constants/panel';
+import { ADD_TAG_STEPSIZE, TAG_ROLES_DROPDOWN } from 'constants/panel';
 import useTagAPI from 'hooks/useTagAPI';
 import React, { useEffect, useState } from 'react';
 import { textAreaToArray } from 'utils/helpers';
@@ -64,13 +64,16 @@ const AddTagsSection = (props: Props) => {
     const addTag = async () => {
       if (isRunning && completed <= target) {
         if (completed < target) {
+          let stepSize = ADD_TAG_STEPSIZE;
+          if (settings.tags.length < completed + ADD_TAG_STEPSIZE)
+            stepSize = settings.tags.length % ADD_TAG_STEPSIZE;
           await tagAPI.tagAdd({
-            name: settings.tags[completed],
+            tags: settings.tags.slice(completed, completed + stepSize),
             role: role,
             parseImage: settings.parseImage,
             parseRelated: settings.parseRelated,
           });
-          updateSettings({ completed: completed + 1 });
+          updateSettings({ completed: completed + stepSize });
         }
       }
       if (isRunning && completed === target) {

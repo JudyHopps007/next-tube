@@ -11,32 +11,38 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ message: 'API Error - No Auth' });
     }
     if (req.method === 'POST') {
-      const { role, name, parseRelated, parseImage } = req.body;
-      if (await tagExists(generateTagId(name))) {
-        return res.status(200).send({ exists: true });
+      const { role, tags, parseRelated, parseImage } = req.body;
+      const totalTags = tags.length;
+      let addedTags = 0;
+      for (let tag of tags) {
+        let relatedTags = [] as string[];
+        let isParsed = false;
+
+        if (!(await tagExists(generateTagId(tag)))) {
+          if (parseRelated) {
+            relatedTags = await getRelatedTags(generateTagId(tag));
+            isParsed = true;
+          }
+
+          let originalImage = '';
+          if (parseImage) {
+            originalImage = await getRelatedImage(generateTagId(tag));
+          }
+
+          const newTag = await addTag({
+            name: tag,
+            role,
+            relatedTags,
+            originalImage,
+            isParsed,
+          });
+
+          addedTags++;
+        }
       }
-
-      let relatedTags = [] as string[];
-      let isParsed = false;
-
-      if (parseRelated) {
-        relatedTags = await getRelatedTags(generateTagId(name));
-        isParsed = true;
-      }
-
-      let originalImage = '';
-      if (parseImage) {
-        originalImage = await getRelatedImage(generateTagId(name));
-      }
-
-      const tag = await addTag({
-        name,
-        role,
-        relatedTags,
-        originalImage,
-        isParsed,
-      });
-      return res.status(200).send(tag);
+      return res
+        .status(200)
+        .send({ errors: totalTags - addedTags, success: addedTags });
     }
   } catch (err: any) {
     return res.status(400).json({
