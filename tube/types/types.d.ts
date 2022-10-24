@@ -42,3 +42,5 @@ export type Tag = {
 export type HeadlineVariant = 'h1' | 'h2' | 'h3';
 
 export type TagDesign = 'category' | 'tag';
+
+export type FeedbackSubject = 'others' | 'age' | 'broken' | 'copyrights';
