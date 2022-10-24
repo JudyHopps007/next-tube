@@ -45,7 +45,8 @@ const useTagAPI = () => {
   };
 
   const tagAdd = async (data: any) => {
-    await axios.post('/api/tags', data);
+    const result = await axios.post('/api/tags', data);
+    return result.data;
   };
 
   return {

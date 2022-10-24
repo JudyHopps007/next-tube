@@ -22,6 +22,7 @@ const AddTagsSection = (props: Props) => {
     target: 0,
     completed: 0,
     progress: 0,
+    successfullTags: 0,
     isRunning: false,
     isDone: false,
     tags: [] as string[],
@@ -45,6 +46,7 @@ const AddTagsSection = (props: Props) => {
       target: tagsArray.length,
       progress: 0,
       completed: 0,
+      successfullTags: 0,
       isRunning: true,
       isDone: false,
     });
@@ -67,13 +69,17 @@ const AddTagsSection = (props: Props) => {
           let stepSize = ADD_TAG_STEPSIZE;
           if (settings.tags.length < completed + ADD_TAG_STEPSIZE)
             stepSize = settings.tags.length % ADD_TAG_STEPSIZE;
-          await tagAPI.tagAdd({
+          const res = await tagAPI.tagAdd({
             tags: settings.tags.slice(completed, completed + stepSize),
             role: role,
             parseImage: settings.parseImage,
             parseRelated: settings.parseRelated,
           });
-          updateSettings({ completed: completed + stepSize });
+          const successfullTags = settings.successfullTags + res.success;
+          updateSettings({
+            completed: completed + stepSize,
+            successfullTags,
+          });
         }
       }
       if (isRunning && completed === target) {
@@ -153,7 +159,7 @@ const AddTagsSection = (props: Props) => {
       )}
       {isDone && (
         <Alert
-          message={`${settings.completed} ${unitName} added!`}
+          message={`${settings.successfullTags} of ${settings.completed} ${unitName} added!`}
           alertType="success"
         />
       )}
