@@ -9,15 +9,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ message: 'API Error - No Auth' });
     }
     if (req.method === 'POST') {
-      const { role, name } = req.body;
-      if (role === 'title' && (await keywordExists(name, role))) {
-        return res.status(200).send({ exists: true });
+      const { role, keywords } = req.body;
+      const totalKeywords = keywords.length;
+      let addedKeywords = 0;
+      for (let keyword of keywords) {
+        if (role === 'title' && (await keywordExists(keyword, role))) {
+          break;
+        }
+        const newKeyword = await addKeyword({
+          name: keyword,
+          role,
+        });
+        addedKeywords++;
       }
-      const keyword = await addKeyword({
-        name,
-        role,
-      });
-      return res.status(200).send(keyword);
+
+      return res
+        .status(200)
+        .send({
+          errors: totalKeywords - addedKeywords,
+          success: addedKeywords,
+        });
     }
   } catch (err: any) {
     return res.status(400).json({

@@ -4,6 +4,7 @@ import Button from '@ui/Button';
 import DropDown from '@ui/Dropdown';
 import Headline from '@ui/Headline';
 import ProgressBar from '@ui/ProgressBar';
+import { ADD_KEYWORD_STEPSIZE } from 'constants/panel';
 import useKeywordAPI from 'hooks/useKeywordAPI';
 import React, { useEffect, useState } from 'react';
 import { KeywordRole } from 'types/types';
@@ -32,6 +33,7 @@ const AddKeywordsSection = (props: Props) => {
     progress: 0,
     isRunning: false,
     isDone: false,
+    successfullKeywords: 0,
     keywords: [] as string[],
   });
 
@@ -56,6 +58,7 @@ const AddKeywordsSection = (props: Props) => {
       target: keywordsArray.length,
       progress: 0,
       completed: 0,
+      successfullKeywords: 0,
       isRunning: true,
       isDone: false,
     });
@@ -67,11 +70,19 @@ const AddKeywordsSection = (props: Props) => {
     const addTag = async () => {
       if (isRunning && completed <= target) {
         if (completed < target) {
-          await keywordAPI.keywordAdd({
-            name: settings.keywords[completed],
+          let stepSize = ADD_KEYWORD_STEPSIZE;
+          if (settings.keywords.length < completed + ADD_KEYWORD_STEPSIZE)
+            stepSize = settings.keywords.length % ADD_KEYWORD_STEPSIZE;
+          const res = await keywordAPI.keywordAdd({
+            keywords: settings.keywords.slice(completed, completed + stepSize),
             role: role,
           });
-          updateSettings({ completed: completed + 1 });
+          const successfullKeywords =
+            settings.successfullKeywords + res.success;
+          updateSettings({
+            completed: completed + stepSize,
+            successfullKeywords,
+          });
         }
       }
       if (isRunning && completed === target) {
@@ -134,7 +145,7 @@ const AddKeywordsSection = (props: Props) => {
       )}
       {isDone && (
         <Alert
-          message={`${settings.completed} ${unitName} added!`}
+          message={`${settings.successfullKeywords} of ${settings.completed} ${unitName} added!`}
           alertType="success"
         />
       )}

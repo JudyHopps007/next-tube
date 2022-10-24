@@ -22,7 +22,8 @@ const useKeywordAPI = () => {
   };
 
   const keywordAdd = async (data: any) => {
-    await axios.post('/api/keywords', data);
+    const result = await axios.post('/api/keywords', data);
+    return result.data;
   };
 
   return {
