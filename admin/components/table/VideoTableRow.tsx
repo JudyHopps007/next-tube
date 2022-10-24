@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { VideoWithMeta } from 'types/types';
 import ActionButton from '@ui/ActionButton';
 import PanelTag from '@ui/Tag';
+import { classNames } from 'utils/helpers';
 
 type Props = {
   video: VideoWithMeta;
@@ -13,7 +14,18 @@ type Props = {
 const VideoTableRow: FC<Props> = ({ video, deleteHandler, editHandler }) => {
   return (
     <tr className="bg-slate-800 hover:bg-slate-700/80 text-gray-400 hover:text-gray-300 text-sm">
-      <td className="px-4 py-3 font-semibold">{video.id}</td>
+      <td className="px-4 py-3 font-semibold">
+        <div className="flex flex-row justify-start items-center">
+          <div
+            className={classNames(
+              video.isUp ? 'bg-green-400' : 'bg-red-400',
+              'rounded-full w-2 h-2 mr-1'
+            )}
+          ></div>
+          {video.id}
+        </div>
+      </td>
+
       <td className="px-4 py-3">
         <div className="flex flex-row items-center md:space-x-3">
           <img

@@ -2,18 +2,18 @@ import { SearchIcon } from '@heroicons/react/outline';
 import DropDown from '@ui/Dropdown';
 import useQueryPush from 'hooks/useQueryPush';
 import React, { FC, useState } from 'react';
+import { VideoStatusType } from 'types/types';
 
 type Props = {
   orderBy: string | null;
   search: string;
+  status: VideoStatusType;
 };
 
-const defaultQuery = null;
-
-const items = [
+const dateItems = [
   {
     label: 'Recently added',
-    query: defaultQuery,
+    query: null,
   },
   {
     label: 'Oldest',
@@ -21,14 +21,37 @@ const items = [
   },
 ];
 
-const VideosFilters: FC<Props> = ({ orderBy, search }) => {
+const statusItems = [
+  {
+    label: 'All Status',
+    query: null,
+  },
+  {
+    label: 'Up',
+    query: 'up',
+  },
+  {
+    label: 'Down',
+    query: 'down',
+  },
+];
+
+const VideosFilters: FC<Props> = ({ orderBy, status, search }) => {
   const [searchQuery, setSearchQuery] = useState(search);
-  const [selectedFilterQuery, setSelectedFilterQuery] = useState(orderBy);
+  const [selectedDateFilterQuery, setSelectedDateFilterQuery] =
+    useState(orderBy);
+  const [selectedStatusFilterQuery, setSelectedStatusFilterQuery] =
+    useState(status);
   const queryPush = useQueryPush();
 
-  const updateFilterQuery = (newQuery: string | null) => {
-    setSelectedFilterQuery(newQuery);
+  const updateDateFilterQuery = (newQuery: string | null) => {
+    setSelectedDateFilterQuery(newQuery);
     queryPush.setQueryParam({ orderBy: newQuery });
+  };
+
+  const updateStatusFilterQuery = (newQuery: string | null) => {
+    setSelectedStatusFilterQuery(newQuery as VideoStatusType);
+    queryPush.setQueryParam({ status: newQuery });
   };
 
   return (
@@ -52,11 +75,18 @@ const VideosFilters: FC<Props> = ({ orderBy, search }) => {
           <SearchIcon className="h-5 w-5 text-white" />
         </button>
       </div>
-      <DropDown
-        items={items}
-        selectedQuery={selectedFilterQuery}
-        updateFilterQuery={updateFilterQuery}
-      />
+      <div className="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0 w-full md:w-auto">
+        <DropDown
+          items={statusItems}
+          selectedQuery={selectedStatusFilterQuery}
+          updateFilterQuery={updateStatusFilterQuery}
+        />
+        <DropDown
+          items={dateItems}
+          selectedQuery={selectedDateFilterQuery}
+          updateFilterQuery={updateDateFilterQuery}
+        />
+      </div>
     </div>
   );
 };

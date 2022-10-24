@@ -1,7 +1,7 @@
 import { IMAGE_SETTINGS } from 'constants/image';
 import Videos from 'database/models/videos.model';
 import { NextApiRequest } from 'next';
-import { VideoIncreaseKey } from 'types/types';
+import { VideoIncreaseKey, VideoStatusType } from 'types/types';
 import { createImage } from 'utils/cdn';
 
 export const addVideo = async (req: NextApiRequest) => {
@@ -110,15 +110,19 @@ export const getVideos = async (
   limit: number,
   select: any = {},
   sort: any = { createdAt: -1 },
-  search: string = ''
+  search: string = '',
+  status: VideoStatusType = null
 ) => {
   try {
     const skip = page * limit - limit;
-    const videos = Videos.find(
+    const filterStatus = status
+      ? { isUp: status === 'up' ? true : false }
+      : null;
+    const fitlerSearch =
       search.length > 0
-        ? { title: { $regex: `\\b${search}\\b`, $options: 'i' } }
-        : {}
-    )
+        ? { name: { $regex: `\\b${search}\\b`, $options: 'i' } }
+        : null;
+    const videos = Videos.find({ ...fitlerSearch, ...filterStatus })
       .skip(skip)
       .limit(limit)
       .sort(sort)

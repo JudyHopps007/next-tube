@@ -11,6 +11,7 @@ export type Video = {
   tags: string[];
   categories: string[];
   actors: string[];
+  isUp: boolean;
 };
 
 export type VideoMeta = {
@@ -71,3 +72,5 @@ export type PanelModals =
   | 'showEditVideosModal';
 
 export type VideoIncreaseKey = 'likes' | 'dislikes' | 'views';
+
+export type VideoStatusType = 'up' | 'down' | null;

@@ -72,6 +72,11 @@ const videosSchema = new mongoose.Schema(
       default: [],
       type: [String],
     },
+    isUp: {
+      default: true,
+      type: Boolean,
+    },
+    lastUpCheck: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
