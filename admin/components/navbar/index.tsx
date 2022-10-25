@@ -26,6 +26,10 @@ const navigation = [
     name: 'Keywords',
     href: '/keywords',
   },
+  {
+    name: 'Feedbacks',
+    href: '/feedbacks',
+  },
 ];
 
 const handleLogout = () => {

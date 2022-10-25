@@ -18,6 +18,8 @@ export const PANEL_CONSTANTS = {
     'Actions',
   ],
   KEYWORDS_PER_PAGE: 50,
+  FEEDBACKS_TABLE_TITLES: ['Subject', 'E-Mail'],
+  FEEDBACKS_PER_PAGE: 50,
 };
 
 export const TAG_ROLES_DROPDOWN = [
@@ -37,3 +39,10 @@ export const TAG_ROLES_DROPDOWN = [
 
 export const ADD_TAG_STEPSIZE = 10;
 export const ADD_KEYWORD_STEPSIZE = 10;
+
+export const FEEDBACK_SUBJECTS = {
+  broken: 'Broken Video',
+  copyright: 'DMCA / Copyright Infringement',
+  age: 'Inappropriate content',
+  others: 'Support / Feedback',
+};

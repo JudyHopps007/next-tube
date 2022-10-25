@@ -1,4 +1,5 @@
 import {
+  ChatIcon,
   ClipboardListIcon,
   CollectionIcon,
   HashtagIcon,
@@ -16,29 +17,18 @@ type Props = {
 };
 
 const getIcon = (icon: string) => {
+  const iconClass =
+    'w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12';
   const map: Record<string, any> = {
-    Videos: (
-      <VideoCameraIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-    ),
-    Tags: (
-      <HashtagIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-    ),
-    Categories: (
-      <CollectionIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-    ),
-    Actors: (
-      <UsersIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-    ),
-    Keywords: (
-      <ClipboardListIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-    ),
+    Videos: <VideoCameraIcon className={iconClass} />,
+    Tags: <HashtagIcon className={iconClass} />,
+    Categories: <CollectionIcon className={iconClass} />,
+    Actors: <UsersIcon className={iconClass} />,
+    Keywords: <ClipboardListIcon className={iconClass} />,
+    Feedbacks: <ChatIcon className={iconClass} />,
   };
 
-  return (
-    map[icon] ?? (
-      <ViewGridIcon className="w-10 h-10 text-black duration-500 group-hover:transition-all group-hover:rotate-12" />
-    )
-  );
+  return map[icon] ?? <ViewGridIcon className={iconClass} />;
 };
 
 const OverviewItem: FC<Props> = ({ title, count, href }) => {

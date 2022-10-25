@@ -1,4 +1,3 @@
-import TagsFilters from 'components/filters/TagsFilters';
 import PanelHeadline from '@ui/Headline';
 import Table from 'components/table';
 import { PANEL_CONSTANTS } from 'constants/panel';

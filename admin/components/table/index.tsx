@@ -2,21 +2,29 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ChangeRoleModal from 'components/modals/ChangeRoleModal';
 import EditTagModal from 'components/modals/EditTagModal';
 import EditVideoModal from 'components/modals/EditVideoModal';
+import useFeedbackAPI from 'hooks/useFeedbackAPI';
 import useKeywordAPI from 'hooks/useKeywordAPI';
 import useQueryPush from 'hooks/useQueryPush';
 import useTagAPI from 'hooks/useTagAPI';
 import useVideoAPI from 'hooks/useVideoAPI';
 import React, { FC, useState } from 'react';
-import { Keyword, PanelModals, Tag, VideoWithMeta } from 'types/types';
+import {
+  Feedback,
+  Keyword,
+  PanelModals,
+  Tag,
+  VideoWithMeta,
+} from 'types/types';
 import {
   calculateMaxItemPerPage,
   calculateMinItemPerPage,
 } from 'utils/navigation';
+import FeedbackTableRow from './FeedbackTableRow';
 import KeywordTableRow from './KeywordTableRow';
 import TagTableRow from './TagTableRow';
 import VideoTableRow from './VideoTableRow';
 
-type ContentType = 'tag' | 'video' | 'keyword';
+type ContentType = 'tag' | 'video' | 'keyword' | 'feedback';
 
 type Props = {
   page: number;
@@ -32,6 +40,7 @@ const getUnit = (contentType: ContentType) => {
     tag: 'Tags',
     video: 'Videos',
     keyword: 'Keywords',
+    feedback: 'Feedbacks',
   };
 
   return map[contentType] ?? 'Items';
@@ -56,6 +65,7 @@ const Table: FC<Props> = ({
   const tagAPI = useTagAPI();
   const videoAPI = useVideoAPI();
   const keywordAPI = useKeywordAPI();
+  const feedbackAPI = useFeedbackAPI();
 
   const updateModal = (key: PanelModals, id: string | null) => {
     setModalDataId(id);
@@ -125,6 +135,15 @@ const Table: FC<Props> = ({
                     keyword={item}
                     deleteHandler={keywordAPI.keywordDelete}
                     changeRoleHandler={keywordAPI.keywordChangeRole}
+                  />
+                ))}
+
+              {contentType === 'feedback' &&
+                items.map((item: Feedback) => (
+                  <FeedbackTableRow
+                    key={item.id}
+                    feedback={item}
+                    hasSeenHandler={feedbackAPI.feedbackHasSeen}
                   />
                 ))}
             </tbody>

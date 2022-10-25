@@ -1,6 +1,7 @@
 import {
   ChevronDownIcon,
   ChevronUpIcon,
+  EyeIcon,
   PencilAltIcon,
   RefreshIcon,
   XIcon,

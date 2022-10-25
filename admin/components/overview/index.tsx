@@ -8,12 +8,13 @@ type Props = {
     categoriesCount: number;
     actorsCount: number;
     keywordsCount: number;
+    feedbacksCount: number;
   };
 };
 
 const OverviewSection: FC<Props> = ({ counts }) => {
   return (
-    <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-2 mb-5 md:mb-10">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-5 md:mb-10">
       <OverviewItem title="Videos" href="/videos" count={counts.videosCount} />
       <OverviewItem
         title="Tags"
@@ -34,6 +35,11 @@ const OverviewSection: FC<Props> = ({ counts }) => {
         title="Keywords"
         count={counts.keywordsCount}
         href="/keywords"
+      />
+      <OverviewItem
+        title="Feedbacks"
+        count={counts.feedbacksCount}
+        href="/feedbacks"
       />
     </div>
   );

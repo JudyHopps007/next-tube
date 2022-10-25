@@ -18,6 +18,7 @@ export const addFeedback = async (req: NextApiRequest) => {
     }
 
     const feedback = new Feedbacks({
+      id: 1,
       subject,
       email,
       message,

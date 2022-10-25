@@ -8,34 +8,24 @@ import AddContentSection from 'components/content/AddContentSection';
 import { getSession } from 'next-auth/react';
 import { redirectUser } from 'utils/auth';
 import { countKeywords } from '@db/services/keywords.service';
+import { countFeedbacks } from '@db/services/feedbacks.service';
 
 type Props = {
-  videosCount: number;
-  tagsCount: number;
-  categoriesCount: number;
-  actorsCount: number;
-  keywordsCount: number;
+  counts: {
+    videosCount: number;
+    tagsCount: number;
+    categoriesCount: number;
+    actorsCount: number;
+    keywordsCount: number;
+    feedbacksCount: number;
+  };
 };
 
-const PanelIndexPage: NextPage<Props> = ({
-  videosCount,
-  tagsCount,
-  categoriesCount,
-  actorsCount,
-  keywordsCount,
-}) => {
+const PanelIndexPage: NextPage<Props> = ({ counts }) => {
   return (
     <>
       <PanelHeadline text="Statistics" />
-      <OverviewSection
-        counts={{
-          videosCount,
-          tagsCount,
-          categoriesCount,
-          actorsCount,
-          keywordsCount,
-        }}
-      />
+      <OverviewSection counts={counts} />
       <PanelHeadline text="Add New Content" />
       <AddContentSection />
     </>
@@ -52,13 +42,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const categoriesCount = await countTags('category');
   const actorsCount = await countTags('actor');
   const keywordsCount = await countKeywords();
+  const feedbacksCount = await countFeedbacks();
   return {
     props: {
-      videosCount,
-      tagsCount,
-      categoriesCount,
-      actorsCount,
-      keywordsCount,
+      counts: {
+        feedbacksCount,
+        videosCount,
+        tagsCount,
+        categoriesCount,
+        actorsCount,
+        keywordsCount,
+      },
     },
   };
 };

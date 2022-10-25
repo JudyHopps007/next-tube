@@ -74,3 +74,11 @@ export type PanelModals =
 export type VideoIncreaseKey = 'likes' | 'dislikes' | 'views';
 
 export type VideoStatusType = 'up' | 'down' | null;
+
+export type Feedback = {
+  id: number;
+  subject: string;
+  message: string;
+  email: string;
+  hasSeen: boolean;
+};
