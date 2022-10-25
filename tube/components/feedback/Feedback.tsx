@@ -64,9 +64,14 @@ const Feedback: FC<Props> = ({ showModal, onClose }) => {
         body: JSON.stringify(feedback),
       });
       const data = await response.json();
-      if (data?.success)
-        updateFeedback({ success: 'Thank you for your feedback!' });
-      else updateFeedback({ error: data.message || 'Something went wrong!' });
+      if (data?.success) {
+        updateFeedback({
+          email: '',
+          message: '',
+          subject: defaultItem,
+          success: 'Thank you for your feedback!',
+        });
+      } else updateFeedback({ error: data.message || 'Something went wrong!' });
     } catch (err: any) {
       console.error(err);
     }
