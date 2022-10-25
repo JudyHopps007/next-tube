@@ -77,44 +77,42 @@ const Feedback: FC<Props> = ({ showModal, onClose }) => {
   return (
     <Modal title={'Feedback'} isShowing={showModal} onClose={onClose}>
       <>
-        <div className="flex flex-col">
-          <div className="text-left">
-            <Alert message={error} alertType="danger" />
-            <Alert message={success} alertType="success" />
-            <span className="font-semibold my-1">Subject</span>
-            <DropDown
-              items={items}
-              selectedQuery={subject}
-              updateFilterQuery={updateDropdown}
-            />
-            <TextInput
-              label="E-Mail"
-              value={email}
-              placeholder={'Your E-Mail...'}
-              handleChange={(e) => {
-                updateFeedback({ email: e.target.value });
-              }}
-            />
-            <span className="font-semibold my-1">Message</span>
-            <textarea
-              style={{ resize: 'none' }}
-              className="w-full dark:bg-slate-800 bg-white focus:outline-none rounded-md p-2"
-              rows={5}
-              cols={5}
-              value={message}
-              placeholder={`Enter message, please don't forget video id.`}
-              onChange={(e) => {
-                updateFeedback({ message: e.target.value });
-              }}
-            />
+        <div className="flex flex-col text-left space-y-3">
+          <Alert message={error} alertType="danger" />
+          <Alert message={success} alertType="success" />
+          <span className="font-semibold">Subject</span>
+          <DropDown
+            items={items}
+            selectedQuery={subject}
+            updateFilterQuery={updateDropdown}
+          />
+          <span className="font-semibold">E-Mail</span>
+          <TextInput
+            value={email}
+            placeholder={'Your E-Mail...'}
+            handleChange={(e) => {
+              updateFeedback({ email: e.target.value });
+            }}
+          />
+          <span className="font-semibold">Message</span>
+          <textarea
+            style={{ resize: 'none' }}
+            className="w-full dark:bg-slate-800 bg-white focus:outline-none rounded-md p-2"
+            rows={5}
+            cols={5}
+            value={message}
+            placeholder={`Enter message, please don't forget video id.`}
+            onChange={(e) => {
+              updateFeedback({ message: e.target.value });
+            }}
+          />
 
-            <button
-              onClick={submitFeedback}
-              className="bg-indigo-600 w-full rounded-md p-2 text-gray-100 hover:bg-indigo-500"
-            >
-              Send
-            </button>
-          </div>
+          <button
+            onClick={submitFeedback}
+            className="bg-indigo-600 w-full rounded-md p-2 text-gray-100 hover:bg-indigo-500"
+          >
+            Send
+          </button>
         </div>
       </>
     </Modal>
