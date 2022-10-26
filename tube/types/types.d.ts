@@ -10,7 +10,7 @@ export type Video = {
   dislikes: number;
   tags: string[];
   categories: string[];
-  actors: string[];
+  models: string[];
 };
 
 export type VideoMeta = {
@@ -22,7 +22,7 @@ export type VideoMeta = {
 
 export type VideoWithMeta = Video & VideoMeta;
 
-export type TagRole = 'category' | 'tag' | 'actor';
+export type TagRole = 'category' | 'tag' | 'model';
 
 export type Category = {
   id: string;

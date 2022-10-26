@@ -47,7 +47,7 @@ const VideoTableRow: FC<Props> = ({ video, deleteHandler, editHandler }) => {
       </td>
       <td className="px-4 py-3">
         <div>
-          {`${video.tags.length} / ${video.categories.length} / ${video.actors.length}`}
+          {`${video.tags.length} / ${video.categories.length} / ${video.models.length}`}
         </div>
       </td>
       <td className="px-4 py-3">

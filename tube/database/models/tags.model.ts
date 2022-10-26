@@ -14,7 +14,7 @@ const tagsSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['category', 'tag', 'actor'],
+      enum: ['category', 'tag', 'model'],
       default: 'tag',
     },
     image: {

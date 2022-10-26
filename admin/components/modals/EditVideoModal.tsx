@@ -91,21 +91,21 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
               />
 
               <TagEditor
-                label="Actors"
-                tags={video.actors}
-                btnLabel="Add Actor"
-                removeTag={(actorToRemove) => {
-                  const currentActors = video.actors.slice();
+                label="Models"
+                tags={video.models}
+                btnLabel="Add Model"
+                removeTag={(modelToRemove) => {
+                  const currentModels = video.models.slice();
                   updateVideo(
-                    'actors',
-                    currentActors.filter((t) => t !== actorToRemove)
+                    'models',
+                    currentModels.filter((t) => t !== modelToRemove)
                   );
                 }}
-                addTag={(actorToAdd) => {
-                  const currentActors = video.actors.slice();
-                  if (!currentActors.includes(actorToAdd)) {
-                    currentActors.push(actorToAdd);
-                    updateVideo('actors', currentActors);
+                addTag={(modelToAdd) => {
+                  const currentModels = video.models.slice();
+                  if (!currentModels.includes(modelToAdd)) {
+                    currentModels.push(modelToAdd);
+                    updateVideo('models', currentModels);
                   }
                 }}
               />
@@ -170,7 +170,7 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   title: video.title,
                   tags: video.tags,
                   categories: video.categories,
-                  actors: video.actors,
+                  models: video.models,
                   originalImage: video.originalImage,
                   hd: video.hd,
                 };

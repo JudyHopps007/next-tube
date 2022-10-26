@@ -15,7 +15,7 @@ type Props = {
     videosCount: number;
     tagsCount: number;
     categoriesCount: number;
-    actorsCount: number;
+    modelsCount: number;
     keywordsCount: number;
     feedbacksCount: number;
   };
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const videosCount = await countVideos();
   const tagsCount = await countTags('tag');
   const categoriesCount = await countTags('category');
-  const actorsCount = await countTags('actor');
+  const modelsCount = await countTags('model');
   const keywordsCount = await countKeywords();
   const feedbacksCount = await countFeedbacks();
   return {
@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         videosCount,
         tagsCount,
         categoriesCount,
-        actorsCount,
+        modelsCount,
         keywordsCount,
       },
     },

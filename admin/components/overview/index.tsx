@@ -6,7 +6,7 @@ type Props = {
     videosCount: number;
     tagsCount: number;
     categoriesCount: number;
-    actorsCount: number;
+    modelsCount: number;
     keywordsCount: number;
     feedbacksCount: number;
   };
@@ -27,9 +27,9 @@ const OverviewSection: FC<Props> = ({ counts }) => {
         href="/tags?role=category"
       />
       <OverviewItem
-        title="Actors"
-        count={counts.actorsCount}
-        href="/tags?role=actor"
+        title="Models"
+        count={counts.modelsCount}
+        href="/tags?role=model"
       />
       <OverviewItem
         title="Keywords"

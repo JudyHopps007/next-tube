@@ -3,7 +3,7 @@ import {
   ClipboardListIcon,
   CollectionIcon,
   HashtagIcon,
-  UsersIcon,
+  UserIcon,
   VideoCameraIcon,
   ViewGridIcon,
 } from '@heroicons/react/outline';
@@ -23,7 +23,7 @@ const getIcon = (icon: string) => {
     Videos: <VideoCameraIcon className={iconClass} />,
     Tags: <HashtagIcon className={iconClass} />,
     Categories: <CollectionIcon className={iconClass} />,
-    Actors: <UsersIcon className={iconClass} />,
+    Models: <UserIcon className={iconClass} />,
     Keywords: <ClipboardListIcon className={iconClass} />,
     Feedbacks: <ChatIcon className={iconClass} />,
   };

@@ -54,7 +54,7 @@ const AddTagsSection = (props: Props) => {
 
   const roleMap: Record<string, any> = {
     tag: 'Tags',
-    actor: 'Actors',
+    model: 'Models',
     category: 'Categories',
   };
 

@@ -3,7 +3,7 @@ export const PANEL_CONSTANTS = {
     'Id',
     'Video',
     'Plattform',
-    'Tags / Categories / Actors',
+    'Tags / Categories / Models',
     'Actions',
   ],
   VIDEOS_PER_PAGE: 50,
@@ -32,8 +32,8 @@ export const TAG_ROLES_DROPDOWN = [
     query: 'category',
   },
   {
-    label: 'Actor',
-    query: 'actor',
+    label: 'Model',
+    query: 'model',
   },
 ];
 

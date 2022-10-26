@@ -23,10 +23,10 @@ export const IMAGE_SETTINGS = {
     height: 250,
     subPath: 'category',
   },
-  actor: {
+  model: {
     prefix: '',
     width: 400,
     height: 250,
-    subPath: 'actor',
+    subPath: 'model',
   },
 };

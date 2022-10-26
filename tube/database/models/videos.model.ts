@@ -68,7 +68,7 @@ const videosSchema = new mongoose.Schema(
       default: [],
       type: [String],
     },
-    actors: {
+    models: {
       default: [],
       type: [String],
     },

@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       thumbnail: 1,
       tags: 1,
       categories: 1,
-      actors: 1,
+      models: 1,
       alternativeTitle: 1,
       plattform: 1,
       originalId: 1,
