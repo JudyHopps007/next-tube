@@ -3,7 +3,7 @@ export type Video = {
   title: string;
   thumbnail: string;
   poster: string;
-  hd: boolean;
+  isHD: boolean;
   duration: number;
   views: number;
   likes: number;

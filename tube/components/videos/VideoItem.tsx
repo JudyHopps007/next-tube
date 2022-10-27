@@ -38,7 +38,7 @@ const VideoItem: FC<Props> = ({
             />
           </a>
         </Link>
-        {showHd && (
+        {showHd && video.isHD && (
           <span className="bg-tertiary py-1 px-2 bg-opacity-90 text-primary text-xs font-semibold rounded-md absolute top-1 right-1 group-hover:opacity-0 duration-500 ease-in-out">
             HD
           </span>
@@ -50,7 +50,7 @@ const VideoItem: FC<Props> = ({
         )}
         {showDuration && (
           <span className="bg-primary bg-opacity-90 py-1 px-2 text-primary text-xs font-light rounded-tl-md absolute bottom-0 right-0 inline-flex group-hover:opacity-0 duration-500 ease-in-out">
-            <ClockIcon className="w-4 h-4 mr-1" /> 4min
+            <ClockIcon className="w-4 h-4 mr-1" /> {video.duration}
           </span>
         )}
       </div>

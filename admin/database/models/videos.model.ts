@@ -28,9 +28,9 @@ const videosSchema = new mongoose.Schema(
       default: '',
       trim: true,
     },
-    hd: {
+    isHD: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     duration: {
       type: Number,
