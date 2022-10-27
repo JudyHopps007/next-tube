@@ -28,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   await connectToDb();
   const videos = await getVideos(1, 40, {
     _id: 0,
+    id: 1,
     title: 1,
     tags: 1,
     models: 1,

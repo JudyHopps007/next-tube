@@ -43,6 +43,15 @@ export const getRoute = (routeName: Routes) => {
   return routes[routeName] as string;
 };
 
+export const getVideoId = (id: string) => {
+  try {
+    if (isNaN(parseFloat(id)) || isNaN(+id)) return null;
+    return parseFloat(id);
+  } catch (err: any) {
+    return null;
+  }
+};
+
 export const validateTagRole = (str: string) => {
   if (
     getRoute('tag') === str ||

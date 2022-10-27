@@ -11,6 +11,7 @@ export type Video = {
   tags: string[];
   categories: string[];
   models: string[];
+  createdAt: Date;
 };
 
 export type VideoMeta = {
