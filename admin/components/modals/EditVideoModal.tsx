@@ -45,9 +45,9 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
 
               <Checkbox
                 label="HD"
-                value={video.hd}
+                value={video.isHD}
                 handleChange={() => {
-                  updateVideo('hd', !video.hd);
+                  updateVideo('isHD', !video.isHD);
                 }}
               />
 
@@ -172,7 +172,7 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   categories: video.categories,
                   models: video.models,
                   originalImage: video.originalImage,
-                  hd: video.hd,
+                  isHD: video.isHD,
                 };
                 onClose();
                 saveChanges(video.id, data);
