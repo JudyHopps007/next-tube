@@ -16,7 +16,7 @@ const VideoSection: FC<Props> = ({ video }) => {
   const hasCategories = true; //= video.categories.length > 0 || video.models.length > 0;
   return (
     <section className="mt-1">
-      <div className="w-full flex flex-col px-3 py-2 text-primary space-y-3">
+      <div className="w-full flex flex-col py-2 text-primary space-y-3">
         <video
           src="https://i.4cdn.org/gif/1666875782940473.webm"
           controls

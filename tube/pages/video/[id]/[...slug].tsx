@@ -4,13 +4,24 @@ import { GetServerSideProps, NextPage } from 'next';
 import { Video } from 'types/types';
 import { getVideoId, toJson } from 'utils/helpers';
 import VideoSection from 'components/video';
+import VideosSection from 'components/videos/VideoSection';
 
 type Props = {
   video: Video;
+  relevantVideos: Video[];
 };
 
-const VideoPage: NextPage<Props> = ({ video }) => {
-  return <VideoSection video={video} />;
+const VideoPage: NextPage<Props> = ({ video, relevantVideos }) => {
+  return (
+    <>
+      <VideoSection video={video} />
+      <VideosSection
+        headline="Most Related Videos"
+        variant="h2"
+        videos={relevantVideos}
+      />
+    </>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -20,10 +31,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   await connectToDb();
   const video = await getVideoById(id);
-  console.log(video);
   return {
     props: {
       video: toJson(video),
+      relevantVideos: [],
     },
   };
 };
