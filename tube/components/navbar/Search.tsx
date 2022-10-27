@@ -25,16 +25,16 @@ const Search: FC<Props> = ({ showMobileSearch }) => {
     <div
       className={`${
         showMobileSearch ? 'fixed top-16 right-2 left-2' : 'hidden'
-      } md:relative md:top-0 md:left-0 md:flex bg-indigo-600 rounded-md mx-auto`}
+      } md:relative md:top-0 md:left-0 md:flex bg-tertiary rounded-md mx-auto`}
     >
       <div
         className={`${
-          showMobileSearch ? 'dark:bg-slate-900 bg-gray-100 pb-2' : ''
+          showMobileSearch ? 'bg-primary pb-2' : 'bg-primary'
         } flex flex-row`}
       >
         <div className="relative w-full">
           <input
-            className="p-2 rounded-l-md w-full md:w-64 dark:bg-slate-800 dark:text-gray-300 bg-white focus:outline-none"
+            className="p-2 rounded-l-md w-full md:w-64 bg-secondary text-secondary focus:outline-none"
             type="text"
             value={query}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +45,7 @@ const Search: FC<Props> = ({ showMobileSearch }) => {
           {showClearSearch && (
             <div className="absolute right-2 top-3">
               <XIcon
-                className="h-4 w-4 dark:text-gray-100 text-gray-600 hover:text-gray-600/40 dark:hover:text-gray-100/80 cursor-pointer"
+                className="h-4 w-4 text-primary hover:text-primary/80 cursor-pointer"
                 onClick={() => {
                   setQuery('');
                 }}
@@ -55,7 +55,7 @@ const Search: FC<Props> = ({ showMobileSearch }) => {
         </div>
         <button
           onClick={handleSearch}
-          className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-r-md"
+          className="px-3 py-2 bg-tertiary hover:bg-tertiary/90 rounded-r-md"
         >
           <SearchIcon className="h-5 w-5 text-white" />
         </button>

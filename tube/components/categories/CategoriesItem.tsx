@@ -13,7 +13,7 @@ type Props = {
 
 const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
   return (
-    <div className="bg-white hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800/70 text-gray-600 hover:text-gray-500 dark:hover:text-gray-100 dark:text-gray-300 justify-items-center rounded-md overflow-hidden shadow-lg group">
+    <div className="bg-secondary/70 hover:bg-secondary hover:text-primary text-secondary justify-items-center rounded-md overflow-hidden shadow-lg group">
       <Link href={buildTagUrl(name, role)}>
         <a>
           <Image

@@ -1,19 +1,10 @@
-import {
-  MoonIcon,
-  SunIcon,
-  MenuIcon,
-  XIcon,
-  SearchIcon,
-} from '@heroicons/react/outline';
+import { MenuIcon, XIcon, SearchIcon } from '@heroicons/react/outline';
 import NavButton from 'components/navbar/NavButton';
 import { FC, useEffect, useState } from 'react';
 import NavItem from './NavItem';
 import Search from './Search';
 
-type Props = {
-  darkTheme: boolean;
-  toogleTheme: () => void;
-};
+type Props = {};
 
 const navigation = [
   {
@@ -26,7 +17,7 @@ const navigation = [
   },
 ];
 
-const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
+const Navbar: FC<Props> = ({}) => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -52,11 +43,11 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
 
   return (
     <header
-      className={`sticky z-10 border-b bg-gray-100 dark:bg-slate-900 border-b-slate-900/10 dark:border-b-slate-300/10 ${
+      className={`sticky z-10 border-b bg-primary border-primary/10 ${
         visible ? 'top-0' : ''
       }`}
     >
-      <nav className="flex flex-row justify-between items-center bg-gray-100 dark:bg-slate-900 max-w-5xl mx-auto px-2 lg:px-0">
+      <nav className="flex flex-row justify-between items-center max-w-5xl mx-auto px-2 lg:px-0">
         <div className="md:hidden">
           <NavButton
             onClick={() => {
@@ -75,17 +66,15 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
         </div>
 
         <div className="md:hidden">
-          <div className="ml-[3.75rem]">
-            <NavItem brand={true} href="/" title="NextTube" />
-          </div>
+          <NavItem brand={true} href="/" title="NextTube" />
         </div>
 
         <div
           className={`${
             showMobileNav ? '' : 'hidden'
-          } fixed md:relative md:flex md:flex-row md:items-center md:justify-start md:top-0 top-14 w-full dark:bg-slate-900 pb-2 py-2 border-none`}
+          } fixed md:relative md:flex md:flex-row md:items-center md:justify-start md:top-0 top-14 w-full pb-2 py-2 border-none`}
         >
-          <ul className="flex flex-col md:flex-row mr-4 md:mr-0 bg-white md:bg-gray-100 md:space-x-2 items-center justify-items-center dark:bg-slate-800 md:dark:bg-slate-900 text-center rounded-md border border-transparent">
+          <ul className="flex flex-col md:flex-row mr-4 md:mr-0 md:space-x-2 items-center justify-items-center bg-secondary md:bg-primary text-center rounded-md border border-transparent">
             <li className="hidden md:flex">
               <NavItem brand={true} href="/" title="NextTube" />
             </li>
@@ -113,16 +102,6 @@ const Navbar: FC<Props> = ({ darkTheme, toogleTheme }) => {
                 <XIcon className="w-5 h-5" />
               ) : (
                 <SearchIcon className="h-5 w-5" />
-              )}
-            </NavButton>
-          </div>
-
-          <div className="flex items-center py-2 lg:px-2" onClick={toogleTheme}>
-            <NavButton>
-              {darkTheme ? (
-                <SunIcon className="h-5 w-5" />
-              ) : (
-                <MoonIcon className="h-5 w-5" />
               )}
             </NavButton>
           </div>

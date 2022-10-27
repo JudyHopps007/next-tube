@@ -36,11 +36,11 @@ const DropDown: FC<Props> = ({ items, selectedQuery, updateFilterQuery }) => {
   return (
     <div
       ref={dropdownRef}
-      className="relative flex flex-row justify-between items-center w-full md:w-auto rounded-md text-sm font-medium dark:bg-slate-800 dark:text-gray-300 bg-white shadow-sm cursor-pointer min-w-[10rem] text-black"
+      className="relative flex flex-row justify-between items-center w-full md:w-auto rounded-md text-sm font-medium bg-secondary text-secondary shadow-sm cursor-pointer min-w-[10rem]"
     >
       <button
         type="button"
-        className="flex justify-between items-center px-4 py-2 md:py-3 w-full focus:outline-none dark:text-gray-100 font-semibold"
+        className="flex justify-between items-center px-4 py-2 md:py-3 w-full focus:outline-none text-primary font-semibold"
         onClick={() => {
           setShowDropdown(!showDropdown);
         }}
@@ -50,7 +50,7 @@ const DropDown: FC<Props> = ({ items, selectedQuery, updateFilterQuery }) => {
       </button>
 
       {showDropdown && (
-        <div className="z-50 absolute right-0 top-10 md:top-12 rounded-md w-full dark:bg-slate-800 dark:text-gray-300 bg-white shadow-lg">
+        <div className="z-50 absolute right-0 top-10 md:top-12 rounded-md w-full bg-secondary text-secondary shadow-lg">
           <div className="py-1">
             {items.map((item) => (
               <div
@@ -60,10 +60,8 @@ const DropDown: FC<Props> = ({ items, selectedQuery, updateFilterQuery }) => {
                   setShowDropdown(false);
                 }}
                 className={classNames(
-                  item.query === selectedQuery
-                    ? 'text-black dark:text-gray-100'
-                    : '',
-                  'block px-4 py-2 text-sm hover:bg-slate-200 hover:dark:bg-slate-700 cursor-pointer'
+                  item.query === selectedQuery ? 'text-primary' : '',
+                  'block px-4 py-2 text-sm hover:bg-tertiary/30 cursor-pointer'
                 )}
               >
                 {item.label}

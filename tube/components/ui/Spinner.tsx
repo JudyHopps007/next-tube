@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Spinner: FC<Props> = ({
-  borderColor = 'dark:border-gray-400 border-black',
+  borderColor = 'border-primary',
   padding = 'py-8',
 }) => {
   return (

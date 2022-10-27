@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-primary: 15, 23, 42;
+    --bg-secondary: 30, 41, 59;
+    --bg-tertiary: 251, 37, 118;
+    /*100 gray*/
+    --text-primary: 243, 244, 246;
+    /*300 gray*/
+    --text-secondary: 209, 213, 219;
+    --text-tertiary: 222, 47, 117;
+
+    --border-primary: 203, 213, 225;
+    --border-secondary: 251, 37, 118;
+  }
+
   body {
     @apply font-inter;
   }
