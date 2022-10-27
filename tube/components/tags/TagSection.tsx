@@ -1,5 +1,5 @@
 import Headline from '@ui/Headline';
-import { HeadlineVariant, TagDesign } from 'types/types';
+import { HeadlineVariant, Tag, TagDesign } from 'types/types';
 import { FC } from 'react';
 import { classNames } from 'utils/helpers';
 import TagItem from './TagItem';

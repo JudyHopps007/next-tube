@@ -26,7 +26,7 @@ const VideoItem: FC<Props> = ({
   return (
     <div className="hover:bg-secondary/40 hover:text-primary text-secondary justify-items-center rounded-md overflow-hidden shadow-lg">
       <div className="relative group">
-        <Link href={buildVideoUrl(video.id, video.title, 'video')}>
+        <Link href={buildVideoUrl(video.id, video.title)}>
           <a>
             <Image
               className="group-hover:scale-110 ease-in duration-500"
@@ -66,7 +66,7 @@ const VideoItem: FC<Props> = ({
       {showTags && (
         <div className="mb-2 mx-2 mt-1 flex flex-row content-around flex-wrap">
           {video.tags.map((tag) => (
-            <VideoTagItem key={tag} tag={tag} />
+            <VideoTagItem key={tag} role={'tag'} tag={tag} />
           ))}
         </div>
       )}

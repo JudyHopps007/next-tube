@@ -1,5 +1,6 @@
 import { MenuIcon, XIcon, SearchIcon } from '@heroicons/react/outline';
 import NavButton from 'components/navbar/NavButton';
+import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 import NavItem from './NavItem';
 import Search from './Search';
@@ -8,12 +9,8 @@ type Props = {};
 
 const navigation = [
   {
-    name: 'Example #1',
-    href: '/',
-  },
-  {
-    name: 'Example #2',
-    href: '/',
+    name: 'Models',
+    href: '/models',
   },
 ];
 
@@ -21,6 +18,7 @@ const Navbar: FC<Props> = ({}) => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [visible, setVisible] = useState(true);
+  const { pathname } = useRouter();
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -80,7 +78,11 @@ const Navbar: FC<Props> = ({}) => {
             </li>
             {navigation.map((navItem, i) => (
               <li key={i} className={fullClass}>
-                <NavItem href={navItem.href} title={navItem.name} />
+                <NavItem
+                  href={navItem.href}
+                  title={navItem.name}
+                  active={pathname === navItem.href}
+                />
               </li>
             ))}
           </ul>

@@ -19,7 +19,7 @@ const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
           <Image
             className="hover:scale-110 ease-in duration-500"
             alt={name}
-            src={image}
+            src={image || '/images/no-image.png'}
             layout={'responsive'}
             width={400}
             height={250}

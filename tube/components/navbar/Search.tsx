@@ -1,6 +1,6 @@
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
-import { slugify } from 'utils/helpers';
+import { slugifyAndPage } from 'utils/helpers';
 import { useRouter } from 'next/router';
 
 type Props = {
@@ -16,7 +16,7 @@ const Search: FC<Props> = ({ showMobileSearch }) => {
     e.preventDefault();
     // at least 3 chars for a search
     if (query.length < 3) return;
-    const slugifiedQuery = slugify(query);
+    const slugifiedQuery = slugifyAndPage(query);
     setQuery('');
     router.push(`/tag/${slugifiedQuery}`);
   };

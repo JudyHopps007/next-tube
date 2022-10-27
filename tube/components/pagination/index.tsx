@@ -1,14 +1,15 @@
 import Button from '@ui/Button';
 import React, { FC } from 'react';
+import { TagRole } from 'types/types';
 import { buildTagUrl } from 'utils/navigation';
 
 type Props = {
   currentPage: number;
-  path: string;
-  name: string;
+  role: TagRole;
+  keyword: string;
 };
 
-const Pagination: FC<Props> = ({ currentPage, name, path }) => {
+const Pagination: FC<Props> = ({ currentPage, keyword, role = 'tag' }) => {
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
 
@@ -17,14 +18,14 @@ const Pagination: FC<Props> = ({ currentPage, name, path }) => {
       {prevPage > 0 && (
         <Button
           text="< Prev"
-          href={buildTagUrl(name, path, prevPage)}
+          href={buildTagUrl(keyword, role, prevPage)}
           outline
         />
       )}
       {nextPage < 6 && (
         <Button
           text="Next >"
-          href={buildTagUrl(name, path, nextPage)}
+          href={buildTagUrl(keyword, role, nextPage)}
           outline
         />
       )}

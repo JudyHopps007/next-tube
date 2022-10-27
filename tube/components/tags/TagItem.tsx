@@ -1,4 +1,4 @@
-import { TagDesign } from 'types/types';
+import { Tag, TagDesign } from 'types/types';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { classNames } from 'utils/helpers';

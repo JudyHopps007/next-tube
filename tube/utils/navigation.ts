@@ -1,14 +1,11 @@
-import { slugify } from './helpers';
+import { TagRole } from 'types/types';
+import { getRoute, slugify, slugifyAndPage } from './helpers';
 
-export const buildTagUrl = (name: string, path = '', page = 1) => {
-  const url =
-    '/' +
-    (path.length > 1 ? `${path}/` : '') +
-    slugify(name) +
-    (page > 1 ? `/${page}` : '');
+export const buildTagUrl = (name: string, route: TagRole = 'tag', page = 1) => {
+  const url = '/' + `${getRoute(route)}/` + slugifyAndPage(name, page);
   return url;
 };
 
-export const buildVideoUrl = (id: number, name: string, path = 'video') => {
-  return '/' + `${path}/${id}/${slugify(name)}`;
+export const buildVideoUrl = (id: number, name: string) => {
+  return '/' + `${getRoute('video')}/${id}/${slugify(name)}`;
 };
