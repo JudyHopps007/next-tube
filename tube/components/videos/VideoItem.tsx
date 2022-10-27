@@ -24,7 +24,7 @@ const VideoItem: FC<Props> = ({
   showTags = false,
 }) => {
   return (
-    <div className="bg-secondary/70 hover:bg-secondary hover:text-primary text-secondary justify-items-center rounded-md overflow-hidden shadow-lg">
+    <div className="hover:bg-secondary/40 hover:text-primary text-secondary justify-items-center rounded-md overflow-hidden shadow-lg">
       <div className="relative group">
         <Link href={buildVideoUrl(video.id, video.title, 'video')}>
           <a>
