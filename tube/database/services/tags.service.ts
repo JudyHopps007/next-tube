@@ -30,7 +30,7 @@ export const searchRelatedTags = async (
       id: { $ne: generateTagId(name) },
       $text: {
         $search: name,
-        $caseSensitive: false,
+        $caseSensitive: true,
         $diacriticSensitive: true,
       },
       score: { $meta: 'textScore' },

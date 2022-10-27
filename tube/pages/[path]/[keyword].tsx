@@ -1,9 +1,16 @@
+import { connectToDb } from '@db/database';
+import { getRandomTags, searchRelatedTags } from '@db/services/tags.service';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideoSection';
 import { GetServerSideProps, NextPage } from 'next';
 import { TagRole, Video } from 'types/types';
-import { getPage, getTagRoleByRoute, validateTagRole } from 'utils/helpers';
+import {
+  getPage,
+  getTagRoleByRoute,
+  toJson,
+  validateTagRole,
+} from 'utils/helpers';
 
 type Props = {
   page: number;
@@ -31,17 +38,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { redirect: { destination: '/', permanent: true } };
   }
 
+  await connectToDb();
   const { page, keyword } = pageData;
-
   const videos = [] as Video[];
-  const tags = [] as string[];
+  const tags = await searchRelatedTags(keyword, 20, { _id: 0, name: 1 });
 
   return {
     props: {
       page,
       keyword,
       videos,
-      tags,
+      tags: toJson(tags.map((tag) => tag.name)),
       role: getTagRoleByRoute(path as string),
     },
   };

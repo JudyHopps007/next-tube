@@ -1,4 +1,4 @@
-import { Tag, TagDesign } from 'types/types';
+import { TagDesign } from 'types/types';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { classNames } from 'utils/helpers';
@@ -39,34 +39,32 @@ const TagItem: FC<Props> = ({
   useSize = false,
   size = 0,
 }) => {
-  if (design === 'tag') {
-    return (
-      <div
-        className={classNames(
-          'text-sm md:text-base leading-5 mr-2',
-          useSize ? getFont(size) : 'font-medium',
-          'text-tertiary bg-tertiary/10 rounded-full py-1 px-3 hover:bg-tertiary/30 mb-2 hover:scale-[1.05] duration-500 ease-in shadow-md'
+  return (
+    <Link href={buildTagUrl(tag, 'tag')}>
+      <a>
+        {design === 'tag' ? (
+          <div
+            className={classNames(
+              'text-sm md:text-base leading-5 mr-2',
+              useSize ? getFont(size) : 'font-medium',
+              'text-tertiary bg-tertiary/10 rounded-full py-1 px-3 hover:bg-tertiary/30 mb-2 hover:scale-[1.05] duration-500 ease-in shadow-md'
+            )}
+          >
+            {tag}
+          </div>
+        ) : (
+          <div
+            className={classNames(
+              getTextSize(size),
+              'flex mr-2 p-1 font-semibold text-secondary hover:text-primary'
+            )}
+          >
+            {tag}
+          </div>
         )}
-      >
-        <Link href={buildTagUrl(tag, 'tag')}>
-          <a>{tag}</a>
-        </Link>
-      </div>
-    );
-  } else {
-    return (
-      <div
-        className={classNames(
-          getTextSize(size),
-          'flex mr-2 p-1 font-semibold text-secondary hover:text-primary'
-        )}
-      >
-        <Link href={buildTagUrl(tag, 'tag')}>
-          <a>{tag}</a>
-        </Link>
-      </div>
-    );
-  }
+      </a>
+    </Link>
+  );
 };
 
 export default TagItem;
