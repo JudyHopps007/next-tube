@@ -4,7 +4,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { Video } from 'types/types';
 import { getVideoId, toJson } from 'utils/helpers';
 import VideoSection from 'components/video';
-import VideosSection from 'components/videos/VideoSection';
+import VideosSection from 'components/videos/VideosSection';
 
 type Props = {
   video: Video;

@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next';
 import CategoriesSection from 'components/categories/CategoriesSection';
 import TagsSection from 'components/tags/TagSection';
-import VideosSection from 'components/videos/VideoSection';
+import VideosSection from 'components/videos/VideosSection';
 import { Category, Video } from 'types/types';
 import { getPopularTags, getRandomTags } from '@db/services/tags.service';
 import { connectToDb } from '@db/database';

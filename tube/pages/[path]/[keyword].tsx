@@ -2,7 +2,7 @@ import { connectToDb } from '@db/database';
 import { getRandomTags, searchRelatedTags } from '@db/services/tags.service';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
-import VideosSection from 'components/videos/VideoSection';
+import VideosSection from 'components/videos/VideosSection';
 import { GetServerSideProps, NextPage } from 'next';
 import { TagRole, Video } from 'types/types';
 import {
