@@ -1,16 +1,13 @@
 import React, { FC, useState } from 'react';
-import {
-  CollectionIcon,
-  FlagIcon,
-  ThumbDownIcon,
-  ThumbUpIcon,
-  UserCircleIcon,
-} from '@heroicons/react/outline';
+import { FlagIcon, ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/outline';
 import { Video } from 'types/types';
 import millify from 'millify';
 import TimeAgo from 'react-timeago';
 import dynamic from 'next/dynamic';
 import VideoCategories from './VideoCategories';
+import VideoTags from './VideoTags';
+import Videos from '@db/models/videos.model';
+import VideoComments from './VideoComments';
 
 const Modal = dynamic(() => import('components/feedback/Feedback'));
 
@@ -70,15 +67,17 @@ const VideoSection: FC<Props> = ({ video }) => {
                 {millify(video.views)} views
               </span>
               <span className="font-semibold">
-                <TimeAgo date={video.createdAt} />
+                <TimeAgo live={false} date={video.createdAt} />
               </span>
             </div>
-            <div className="flex´">
+            <div className="flex">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores
               ratione, aut animi ad molestias quis voluptas quo tempora magnam
               deleniti consequuntur velit nam iusto vero vel eos distinctio quam
               nihil.
             </div>
+            <VideoTags tags={video.tags} />
+            <VideoComments />
           </div>
         </div>
       </section>

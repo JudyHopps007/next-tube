@@ -106,7 +106,7 @@ const Feedback: FC<Props> = ({ showModal, onClose }) => {
             rows={5}
             cols={5}
             value={message}
-            placeholder={`Enter message, please don't forget video id.`}
+            placeholder={`Enter message, please don't forget the video id.`}
             onChange={(e) => {
               updateFeedback({ message: e.target.value });
             }}
