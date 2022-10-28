@@ -23,7 +23,8 @@
     "react-dom": "npm:@preact/compat@^17.1.2",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.2.0",
     "react-timeago": "^7.1.0",
-    "sharp": "^0.31.1"
+    "sharp": "^0.31.1",
+    "tube-utils": "^1.2.2"
   },
   "devDependencies": {
     "@types/node": "18.11.0",
