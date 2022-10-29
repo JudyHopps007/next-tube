@@ -11,7 +11,7 @@ type Props = {
 
 const Button: FC<Props> = ({ text, onClickHandler, href, outline = false }) => {
   let className = classNames(
-    'py-2 px-2 text-base md:text-md font-medium rounded-md hover:bg-tertiary/90 hover:border-secondary w-full md:w-auto shadow-md',
+    'py-2 px-2 text-base md:text-md font-medium rounded-md hover:brightness-125 hover:border-secondary w-full md:w-auto shadow-md',
     outline
       ? 'border-2 border-secondary bg-transparent text-primary hover:text-primary'
       : 'border border-transparent bg-tertiary text-white'

@@ -114,7 +114,7 @@ const Feedback: FC<Props> = ({ showModal, onClose }) => {
 
           <button
             onClick={submitFeedback}
-            className="bg-tertiary w-full rounded-md p-2 text-primary hover:bg-tertiary/80"
+            className="bg-tertiary w-full rounded-md p-2 text-primary hover:brightness-125"
           >
             Send
           </button>

@@ -55,7 +55,7 @@ const Search: FC<Props> = ({ showMobileSearch }) => {
         </div>
         <button
           onClick={handleSearch}
-          className="px-3 py-2 bg-tertiary hover:bg-tertiary/90 rounded-r-md"
+          className="px-3 py-2 bg-tertiary hover:brightness-125 rounded-r-md"
         >
           <SearchIcon className="h-5 w-5 text-white" />
         </button>
