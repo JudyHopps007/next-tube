@@ -5,6 +5,7 @@ import { Video } from 'types/types';
 import { getVideoId, toJson } from 'utils/helpers';
 import VideoSection from 'components/video';
 import VideosSection from 'components/videos/VideosSection';
+import { videoSelector } from 'constants/database';
 
 type Props = {
   video: Video;
@@ -31,7 +32,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   await connectToDb();
   const video = await getVideoById(id);
-  const relatedVideos = await searchRelatedVideos(id, video.title, 40);
+  const searchString = `${video.title} ${
+    video.alternativeTitle
+  } ${video.tags.join(' ')} ${video.categories.join(' ')} ${video.models.join(
+    ' '
+  )}`;
+  const relatedVideos = await searchRelatedVideos(
+    id,
+    searchString,
+    40,
+    videoSelector
+  );
   return {
     props: {
       video: toJson(video),

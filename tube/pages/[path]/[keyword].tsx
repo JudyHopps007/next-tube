@@ -1,8 +1,10 @@
 import { connectToDb } from '@db/database';
-import { getRandomTags, searchRelatedTags } from '@db/services/tags.service';
+import { searchRelatedTags } from '@db/services/tags.service';
+import { searchVideos } from '@db/services/videos.service';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideosSection';
+import { videoSelector } from 'constants/database';
 import { GetServerSideProps, NextPage } from 'next';
 import { TagRole, Video } from 'types/types';
 import {
@@ -40,14 +42,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   await connectToDb();
   const { page, keyword } = pageData;
-  const videos = [] as Video[];
+  const videos = await searchVideos(keyword, 40, videoSelector);
   const tags = await searchRelatedTags(keyword, 20, { _id: 0, name: 1 });
 
   return {
     props: {
       page,
       keyword,
-      videos,
+      videos: toJson(videos),
       tags: toJson(tags.map((tag) => tag.name)),
       role: getTagRoleByRoute(path as string),
     },

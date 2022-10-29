@@ -74,3 +74,26 @@ export const searchRelatedVideos = async (
     return [];
   }
 };
+
+export const searchVideos = async (
+  keyword: string,
+  limit: number,
+  select: any = {}
+) => {
+  try {
+    const videos = await Videos.find({
+      $text: {
+        $search: keyword,
+        $caseSensitive: true,
+        $diacriticSensitive: true,
+      },
+      score: { $meta: 'textScore' },
+    })
+      .sort({ score: { $meta: 'textScore' } })
+      .limit(limit)
+      .select(select);
+    return videos;
+  } catch (err: any) {
+    return [];
+  }
+};
