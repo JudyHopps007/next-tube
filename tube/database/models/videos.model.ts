@@ -95,6 +95,14 @@ videosSchema.pre('save', function (next) {
   );
 });
 
+videosSchema.index({
+  title: 'text',
+  alternativeTitle: 'text',
+  tags: 'text',
+  categories: 'text',
+  models: 'text',
+});
+
 const Videos = mongoose.models.Videos || mongoose.model('Videos', videosSchema);
 
 export default Videos;

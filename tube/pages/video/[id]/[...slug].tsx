@@ -1,5 +1,5 @@
 import { connectToDb } from '@db/database';
-import { getVideoById } from '@db/services/videos.service';
+import { getVideoById, searchRelatedVideos } from '@db/services/videos.service';
 import { GetServerSideProps, NextPage } from 'next';
 import { Video } from 'types/types';
 import { getVideoId, toJson } from 'utils/helpers';
@@ -31,10 +31,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   await connectToDb();
   const video = await getVideoById(id);
+  const relatedVideos = await searchRelatedVideos(id, video.title, 40);
   return {
     props: {
       video: toJson(video),
-      relevantVideos: [],
+      relevantVideos: toJson(relatedVideos),
     },
   };
 };

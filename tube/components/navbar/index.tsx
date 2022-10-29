@@ -22,7 +22,7 @@ const Navbar: FC<Props> = ({}) => {
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
-    // disable for now...
+    // disabled for now...
     return;
 
     if (currentScrollPos > 250) {

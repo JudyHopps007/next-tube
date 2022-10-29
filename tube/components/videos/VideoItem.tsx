@@ -31,7 +31,7 @@ const VideoItem: FC<Props> = ({
             <Image
               className="group-hover:scale-110 ease-in duration-500"
               alt={video.title}
-              src={video.thumbnail}
+              src={'/images/no-image.png'}
               layout={'responsive'}
               width={400}
               height={250}
