@@ -7,6 +7,7 @@ import { classNames } from 'utils/helpers';
 import VideoTagItem from './VideoTagItem';
 import { buildVideoUrl } from 'utils/navigation';
 import Image from 'next/image';
+import { formatTimeLite } from 'utils/time';
 
 type Props = {
   video: Video;
@@ -50,7 +51,8 @@ const VideoItem: FC<Props> = ({
         )}
         {showDuration && (
           <span className="bg-primary bg-opacity-90 py-1 px-2 text-primary text-xs font-light rounded-tl-md absolute bottom-0 right-0 inline-flex group-hover:opacity-0 duration-500 ease-in-out">
-            <ClockIcon className="w-4 h-4 mr-1" /> {video.duration}
+            <ClockIcon className="w-4 h-4 mr-1" />
+            {formatTimeLite(video.duration)}
           </span>
         )}
       </div>
