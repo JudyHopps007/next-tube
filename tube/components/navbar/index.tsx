@@ -22,6 +22,8 @@ const Navbar: FC<Props> = ({}) => {
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
+    // disable for now...
+    return;
 
     if (currentScrollPos > 250) {
       setVisible(false);
@@ -41,7 +43,7 @@ const Navbar: FC<Props> = ({}) => {
 
   return (
     <header
-      className={`sticky z-10 border-b bg-primary border-primary/10 ${
+      className={`sticky z-10 border-b bg-primary border-primary/10 backdrop-blur bg-opacity-80 ${
         visible ? 'top-0' : ''
       }`}
     >
@@ -72,7 +74,7 @@ const Navbar: FC<Props> = ({}) => {
             showMobileNav ? '' : 'hidden'
           } fixed md:relative md:flex md:flex-row md:items-center md:justify-start md:top-0 top-14 w-full pb-2 py-2 border-none`}
         >
-          <ul className="flex flex-col md:flex-row mr-4 md:mr-0 md:space-x-2 items-center justify-items-center bg-secondary md:bg-primary text-center rounded-md border border-transparent">
+          <ul className="flex flex-col md:flex-row mr-4 md:mr-0 md:space-x-2 items-center justify-items-center bg-secondary md:bg-transparent text-center rounded-md border border-transparent">
             <li className="hidden md:flex">
               <NavItem brand={true} href="/" title="NextTube" />
             </li>
