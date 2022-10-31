@@ -60,11 +60,16 @@ const VideoItem: FC<Props> = ({
           </div>
         </a>
       </Link>
-      {showTags && video.tags.length > 0 && (
+      {showTags && (
         <div className="mb-2 mx-2 mt-1 flex flex-row content-around flex-wrap">
-          {video.tags.map((tag) => (
-            <VideoTagItem key={tag} role={'tag'} tag={tag} />
-          ))}
+          {video.categories.length > 0 &&
+            video.categories.map((tag) => (
+              <VideoTagItem key={tag} role={'category'} tag={tag} />
+            ))}
+          {video.models.length > 0 &&
+            video.models.map((tag) => (
+              <VideoTagItem key={tag} role={'model'} tag={tag} />
+            ))}
         </div>
       )}
     </div>
