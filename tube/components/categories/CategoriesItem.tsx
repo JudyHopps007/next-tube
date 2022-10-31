@@ -17,7 +17,7 @@ const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
       <Link href={buildTagUrl(name, role)}>
         <a>
           <Image
-            className="hover:scale-110 ease-in duration-500 rounded-xl"
+            className="rounded-xl"
             alt={name}
             src={image || '/images/no-image.png'}
             layout={'responsive'}

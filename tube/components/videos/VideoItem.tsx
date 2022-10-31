@@ -24,12 +24,12 @@ const VideoItem: FC<Props> = ({
   showTags = false,
 }) => {
   return (
-    <div className="text-primary justify-items-center rounded-lg overflow-hidden">
+    <div className="text-primary justify-items-center overflow-hidden">
       <Link href={buildVideoUrl(video.id, video.title)}>
         <a>
           <div className="relative group">
             <Image
-              className="group-hover:scale-110 ease-in duration-500 rounded-xl"
+              className="rounded-xl"
               alt={video.title}
               src={'/images/no-image.png'}
               layout={'responsive'}
