@@ -31,12 +31,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { redirect: { destination: '/', permanent: true } };
   }
   await connectToDb();
-  const video = await getVideoById(id);
+  const video = await getVideoById(id, true);
   const searchString = `${video.title} ${
     video.alternativeTitle
   } ${video.tags.join(' ')} ${video.categories.join(' ')} ${video.models.join(
     ' '
   )}`;
+
   const relatedVideos = await searchRelatedVideos(
     id,
     searchString,

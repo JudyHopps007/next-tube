@@ -21,7 +21,6 @@ const VideosSection: FC<Props> = ({ headline, videos, variant = 'h1' }) => {
             showHd
             showViews
             showDuration
-            showTags
           />
         ))}
       </div>

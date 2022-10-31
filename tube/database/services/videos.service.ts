@@ -16,9 +16,18 @@ export const videoExists = async (id: number) => {
   return true;
 };
 
-export const getVideoById = async (id: number) => {
+export const getVideoById = async (
+  id: number,
+  increaseViews: boolean = false
+) => {
   try {
-    const video = await Videos.findOne({ id: id });
+    let video;
+    increaseViews
+      ? (video = await Videos.findOneAndUpdate(
+          { id: id },
+          { $inc: { views: 1 } }
+        ))
+      : (video = await Videos.findOne({ id: id }));
     if (!video) throw new Error(`Video with id ${id} not found.`);
     return video;
   } catch (error) {

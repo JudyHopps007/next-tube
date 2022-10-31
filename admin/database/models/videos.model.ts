@@ -50,7 +50,7 @@ const videosSchema = new mongoose.Schema(
     },
     views: {
       type: Number,
-      default: 0,
+      default: 1,
     },
     likes: {
       type: Number,
