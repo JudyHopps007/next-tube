@@ -7,9 +7,15 @@ type Props = {
   currentPage: number;
   role: TagRole;
   keyword: string;
+  maxPage: number;
 };
 
-const Pagination: FC<Props> = ({ currentPage, keyword, role = 'tag' }) => {
+const Pagination: FC<Props> = ({
+  currentPage,
+  keyword,
+  maxPage = 5,
+  role = 'tag',
+}) => {
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
 
@@ -22,7 +28,7 @@ const Pagination: FC<Props> = ({ currentPage, keyword, role = 'tag' }) => {
           outline
         />
       )}
-      {nextPage < 6 && (
+      {nextPage <= maxPage && (
         <Button
           text="Next >"
           href={buildTagUrl(keyword, role, nextPage)}

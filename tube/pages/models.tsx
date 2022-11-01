@@ -3,6 +3,8 @@ import { getPopularTags } from '@db/services/tags.service';
 import ListSection from 'components/list/ListSection';
 import { GetServerSideProps, NextPage } from 'next';
 import { toJson } from 'utils/helpers';
+import { toplist } from 'tube.config';
+import { TagRole } from 'types/types';
 
 type Props = {
   models: string[];
@@ -18,10 +20,14 @@ const HomePage: NextPage<Props> = ({ models }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   await connectToDb();
-  const models = await getPopularTags('model', 100, {
-    _id: 0,
-    name: 1,
-  });
+  const models = await getPopularTags(
+    toplist.role as TagRole,
+    toplist.listLimit,
+    {
+      _id: 0,
+      name: 1,
+    }
+  );
 
   return {
     props: {

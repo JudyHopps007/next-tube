@@ -48,14 +48,24 @@ export const searchRelatedTags = async (
 export const getPopularTags = async (
   role: TagRole,
   limit: number,
-  select: any = {}
+  select: any = {},
+  fillArray: boolean = true
 ) => {
   try {
-    const tags = Tags.find({ role: role })
+    const tags = await Tags.find({ role: role, isPriority: true })
       .limit(limit)
       .sort({ videoCount: -1 })
       .select(select);
-    return tags;
+
+    let moreTags = [];
+    if (fillArray && tags.length < limit) {
+      moreTags = await Tags.find({ role: role, isPriority: false })
+        .limit(limit)
+        .sort({ videoCount: -1 })
+        .select(select);
+    }
+
+    return tags.concat(moreTags);
   } catch (error) {
     throw error;
   }

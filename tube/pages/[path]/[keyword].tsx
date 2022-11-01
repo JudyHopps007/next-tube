@@ -13,6 +13,7 @@ import {
   toJson,
   validateTagRole,
 } from 'utils/helpers';
+import config from 'tube.config';
 
 type Props = {
   page: number;
@@ -23,11 +24,17 @@ type Props = {
 };
 
 const TagPage: NextPage<Props> = ({ videos, page, keyword, tags, role }) => {
+  const configData = config[role];
   return (
     <>
       <VideosSection headline={`${keyword}`} videos={videos} />
       <TagsSection headline="Related Tags" tags={tags} />
-      <Pagination role={role} keyword={keyword} currentPage={page} />
+      <Pagination
+        role={role}
+        keyword={keyword}
+        currentPage={page}
+        maxPage={configData.maxPage}
+      />
     </>
   );
 };
@@ -39,11 +46,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!pageData || !validateTagRole(path as string)) {
     return { redirect: { destination: '/', permanent: true } };
   }
+  const configData = config[path as TagRole];
 
   await connectToDb();
   const { page, keyword } = pageData;
-  const videos = await searchVideos(keyword, 40, videoSelector);
-  const tags = await searchRelatedTags(keyword, 20, { _id: 0, name: 1 });
+  const videos = await searchVideos(
+    keyword,
+    configData.videosLimit,
+    videoSelector
+  );
+  const tags = await searchRelatedTags(keyword, configData.tagsLimit, {
+    _id: 0,
+    name: 1,
+  });
 
   return {
     props: {

@@ -1,8 +1,11 @@
 import Videos from '@db/models/videos.model';
 
-export const getRandomVideos = async (amount: number) => {
+export const getRandomVideos = async (amount: number, select: any = {}) => {
   try {
-    const videos = Videos.aggregate([{ $sample: { size: amount } }]);
+    const videos = Videos.aggregate([
+      { $sample: { size: amount } },
+      { $project: select },
+    ]);
     if (!videos) throw new Error(`Could not find ${amount} Videos`);
     return videos;
   } catch (error) {

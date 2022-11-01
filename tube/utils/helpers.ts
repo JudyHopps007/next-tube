@@ -1,4 +1,4 @@
-import { routes } from 'constants/routes';
+import { routes } from 'tube.config';
 import { Routes } from 'types/types';
 
 export function classNames(...classes: string[]) {

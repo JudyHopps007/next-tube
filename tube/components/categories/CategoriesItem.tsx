@@ -1,3 +1,4 @@
+import { CameraIcon, VideoCameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
@@ -29,8 +30,8 @@ const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
             <div className="flex mx-2 mt-2 text-sm md:text-base font-semibold mb-2">
               {name}
             </div>
-            <div className="flex mx-2 mt-2 text-xs md:sm font-base mb-2">
-              {count}
+            <div className="flex mx-2 mt-2 text-xs md:text-sm font-semibold mb-2">
+              {count} <VideoCameraIcon className="ml-1 w-5 h-5" />
             </div>
           </div>
         </a>
