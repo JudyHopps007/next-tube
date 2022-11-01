@@ -14,7 +14,7 @@ type Props = {
 
 const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
   return (
-    <div className="text-primary justify-items-center overflow-hidden shadow-lg group">
+    <div className="text-primary overflow-hidden group">
       <Link href={buildTagUrl(name, role)}>
         <a>
           <Image
@@ -27,10 +27,10 @@ const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
           />
 
           <div className="flex flex-row justify-between items-center">
-            <div className="flex mx-2 mt-2 text-sm md:text-base font-semibold mb-2">
+            <div className="inline-flex mx-2 mt-2 text-sm md:text-base font-semibold mb-2 items-center">
               {name}
             </div>
-            <div className="flex mx-2 mt-2 text-xs md:text-sm font-semibold mb-2">
+            <div className="inline-flex mx-2 mt-2 text-xs md:text-sm font-semibold mb-2 items-center">
               {count} <VideoCameraIcon className="ml-1 w-5 h-5" />
             </div>
           </div>
