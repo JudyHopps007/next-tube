@@ -77,3 +77,9 @@ export const getTagRoleByRoute = (str: string) => {
   });
   return res;
 };
+
+export const removePageFromPath = (path: string) => {
+  const pos = path.lastIndexOf('-');
+  if (pos === -1) return path;
+  return path.substring(0, pos);
+};

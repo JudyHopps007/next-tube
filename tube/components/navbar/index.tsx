@@ -2,6 +2,7 @@ import { MenuIcon, XIcon, SearchIcon } from '@heroicons/react/outline';
 import NavButton from 'components/navbar/NavButton';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
+import { removePageFromPath } from 'utils/helpers';
 import NavItem from './NavItem';
 import Search from './Search';
 
@@ -26,7 +27,7 @@ const Navbar: FC<Props> = ({}) => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [visible, setVisible] = useState(true);
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -91,7 +92,7 @@ const Navbar: FC<Props> = ({}) => {
                 <NavItem
                   href={navItem.href}
                   title={navItem.name}
-                  active={pathname === navItem.href}
+                  active={removePageFromPath(asPath) === navItem.href}
                 />
               </li>
             ))}
