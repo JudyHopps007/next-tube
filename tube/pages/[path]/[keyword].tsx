@@ -1,5 +1,5 @@
 import { connectToDb } from '@db/database';
-import { searchRelatedTags } from '@db/services/tags.service';
+import { getSEOTags, searchRelatedTags } from '@db/services/tags.service';
 import { searchVideos } from '@db/services/videos.service';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
@@ -28,13 +28,13 @@ const TagPage: NextPage<Props> = ({ videos, page, keyword, tags, role }) => {
   return (
     <>
       <VideosSection headline={`${keyword}`} videos={videos} />
-      <TagsSection headline="Related Tags" tags={tags} />
       <Pagination
         role={role}
         keyword={keyword}
         currentPage={page}
         maxPage={configData.maxPage}
       />
+      <TagsSection headline="Related Tags" variant="h2" tags={tags} />
     </>
   );
 };
@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     configData.videosLimit,
     videoSelector
   );
-  const tags = await searchRelatedTags(keyword, configData.tagsLimit, {
+  const tags = await getSEOTags(keyword, configData.tagsLimit, {
     _id: 0,
     name: 1,
   });

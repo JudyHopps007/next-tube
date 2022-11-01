@@ -3,7 +3,7 @@ import CategoriesSection from 'components/categories/CategoriesSection';
 import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideosSection';
 import { Category, TagRole, Video } from 'types/types';
-import { getPopularTags, getRandomTags } from '@db/services/tags.service';
+import { getPopularTags, getSEOTags } from '@db/services/tags.service';
 import { connectToDb } from '@db/database';
 import { toJson } from 'utils/helpers';
 import { getRandomVideos } from '@db/services/videos.service';
@@ -19,17 +19,21 @@ type Props = {
 const HomePage: NextPage<Props> = ({ categories, videos, tags }) => {
   return (
     <>
-      <CategoriesSection headline="Categories" categories={categories} />
-      <VideosSection headline="Latest Videos" videos={videos} />
-      <TagsSection headline="Popular Searches" tags={tags} />
+      <CategoriesSection
+        headline="Categories"
+        variant="h2"
+        categories={categories}
+      />
+      <VideosSection headline="Latest Videos" variant="h2" videos={videos} />
+      <TagsSection headline="Popular Searches" variant="h2" tags={tags} />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   await connectToDb();
-  const videos = await getRandomVideos(index.randomVideosLimit, videoSelector);
-  const tags = await getRandomTags(index.tagsLimit, 'tag', { _id: 0, name: 1 });
+  const videos = await getRandomVideos(index.videosLimit, videoSelector);
+  const tags = await getSEOTags('', index.tagsLimit, { _id: 0, name: 1 });
   const categories = await getPopularTags(
     index.categoriesSectionRole as TagRole,
     index.categoriesSectionLimit,

@@ -6,13 +6,17 @@ import { getVideoId, toJson } from 'utils/helpers';
 import VideoSection from 'components/video';
 import VideosSection from 'components/videos/VideosSection';
 import { videoSelector } from 'constants/database';
+import { video as videoConfig } from 'tube.config';
+import { getSEOTags } from '@db/services/tags.service';
+import TagsSection from 'components/tags/TagSection';
 
 type Props = {
   video: Video;
   relevantVideos: Video[];
+  tags: string[];
 };
 
-const VideoPage: NextPage<Props> = ({ video, relevantVideos }) => {
+const VideoPage: NextPage<Props> = ({ video, relevantVideos, tags }) => {
   return (
     <>
       <VideoSection video={video} />
@@ -21,6 +25,7 @@ const VideoPage: NextPage<Props> = ({ video, relevantVideos }) => {
         variant="h2"
         videos={relevantVideos}
       />
+      <TagsSection headline="Popular Searches" variant="h2" tags={tags} />
     </>
   );
 };
@@ -41,13 +46,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const relatedVideos = await searchRelatedVideos(
     id,
     searchString,
-    40,
+    videoConfig.videosLimit,
     videoSelector
   );
+
+  const tags = await getSEOTags(
+    `${video.title} ${video.alternativeTitle}`,
+    videoConfig.tagsLimit,
+    { _id: 0, name: 1 }
+  );
+
   return {
     props: {
       video: toJson(video),
       relevantVideos: toJson(relatedVideos),
+      tags: toJson(tags.map((tag) => tag.name)),
     },
   };
 };

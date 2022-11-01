@@ -1,6 +1,6 @@
 import Tags from '@db/models/tags.model';
 import { generateTagId } from '@db/utils/helpers';
-import { TagRole } from 'types/types';
+import { TagRole, Video } from 'types/types';
 
 export const getRandomTags = async (
   amount: number,
@@ -69,4 +69,32 @@ export const getPopularTags = async (
   } catch (error) {
     throw error;
   }
+};
+
+export const getSEOTags = async (
+  keyword: string,
+  limit: number,
+  select: any = {}
+) => {
+  const role = 'tag';
+  // 5 Prio Tags
+  const prioTags = await Tags.aggregate([
+    { $match: { role: role, isPriority: true } },
+    { $project: select },
+    { $sample: { size: 5 } },
+  ]);
+  // 5 Related Tags
+  let relatedTags = [];
+  if (keyword.length !== 0) {
+    relatedTags = await searchRelatedTags(keyword, 5, select);
+  }
+  // fill with random till limit reached
+  const randomTagsLimit = limit - relatedTags.length - prioTags.length;
+  const randomTags = await Tags.aggregate([
+    { $match: { role: role, isPriority: false } },
+    { $project: select },
+    { $sample: { size: randomTagsLimit } },
+  ]);
+  let result = [] as any[];
+  return result.concat(prioTags, relatedTags, randomTags);
 };

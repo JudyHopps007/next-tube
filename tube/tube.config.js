@@ -16,29 +16,36 @@ module.exports = {
   },
   /** Index Page **/
   index: {
-    randomVideosLimit: 40,
+    identifier: 'index',
+    videosLimit: 40,
     tagsLimit: 15,
     categoriesSectionRole: 'category',
     categoriesSectionLimit: 20,
   },
   /** Video Page **/
   video: {
-    relatedVideosLimit: 40,
+    identifier: 'video',
+    videosLimit: 40,
+    tagsLimit: 15,
   },
   /** Tag Page **/
   tag: {
+    identifier: 'tag',
     ...sharedConfig,
   },
   /** Category Page **/
   category: {
+    identifier: 'category',
     ...sharedConfig,
   },
   /** Model Page **/
   model: {
+    identifier: 'model',
     ...sharedConfig,
   },
   /** Toplist Page **/
   toplist: {
+    identifier: 'toplist',
     listLimit: 100,
     role: 'model',
   },
