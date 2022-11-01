@@ -13,6 +13,8 @@ module.exports = {
     category: 'category',
     model: 'model',
     toplist: 'models',
+    top: 'top',
+    new: 'new',
   },
   /** Index Page **/
   index: {
@@ -48,5 +50,15 @@ module.exports = {
     identifier: 'toplist',
     listLimit: 100,
     role: 'model',
+  },
+  /** New Page **/
+  new: {
+    identifier: 'new',
+    ...sharedConfig,
+  },
+  /** Top Page **/
+  top: {
+    identifier: 'top',
+    ...sharedConfig,
   },
 };

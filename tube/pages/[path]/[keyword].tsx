@@ -1,5 +1,5 @@
 import { connectToDb } from '@db/database';
-import { getSEOTags, searchRelatedTags } from '@db/services/tags.service';
+import { getSEOTags } from '@db/services/tags.service';
 import { searchVideos } from '@db/services/videos.service';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
@@ -14,6 +14,7 @@ import {
   validateTagRole,
 } from 'utils/helpers';
 import config from 'tube.config';
+import { buildTagUrl } from 'utils/navigation';
 
 type Props = {
   page: number;
@@ -29,8 +30,8 @@ const TagPage: NextPage<Props> = ({ videos, page, keyword, tags, role }) => {
     <>
       <VideosSection headline={`${keyword}`} videos={videos} />
       <Pagination
-        role={role}
-        keyword={keyword}
+        hrefPrevPage={buildTagUrl(keyword, role, page - 1)}
+        hrefNextPage={buildTagUrl(keyword, role, page + 1)}
         currentPage={page}
         maxPage={configData.maxPage}
       />

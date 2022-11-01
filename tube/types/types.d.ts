@@ -46,4 +46,6 @@ export type TagDesign = 'category' | 'tag';
 
 export type FeedbackSubject = 'others' | 'age' | 'broken' | 'copyrights';
 
-export type Routes = 'video' | TagRole;
+export type Routes = 'video' | TagRole | NavPages;
+
+export type NavPages = 'top' | 'new';
