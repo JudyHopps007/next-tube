@@ -49,6 +49,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   const configData = config[path as TagRole];
 
+  if (pageData.page > configData.maxPage)
+    return { redirect: { destination: '/', permanent: true } };
+
   await connectToDb();
   const { page, keyword } = pageData;
   const videos = await searchVideos(

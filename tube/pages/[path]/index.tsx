@@ -54,6 +54,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const configData = config[pageData.keyword as NavPages];
 
+  if (pageData.page > configData.maxPage)
+    return { redirect: { destination: '/', permanent: true } };
+
   await connectToDb();
   const { page, keyword } = pageData;
   const videos = await getRandomVideos(configData.videosLimit, videoSelector);
