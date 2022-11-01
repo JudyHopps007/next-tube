@@ -34,7 +34,7 @@ const Search: FC<Props> = ({ showMobileSearch }) => {
       >
         <div className="relative w-full">
           <input
-            className="p-2 rounded-l-md w-full md:w-64 bg-secondary text-secondary focus:outline-none"
+            className="p-2 rounded-l-md w-full md:w-64 bg-secondary text-primary focus:outline-none placeholder:text-secondary"
             type="text"
             value={query}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {

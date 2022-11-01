@@ -102,7 +102,7 @@ const Feedback: FC<Props> = ({ showModal, onClose }) => {
           <span className="font-semibold">Message</span>
           <textarea
             style={{ resize: 'none' }}
-            className="w-full bg-secondary focus:outline-none rounded-md p-2"
+            className="w-full bg-secondary focus:outline-none rounded-md p-2 text-primary placeholder:text-secondary"
             rows={5}
             cols={5}
             value={message}

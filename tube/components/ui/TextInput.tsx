@@ -18,7 +18,7 @@ const TextInput: FC<Props> = ({
       placeholder={placeholder}
       type={inputType}
       min={inputType === 'number' ? 0 : ''}
-      className="bg-secondary text-secondary focus:outline-none p-2 w-full rounded-md"
+      className="bg-secondary text-primary focus:outline-none p-2 w-full rounded-md placeholder:text-secondary"
       value={value}
       onChange={handleChange}
     />

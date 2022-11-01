@@ -12,7 +12,7 @@ const VideoComments = (props: Props) => {
       <div className="flex flex-col space-y-3">
         <div className="text-lg font-semibold">Comments</div>
         <textarea
-          className="w-full p-2 rounded-md cursor-not-allowed"
+          className="w-full p-2 rounded-md cursor-not-allowed placeholder:text-secondary bg-secondary brightness-125"
           disabled={true}
           placeholder="Please login to post comment"
         />
