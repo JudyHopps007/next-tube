@@ -31,6 +31,7 @@ export const getPage = (str: string) => {
     if (isNaN(parseFloat(page)) || isNaN(+page)) return null;
     return { keyword: keyword.replaceAll('-', ' '), page: parseFloat(page) };
   } catch (err: any) {
+    console.log(err);
     return null;
   }
 };
@@ -58,6 +59,13 @@ export const validateTagRole = (str: string) => {
     getRoute('category') === str ||
     getRoute('model') === str
   ) {
+    return true;
+  }
+  return false;
+};
+
+export const validateNavPages = (str: string) => {
+  if (getRoute('top') === str || getRoute('new') === str) {
     return true;
   }
   return false;
