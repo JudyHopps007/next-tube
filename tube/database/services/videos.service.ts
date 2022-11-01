@@ -21,7 +21,8 @@ export const videoExists = async (id: number) => {
 
 export const getVideoById = async (
   id: number,
-  increaseViews: boolean = false
+  increaseViews: boolean = false,
+  select: any = {}
 ) => {
   try {
     let video;
@@ -29,8 +30,8 @@ export const getVideoById = async (
       ? (video = await Videos.findOneAndUpdate(
           { id: id },
           { $inc: { views: 1 } }
-        ))
-      : (video = await Videos.findOne({ id: id }));
+        ).select(select))
+      : (video = await Videos.findOne({ id: id }).select(select));
     if (!video) throw new Error(`Video with id ${id} not found.`);
     return video;
   } catch (error) {

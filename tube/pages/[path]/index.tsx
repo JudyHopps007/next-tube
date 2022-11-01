@@ -4,7 +4,7 @@ import { getRandomVideos } from '@db/services/videos.service';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideosSection';
-import { videoSelector } from 'constants/database';
+import { videoPreviewSelector } from '@db/selectors';
 import { GetServerSideProps, NextPage } from 'next';
 
 import config from 'tube.config';
@@ -59,7 +59,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   await connectToDb();
   const { page, keyword } = pageData;
-  const videos = await getRandomVideos(configData.videosLimit, videoSelector);
+  const videos = await getRandomVideos(
+    configData.videosLimit,
+    videoPreviewSelector
+  );
   const tags = await getSEOTags(keyword, configData.tagsLimit, {
     _id: 0,
     name: 1,

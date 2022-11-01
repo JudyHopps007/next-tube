@@ -4,7 +4,7 @@ import { searchVideos } from '@db/services/videos.service';
 import Pagination from 'components/pagination';
 import TagsSection from 'components/tags/TagSection';
 import VideosSection from 'components/videos/VideosSection';
-import { videoSelector } from 'constants/database';
+import { videoPreviewSelector } from '@db/selectors';
 import { GetServerSideProps, NextPage } from 'next';
 import { TagRole, Video } from 'types/types';
 import {
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const videos = await searchVideos(
     keyword,
     configData.videosLimit,
-    videoSelector
+    videoPreviewSelector
   );
   const tags = await getSEOTags(keyword, configData.tagsLimit, {
     _id: 0,

@@ -7,7 +7,7 @@ import { getPopularTags, getSEOTags } from '@db/services/tags.service';
 import { connectToDb } from '@db/database';
 import { toJson } from 'utils/helpers';
 import { getRandomVideos } from '@db/services/videos.service';
-import { categorySelector, videoSelector } from 'constants/database';
+import { categorySelector, videoPreviewSelector } from '@db/selectors';
 import { index } from 'tube.config';
 
 type Props = {
@@ -32,7 +32,7 @@ const HomePage: NextPage<Props> = ({ categories, videos, tags }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   await connectToDb();
-  const videos = await getRandomVideos(index.videosLimit, videoSelector);
+  const videos = await getRandomVideos(index.videosLimit, videoPreviewSelector);
   const tags = await getSEOTags('', index.tagsLimit, { _id: 0, name: 1 });
   const categories = await getPopularTags(
     index.categoriesSectionRole as TagRole,

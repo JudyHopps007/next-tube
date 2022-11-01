@@ -5,7 +5,7 @@ import { Video } from 'types/types';
 import { getVideoId, toJson } from 'utils/helpers';
 import VideoSection from 'components/video';
 import VideosSection from 'components/videos/VideosSection';
-import { videoSelector } from 'constants/database';
+import { videoFullSelector, videoPreviewSelector } from '@db/selectors';
 import { video as videoConfig } from 'tube.config';
 import { getSEOTags } from '@db/services/tags.service';
 import TagsSection from 'components/tags/TagSection';
@@ -36,7 +36,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { redirect: { destination: '/', permanent: true } };
   }
   await connectToDb();
-  const video = await getVideoById(id, true);
+  const video = await getVideoById(id, true, videoFullSelector);
+  console.log(video);
   const searchString = `${video.title} ${
     video.alternativeTitle
   } ${video.tags.join(' ')} ${video.categories.join(' ')} ${video.models.join(
@@ -47,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     id,
     searchString,
     videoConfig.videosLimit,
-    videoSelector
+    videoPreviewSelector
   );
 
   const tags = await getSEOTags(
