@@ -37,7 +37,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   await connectToDb();
   const video = await getVideoById(id, true, videoFullSelector);
-  console.log(video);
   const searchString = `${video.title} ${
     video.alternativeTitle
   } ${video.tags.join(' ')} ${video.categories.join(' ')} ${video.models.join(
