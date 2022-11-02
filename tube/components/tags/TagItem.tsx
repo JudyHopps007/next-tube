@@ -47,7 +47,7 @@ const TagItem: FC<Props> = ({
             className={classNames(
               'text-sm md:text-base leading-5 mr-2',
               useSize ? getFont(size) : 'font-medium',
-              'text-tertiary bg-tertiary/10 rounded-full py-1 px-3 hover:bg-tertiary/30 hover:brightness-125 mb-2 hover:scale-[1.05] duration-300 ease-in shadow-md'
+              'text-color bg-secondary/10 rounded-full py-1 px-3 hover:bg-secondary/30 hover:brightness-125 mb-2 hover:scale-[1.05] duration-300 ease-in shadow-md'
             )}
           >
             {tag}
@@ -56,7 +56,7 @@ const TagItem: FC<Props> = ({
           <div
             className={classNames(
               getTextSize(size),
-              'flex mr-2 p-1 font-semibold text-secondary hover:text-primary'
+              'flex mr-2 p-1 font-semibold text-alternative hover:text-main'
             )}
           >
             {tag}

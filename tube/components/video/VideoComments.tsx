@@ -12,12 +12,12 @@ const VideoComments = (props: Props) => {
       <div className="flex flex-col space-y-3">
         <div className="text-lg font-semibold">Comments</div>
         <textarea
-          className="w-full p-2 rounded-md cursor-not-allowed placeholder:text-secondary bg-secondary brightness-125"
+          className="w-full p-2 rounded-md cursor-not-allowed placeholder:text-alternative bg-primary brightness-125"
           disabled={true}
           placeholder="Please login to post comment"
         />
         <div className="flex flex-row justify-center md:justify-between">
-          <span className="text-secondary w-60">250 Charaters left</span>
+          <span className="text-alternative w-60">250 Charaters left</span>
           <Button text="Submit Comment" />
         </div>
       </div>

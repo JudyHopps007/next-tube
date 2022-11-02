@@ -9,13 +9,13 @@ The theme can be easily changed by editing the `global.css` file in the **styles
 ```css
 // FreshBlue Theme
 :root {
-  --bg-primary: 34, 40, 49;
-  --bg-secondary: 57, 62, 70;
-  --bg-tertiary: 0, 173, 181;
+  --bg-background: 34, 40, 49;
+  --bg-primary: 57, 62, 70;
+  --bg-secondary: 0, 173, 181;
 
-  --text-primary: 238, 238, 238;
-  --text-secondary: 209, 213, 219;
-  --text-tertiary: 0, 173, 181;
+  --text-main: 238, 238, 238;
+  --text-alternative: 209, 213, 219;
+  --text-color: 0, 173, 181;
 
   --border-primary: 238, 238, 238;
   --border-secondary: 0, 173, 181;

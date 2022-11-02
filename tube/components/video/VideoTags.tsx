@@ -13,12 +13,12 @@ const VideoTags: FC<Props> = ({ tags }) => {
 
   return (
     <div className="flex flex-row flex-wrap items-baseline justify-start">
-      <span className="text-primary mr-2">Tags:</span>
+      <span className="text-main mr-2">Tags:</span>
       {tags.map((tag, i) => (
         <div key={tag} className="flex mb-1 mr-2">
           <Link href={buildTagUrl(tag, 'tag')}>
             <a>
-              <div className="text-tertiary hover:brightness-125 cursor-pointer">
+              <div className="text-color hover:brightness-125 cursor-pointer">
                 {`# ${tag}`}
               </div>
             </a>

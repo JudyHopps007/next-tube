@@ -11,10 +11,10 @@ type Props = {
 
 const NavItem: FC<Props> = ({ title, href, brand = false, active = false }) => {
   let className = classNames(
-    'px-2 py-2 text-primary hover:text-primary',
+    'px-2 py-2 text-main hover:text-main',
     brand
-      ? 'font-bold text-xl hover:text-primary'
-      : 'text-primary hover:bg-tertiary hover:rounded-md',
+      ? 'font-bold text-xl hover:text-main'
+      : 'text-main hover:bg-secondary hover:rounded-md',
     active ? 'md:border-b-2 md:border-b-secondary font-semibold' : ''
   );
 

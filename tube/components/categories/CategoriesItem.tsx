@@ -14,7 +14,7 @@ type Props = {
 
 const CategoriesItem: FC<Props> = ({ name, image, count, role }) => {
   return (
-    <div className="text-primary overflow-hidden group">
+    <div className="text-main overflow-hidden group">
       <Link href={buildTagUrl(name, role)}>
         <a>
           <Image

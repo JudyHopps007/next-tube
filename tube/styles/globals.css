@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --bg-primary: 15, 15, 15;
-    --bg-secondary: 40, 40, 40;
-    --bg-tertiary: 251, 37, 118;
+    --bg-background: 15, 15, 15;
+    --bg-primary: 40, 40, 40;
+    --bg-secondary: 251, 37, 118;
 
-    --text-primary: 243, 244, 246;
-    --text-secondary: 209, 213, 219;
-    --text-tertiary: 222, 47, 117;
+    --text-main: 243, 244, 246;
+    --text-color: 222, 47, 117;
+    --text-alternative: 209, 213, 219;
 
     --border-primary: 203, 213, 225;
     --border-secondary: 251, 37, 118;

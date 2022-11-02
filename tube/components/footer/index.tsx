@@ -10,11 +10,11 @@ const Footer = (props: FooterProps) => {
 
   return (
     <footer className="py-4 text-center border-t border-primary/10">
-      <div className="mb-2 text-sm max-w-5xl mx-auto text-secondary brightness-90">
+      <div className="mb-2 text-sm max-w-5xl mx-auto text-alternative brightness-90">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
         voluptates magni eveniet velit cum vero nobis soluta ipsa{' '}
         <button
-          className="text-tertiary brightness-125 hover:brightness-150"
+          className="text-color brightness-125 hover:brightness-150"
           onClick={() => {
             setShowModal(!showModal);
           }}
@@ -22,7 +22,7 @@ const Footer = (props: FooterProps) => {
           feedback
         </button>
       </div>
-      <span className="text-secondary text-sm font-semibold">
+      <span className="text-alternative text-sm font-semibold">
         NextTube Copyright 2022
       </span>
       {showModal && (

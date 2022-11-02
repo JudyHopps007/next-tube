@@ -14,7 +14,7 @@ const VideoCategories: FC<Props> = ({ categories, models }) => {
       {categories.map((category) => (
         <Link key={category} href={buildTagUrl(category, 'category')}>
           <a>
-            <div className="py-1 px-3 border-2 border-secondary hover:bg-tertiary rounded-md cursor-pointer mr-2 mb-2 inline-flex items-center">
+            <div className="py-1 px-3 border-2 border-secondary hover:bg-secondary rounded-md cursor-pointer mr-2 mb-2 inline-flex items-center">
               <UserCircleIcon className="w-5 h-5 mr-1" /> {category}
             </div>
           </a>
@@ -23,7 +23,7 @@ const VideoCategories: FC<Props> = ({ categories, models }) => {
       {models.map((model) => (
         <Link key={model} href={buildTagUrl(model, 'model')}>
           <a>
-            <div className="py-1 px-3 border-2 border-secondary hover:bg-tertiary rounded-md cursor-pointer mr-2 mb-2 inline-flex items-center">
+            <div className="py-1 px-3 border-2 border-secondary hover:bg-secondary rounded-md cursor-pointer mr-2 mb-2 inline-flex items-center">
               <UserCircleIcon className="w-5 h-5 mr-1" /> {model}
             </div>
           </a>

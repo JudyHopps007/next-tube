@@ -8,7 +8,7 @@ type BaseLayoutProps = {
 
 const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   return (
-    <div className="bg-primary text-primary">
+    <div className="bg-background text-main">
       <Navbar />
       <main className="container max-w-5xl mx-auto min-h-screen px-2 lg:px-0">
         {children}

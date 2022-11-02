@@ -19,11 +19,11 @@ const Modal: FC<Props> = ({ isShowing, children, title, onClose }) => {
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 mx-2 md:mx-0">
             <div
-              className="relative max-w-lg md:max-w-xl lg:max-w-3xl mx-auto bg-primary text-secondary shadow-lg border-2 border-primary/10 rounded-lg w-full"
+              className="relative max-w-lg md:max-w-xl lg:max-w-3xl mx-auto bg-background text-alternative shadow-lg border-2 border-primary/10 rounded-lg w-full"
               ref={modalRef}
             >
               <div className="absolute right-2 top-3" onClick={onClose}>
-                <XIcon className="w-5 h-5 hover:text-secondary cursor-pointer" />
+                <XIcon className="w-5 h-5 hover:text-alternative cursor-pointer" />
               </div>
               <div className="p-4 text-xl md:text-2xl font-semibold border-b border-primary/10  my-1 py-1">
                 {title}

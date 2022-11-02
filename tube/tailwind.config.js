@@ -6,9 +6,9 @@ const generateColorClass = (variable) => {
 };
 
 const textColor = {
-  primary: generateColorClass('text-primary'),
-  secondary: generateColorClass('text-secondary'),
-  tertiary: generateColorClass('text-tertiary'),
+  main: generateColorClass('text-main'),
+  color: generateColorClass('text-color'),
+  alternative: generateColorClass('text-alternative'),
 };
 
 const borderColor = {
@@ -17,9 +17,9 @@ const borderColor = {
 };
 
 const backgroundColor = {
+  background: generateColorClass('bg-background'),
   primary: generateColorClass('bg-primary'),
   secondary: generateColorClass('bg-secondary'),
-  tertiary: generateColorClass('bg-tertiary'),
 };
 
 /** @type {import('tailwindcss').Config} */

@@ -102,7 +102,7 @@ const Feedback: FC<Props> = ({ showModal, onClose }) => {
           <span className="font-semibold">Message</span>
           <textarea
             style={{ resize: 'none' }}
-            className="w-full bg-secondary focus:outline-none rounded-md p-2 text-primary placeholder:text-secondary"
+            className="w-full bg-primary focus:outline-none rounded-md p-2 text-main placeholder:text-alternative"
             rows={5}
             cols={5}
             value={message}
@@ -114,7 +114,7 @@ const Feedback: FC<Props> = ({ showModal, onClose }) => {
 
           <button
             onClick={submitFeedback}
-            className="bg-tertiary w-full rounded-md p-2 text-primary hover:brightness-125"
+            className="bg-secondary w-full rounded-md p-2 text-main hover:brightness-125"
           >
             Send
           </button>

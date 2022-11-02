@@ -21,8 +21,8 @@ const Headline: FC<Props> = ({ text, variant = 'h1', outline = false }) => {
     'mb-1 md:mb-3 font-semibold',
     getTextSize(variant),
     outline
-      ? 'text-primary bg-secondary rounded-md p-2 text-center md:text-left'
-      : 'text-primary'
+      ? 'text-main bg-primary rounded-md p-2 text-center md:text-left'
+      : 'text-main'
   );
 
   if (variant == 'h3') {
