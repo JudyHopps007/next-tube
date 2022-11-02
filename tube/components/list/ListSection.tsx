@@ -38,7 +38,7 @@ const ListSection: FC<Props> = ({
   return (
     <section className="mt-5">
       <Headline variant={variant} text={headline} />
-      <div className="bg-background text-main rounded-md shadow-lg py-2 px-2">
+      <div className="bg-background text-main rounded-md py-2 px-2">
         <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 items-center text-sm md:text-base">
           {sortedList.map((item, i) => (
             <ListItem key={item} item={item} role={role} />

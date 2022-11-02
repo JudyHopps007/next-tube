@@ -30,7 +30,7 @@ const Search: FC<Props> = ({ showMobileSearch }) => {
       <div
         className={`${
           showMobileSearch ? 'bg-background pb-2' : 'bg-background'
-        } flex flex-row`}
+        } flex flex-row rounded-md`}
       >
         <div className="relative w-full">
           <input

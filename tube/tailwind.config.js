@@ -9,6 +9,7 @@ const textColor = {
   main: generateColorClass('text-main'),
   color: generateColorClass('text-color'),
   alternative: generateColorClass('text-alternative'),
+  inverted: generateColorClass('text-inverted'),
 };
 
 const borderColor = {

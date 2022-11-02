@@ -38,17 +38,17 @@ const VideoItem: FC<Props> = ({
             />
 
             {showHd && video.isHD && (
-              <span className="bg-secondary py-1 px-2 bg-opacity-90 text-main text-xs font-semibold rounded-md absolute top-1 right-1 group-hover:opacity-0 duration-500 ease-in-out">
+              <span className="bg-secondary py-1 px-2 bg-opacity-90 text-inverted text-xs font-semibold rounded-md absolute top-2 right-2 group-hover:opacity-0 duration-500 ease-in-out">
                 HD
               </span>
             )}
             {showViews && (
-              <span className="bg-background py-1 px-2 bg-opacity-80 text-main text-xs font-light rounded-md absolute bottom-1 left-1 inline-flex group-hover:opacity-0 duration-500 ease-in-out items-center">
+              <span className="bg-black py-1 px-2 bg-opacity-80 text-inverted text-xs font-light rounded-md absolute bottom-2 left-2 inline-flex group-hover:opacity-0 duration-500 ease-in-out items-center">
                 <EyeIcon className="w-4 h-4 mr-1" /> {millify(video.views)}
               </span>
             )}
             {showDuration && (
-              <span className="bg-background bg-opacity-80 py-1 px-2 text-main text-xs font-light rounded-md absolute bottom-1 right-1 inline-flex group-hover:opacity-0 duration-500 ease-in-out items-center">
+              <span className="bg-black bg-opacity-80 py-1 px-2 text-inverted text-xs font-light rounded-md absolute bottom-2 right-2 inline-flex group-hover:opacity-0 duration-500 ease-in-out items-center">
                 <ClockIcon className="w-4 h-4 mr-1" />
                 {formatTimeLite(video.duration)}
               </span>
