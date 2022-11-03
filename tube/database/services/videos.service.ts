@@ -52,7 +52,7 @@ export const getVideoBySlug = async (
           { $inc: { views: 1 } }
         ).select(select))
       : (video = await Videos.findOne({ slug: slug }).select(select));
-    if (!video) throw new Error(`Video with slug ${slug} not found.`);
+    if (!video) return null;
     return video;
   } catch (error) {
     throw error;

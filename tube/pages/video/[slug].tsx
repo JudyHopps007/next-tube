@@ -41,6 +41,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   await connectToDb();
   const video = await getVideoBySlug(slug as string, true, videoFullSelector);
+  if (!video) {
+    return { redirect: { destination: '/', permanent: true } };
+  }
   const searchString = `${video.title} ${
     video.alternativeTitle
   } ${video.tags.join(' ')} ${video.categories.join(' ')} ${video.models.join(

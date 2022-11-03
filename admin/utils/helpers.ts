@@ -68,3 +68,7 @@ export const slugifyTitle = (title: string) => {
   // smaller slug size?
   return newTitle;
 };
+
+export const removeUrlFromTitle = (title: string) => {
+  return title.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+};

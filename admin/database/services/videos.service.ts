@@ -3,7 +3,7 @@ import Videos from 'database/models/videos.model';
 import { NextApiRequest } from 'next';
 import { VideoIncreaseKey, VideoStatusType } from 'types/types';
 import { createImage } from 'utils/cdn';
-import { slugifyTitle } from 'utils/helpers';
+import { removeUrlFromTitle, slugifyTitle } from 'utils/helpers';
 
 export const addVideo = async (req: NextApiRequest) => {
   try {
@@ -14,6 +14,8 @@ export const addVideo = async (req: NextApiRequest) => {
       originalId: originalId,
     });
 
+    const cleanTitle = removeUrlFromTitle(title).trim();
+
     if (existingVideo) {
       throw {
         message: `Video with id ${originalId} and plattform ${plattform} exists`,
@@ -22,7 +24,7 @@ export const addVideo = async (req: NextApiRequest) => {
 
     const thumbnail = await createImage(
       originalImage,
-      title,
+      cleanTitle,
       IMAGE_SETTINGS.thumbnail.height,
       IMAGE_SETTINGS.thumbnail.width,
       IMAGE_SETTINGS.thumbnail.subPath,
@@ -30,7 +32,7 @@ export const addVideo = async (req: NextApiRequest) => {
     );
     const poster = await createImage(
       originalImage,
-      title,
+      cleanTitle,
       IMAGE_SETTINGS.poster.height,
       IMAGE_SETTINGS.poster.width,
       IMAGE_SETTINGS.poster.subPath,
@@ -40,8 +42,9 @@ export const addVideo = async (req: NextApiRequest) => {
     const video = new Videos({
       ...req.body,
       id: 1, // get replaced with counter value
+      title: cleanTitle,
       poster,
-      slug: slugifyTitle(req.body.title),
+      slug: slugifyTitle(cleanTitle),
       thumbnail,
     });
     await video.save();
