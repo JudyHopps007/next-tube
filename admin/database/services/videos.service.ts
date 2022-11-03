@@ -3,6 +3,7 @@ import Videos from 'database/models/videos.model';
 import { NextApiRequest } from 'next';
 import { VideoIncreaseKey, VideoStatusType } from 'types/types';
 import { createImage } from 'utils/cdn';
+import { slugifyTitle } from 'utils/helpers';
 
 export const addVideo = async (req: NextApiRequest) => {
   try {
@@ -28,6 +29,7 @@ export const addVideo = async (req: NextApiRequest) => {
       ...req.body,
       id: 1, // get replaced with counter value
       poster,
+      slug: slugifyTitle(req.body.title),
       thumbnail,
     });
     await video.save();
