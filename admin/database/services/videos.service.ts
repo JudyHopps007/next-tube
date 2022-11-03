@@ -4,6 +4,7 @@ import { NextApiRequest } from 'next';
 import { VideoIncreaseKey, VideoStatusType } from 'types/types';
 import { createImage } from 'utils/cdn';
 import { removeUrlFromTitle, slugifyTitle } from 'utils/helpers';
+import { spin } from 'utils/spinner';
 
 export const addVideo = async (req: NextApiRequest) => {
   try {
@@ -14,13 +15,15 @@ export const addVideo = async (req: NextApiRequest) => {
       originalId: originalId,
     });
 
-    const cleanTitle = removeUrlFromTitle(title).trim();
+    let cleanTitle = removeUrlFromTitle(title).trim();
 
     if (existingVideo) {
       throw {
         message: `Video with id ${originalId} and plattform ${plattform} exists`,
       };
     }
+
+    cleanTitle = spin(cleanTitle);
 
     const thumbnail = await createImage(
       originalImage,
@@ -38,13 +41,13 @@ export const addVideo = async (req: NextApiRequest) => {
       IMAGE_SETTINGS.poster.subPath,
       IMAGE_SETTINGS.poster.prefix
     );
-
+    const slug = slugifyTitle(cleanTitle);
     const video = new Videos({
       ...req.body,
       id: 1, // get replaced with counter value
       title: cleanTitle,
       poster,
-      slug: slugifyTitle(cleanTitle),
+      slug,
       thumbnail,
     });
     await video.save();
