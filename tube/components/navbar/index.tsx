@@ -121,7 +121,7 @@ const Navbar: FC<Props> = ({}) => {
         </div>
       </nav>
       {showMobileSearch && <div className="mb-12" />}
-      {showMobileNav && <div className="mb-24" />}
+      {showMobileNav && <div className="mb-36" />}
     </header>
   );
 };

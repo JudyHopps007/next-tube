@@ -19,6 +19,12 @@ const videosSchema = new mongoose.Schema(
       required: [true, 'thumbnail is required'],
       type: String,
     },
+    slug: {
+      required: [true, 'slug is required'],
+      type: String,
+      unique: true,
+      trim: true,
+    },
     poster: {
       required: [true, 'poster is required'],
       type: String,

@@ -5,6 +5,7 @@ export type Video = {
   poster: string;
   isHD: boolean;
   duration: number;
+  slug: string;
   views: number;
   likes: number;
   dislikes: number;

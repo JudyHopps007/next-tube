@@ -25,7 +25,7 @@ const VideoItem: FC<Props> = ({
 }) => {
   return (
     <div className="text-main justify-items-center overflow-hidden">
-      <Link href={buildVideoUrl(video.id, video.title)}>
+      <Link href={buildVideoUrl(video.slug)}>
         <a>
           <div className="relative group">
             <Image

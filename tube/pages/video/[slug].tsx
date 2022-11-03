@@ -1,5 +1,9 @@
 import { connectToDb } from '@db/database';
-import { getVideoById, searchRelatedVideos } from '@db/services/videos.service';
+import {
+  getVideoById,
+  getVideoBySlug,
+  searchRelatedVideos,
+} from '@db/services/videos.service';
 import { GetServerSideProps, NextPage } from 'next';
 import { Video } from 'types/types';
 import { getVideoId, toJson } from 'utils/helpers';
@@ -31,12 +35,12 @@ const VideoPage: NextPage<Props> = ({ video, relevantVideos, tags }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = getVideoId(context.query.id as string);
-  if (!id) {
+  const { slug } = context.query;
+  if (!slug) {
     return { redirect: { destination: '/', permanent: true } };
   }
   await connectToDb();
-  const video = await getVideoById(id, true, videoFullSelector);
+  const video = await getVideoBySlug(slug as string, true, videoFullSelector);
   const searchString = `${video.title} ${
     video.alternativeTitle
   } ${video.tags.join(' ')} ${video.categories.join(' ')} ${video.models.join(
@@ -44,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )}`;
 
   const relatedVideos = await searchRelatedVideos(
-    id,
+    video.id,
     searchString,
     videoConfig.videosLimit,
     videoPreviewSelector

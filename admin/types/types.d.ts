@@ -7,6 +7,7 @@ export type Video = {
   duration: number;
   views: number;
   likes: number;
+  slug: string;
   dislikes: number;
   tags: string[];
   categories: string[];

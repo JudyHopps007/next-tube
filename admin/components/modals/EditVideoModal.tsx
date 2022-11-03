@@ -8,7 +8,7 @@ import TextInput from '@ui/TextInput';
 import Spinner from '@ui/Spinner';
 import useVideoData from 'hooks/useVideoData';
 import React, { FC } from 'react';
-import { classNames, randomImageId } from 'utils/helpers';
+import { classNames, randomImageId, slugifyTitle } from 'utils/helpers';
 
 type Props = {
   isShowing: boolean;
@@ -32,6 +32,7 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                 label="Title"
                 value={video.title}
                 handleChange={(e) => {
+                  updateVideo('slug', slugifyTitle(e.target.value));
                   updateVideo('title', e.target.value);
                 }}
               />
@@ -40,6 +41,14 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                 value={video.alternativeTitle}
                 handleChange={(e) => {
                   updateVideo('alternativeTitle', e.target.value);
+                }}
+              />
+
+              <TextInput
+                label="Slug"
+                value={video.slug}
+                handleChange={(e) => {
+                  updateVideo('slug', e.target.value);
                 }}
               />
 
@@ -114,7 +123,7 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
               <span className="font-semibold my-1">Image</span>
               <div className="relative">
                 <img
-                  className="w-full md:w-48 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto scale-x-flip"
+                  className="w-full md:w-56 h-48 md:rounded-t-md rounded-md md:rounded-b-none mx-auto scale-x-flip"
                   src={video.originalImage || '/images/no-image.png'}
                   alt="Video image preview"
                 />
@@ -172,6 +181,7 @@ const EditVideoModal: FC<Props> = ({ isShowing, onClose, id, saveChanges }) => {
                   categories: video.categories,
                   models: video.models,
                   originalImage: video.originalImage,
+                  slug: video.slug,
                   isHD: video.isHD,
                 };
                 onClose();

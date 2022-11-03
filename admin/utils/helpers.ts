@@ -60,3 +60,9 @@ export const textAreaToArray = (tags: string) => {
   }
   return result;
 };
+
+export const slugifyTitle = (title: string) => {
+  const newTitle = slugify(title);
+  // smaller slug size?
+  return newTitle;
+};

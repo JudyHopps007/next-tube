@@ -39,6 +39,26 @@ export const getVideoById = async (
   }
 };
 
+export const getVideoBySlug = async (
+  slug: string,
+  increaseViews: boolean = false,
+  select: any = {}
+) => {
+  try {
+    let video;
+    increaseViews
+      ? (video = await Videos.findOneAndUpdate(
+          { slug: slug },
+          { $inc: { views: 1 } }
+        ).select(select))
+      : (video = await Videos.findOne({ slug: slug }).select(select));
+    if (!video) throw new Error(`Video with slug ${slug} not found.`);
+    return video;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getVideos = async (
   page: number,
   limit: number,
@@ -97,8 +117,8 @@ export const searchVideos = async (
     const videos = await Videos.find({
       $text: {
         $search: keyword,
-        $caseSensitive: true,
-        $diacriticSensitive: true,
+        $caseSensitive: false,
+        $diacriticSensitive: false,
       },
       score: { $meta: 'textScore' },
     })

@@ -7,6 +7,7 @@ const videoSelector = {
   categories: 1,
   views: 1,
   duration: 1,
+  slug: 1,
   isHD: 1,
   likes: 1,
   dislikes: 1,
