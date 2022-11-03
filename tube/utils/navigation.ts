@@ -7,7 +7,7 @@ export const buildTagUrl = (name: string, route: TagRole = 'tag', page = 1) => {
 };
 
 export const buildVideoUrl = (slug: string) => {
-  return '/' + `${getRoute('video')}/${slug}}`;
+  return '/' + `${getRoute('video')}/${slug}`;
 };
 
 export const buildNavUrl = (route: NavPages, page = 1) => {

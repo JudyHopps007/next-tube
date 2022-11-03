@@ -9,12 +9,14 @@ export const isEmpty = (val: any) => {
 };
 
 export const slugify = (str: string) => {
-  const badChars = '#!?;./`´§%&)(/$,:+';
-  for (let c of badChars) {
-    str = str.replaceAll(c, '');
-  }
-  str = str.trim().toLowerCase().replaceAll(' ', '-').replace(/-+/g, '-');
-  return str;
+  return str
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with -
+    .replace(/[^\w\-]+/g, '-') // Remove all non-word chars
+    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, '');
 };
 
 export const toJson = (value: any) => {
