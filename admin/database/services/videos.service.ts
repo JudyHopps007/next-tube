@@ -7,7 +7,19 @@ import { slugifyTitle } from 'utils/helpers';
 
 export const addVideo = async (req: NextApiRequest) => {
   try {
-    const { originalImage, title } = req.body;
+    const { originalImage, plattform, originalId, title } = req.body;
+
+    const existingVideo = await Videos.findOne({
+      plattform: plattform,
+      originalId: originalId,
+    });
+
+    if (existingVideo) {
+      throw {
+        message: `Video with id ${originalId} and plattform ${plattform} exists`,
+      };
+    }
+
     const thumbnail = await createImage(
       originalImage,
       title,
