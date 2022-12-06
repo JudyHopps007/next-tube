@@ -31,7 +31,7 @@ const VideoTableRow: FC<Props> = ({ video, deleteHandler, editHandler }) => {
           <img
             className="hidden md:flex w-12 h-12 rounded-md"
             alt={video.title}
-            src={video.thumbnail}
+            src={'/images/no-image.png'}
             loading="lazy"
           />
           <div className="flex flex-col space-y-2">

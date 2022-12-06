@@ -1,6 +1,23 @@
 # NextTube
 
-A modern video tube website coded in Typescript with Next.js framework.
+A modern video tube website coded in Typescript with Next.js framework. TailwindCSS is used for the styling.
+
+### Features
+
+- Change Themes easily
+- Customize Tags, Models, Categories Pages
+- Manage Videos, Keywords in seperated adminpanel
+- Change images so they unique for serps
+- Rewrite video titles with a spinner
+- Scrape content from big sites
+- MongoDB Database
+- Report / Contact Modal
+
+### Todos
+
+- Improve SEO for ranking
+- Add Video per UI (Currently only per API)
+- Use Redis to cache pages
 
 ### Change Theme
 
@@ -37,19 +54,3 @@ The theme can be easily changed by editing the `global.css` file in the **styles
   --border-secondary: 113, 201, 206;
 }
 ```
-
-### Ideas
-
-Here is a list of Tubes that currently rank by google.
-
-- xnxxx.rocks - no id
-- rolotube.com - no id
-- xmilf.com
-- clipsex.video
-- pornsam.me
-- pornbfvideo.com <-- ranked in update
-- gekso.xyz
-
-Content:
-winporn.com
-proporn.com
